@@ -396,21 +396,28 @@ nav a:hover {
 </section>
 
 <section class="products">
-  <div class="card">
-    <img src="https://i.imgur.com/UphjhrT.jpeg">
-    <div class="card-content">
-      <h4>Designer Suit Set</h4>
-      <p>₹956</p>
-      <p style="font-size:14px; color:#666;">
-      Unstitched Suit 5m • Fancy Golden Lace Dupatta • Red, Blue, Black, Musturd 
-      </p>
-      <button class="add-btn" onclick="addToCart('Designer Suit Set', 956)">Add to Cart</button>
-      <a class="whatsapp-btn" target="_blank"
-         href="https://wa.me/916284348760?text=Hello%20I%20want%20to%20order%20Designer%20Suit">
-        <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
-      </a>
-    </div>
+ <div class="card">
+  <img 
+    src="https://i.imgur.com/UphjhrT.jpeg"
+    data-alt="images/suit1-2.jpg"
+    class="product-img"
+    onclick="toggleImage(this)"
+    alt="Designer Suit Set"
+  >
+
+  <div class="card-content">
+    <h4>Designer Suit Set</h4>
+    <p>₹956</p>
+    <p style="font-size:14px; color:#666;">
+      Unstitched Suit 5m • Fancy Golden Lace Dupatta • Red, Blue, Black, Musturd
+    </p>
+    <button class="add-btn" onclick="addToCart('Designer Suit Set', 956)">Add to Cart</button>
+    <a class="whatsapp-btn" target="_blank"
+       href="https://wa.me/916284348760?text=Hello%20I%20want%20to%20order%20Designer%20Suit">
+      <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+    </a>
   </div>
+</div>
 </section>
 
 <!-- CART POPUP -->
@@ -499,8 +506,18 @@ function closeCart() {
     <p>Mon–Sat: 10:00 AM – 9:00 PM</p>
   </div>
 </section>
+  <script>
+function toggleImage(img) {
+  const currentSrc = img.src;
+  const altSrc = img.getAttribute("data-alt");
+
+  img.src = altSrc;
+  img.setAttribute("data-alt", currentSrc);
+}
+</script>
 </body>
 </html>
+
 
 
 
