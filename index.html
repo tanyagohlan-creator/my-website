@@ -190,6 +190,15 @@ header {
   color: #ddd;
   line-height: 1.6;
 }
+  .banner-images {
+  display: flex;
+  gap: 10px; /* spacing between images */
+}
+
+.banner-images img {
+  max-width: 50%; /* each image takes up half the space */
+  height: auto;
+}
 footer {
   background: #000;
   color: #aaa;
@@ -372,8 +381,11 @@ nav a:hover {
   </nav>
 </header>
 <section class="top-banner">
-  <img src="https://i.imgur.com/JGUvZJ0.png" alt="Pastel Salwar Suit">
-  <img src="images/suit1-2.jpg" alt="Suit Set">
+  <div class="banner-images">
+    <img src="https://i.imgur.com/JGUvZJ0.png" alt="Pastel Salwar Suit">
+    <img src="images/suit1-2.jpg" alt="Suit Set">
+  </div>
+
   <div class="banner-text">
     <h2>Elegant Suit Sets</h2>
     <p>Graceful • Premium • Timeless</p>
@@ -493,6 +505,7 @@ function closeCart() {
 </section>
 </body>
 </html>
+
 
 
 
