@@ -844,22 +844,22 @@ footer {
   <div class="nav-container">
     <a href="#" class="logo">Fancy Cloth House</a>
     
-    <ul class="nav-links">
-      <li><a href="#new">New Arrivals</a></li>
-      <li><a href="#suits">Suit Sets</a></li>
-      <li><a href="#dresses">Dresses</a></li>
-      <li><a href="#sale">Sale</a></li>
-    </ul>
+   <ul class="nav-links">
+  <li><a href="#shop" onclick="filterProducts('all')">New Arrivals</a></li>
+  <li><a href="#shop" onclick="filterProducts('suit')">Suit Sets</a></li>
+  <li><a href="#shop" onclick="filterProducts('dress')">Dresses</a></li>
+  <li><a href="#shop" onclick="filterProducts('sale')">Sale</a></li>
+</ul>
     
-    <div class="nav-icons">
-      <i class="fas fa-search"></i>
-      <i class="fas fa-user"></i>
-      <i class="fas fa-heart"></i>
-      <div class="cart-icon" onclick="toggleCart()">
-        <i class="fas fa-shopping-bag"></i>
-        <span class="cart-count" id="cartCount">0</span>
-      </div>
-    </div>
+   <div class="nav-icons">
+  <i class="fas fa-search" onclick="toggleSearch()" title="Search"></i>
+  <i class="fas fa-user" onclick="showLogin()" title="My Account"></i>
+  <i class="fas fa-heart" onclick="showWishlist()" title="Wishlist"></i>
+  <div class="cart-icon" onclick="toggleCart()" title="Shopping Bag">
+    <i class="fas fa-shopping-bag"></i>
+    <span class="cart-count" id="cartCount">0</span>
+  </div>
+</div>
   </div>
 </header>
 
@@ -913,7 +913,7 @@ footer {
     <div class="banner-overlay">
       <h3>Festive Collection</h3>
       <p>Up to 40% Off</p>
-      <a href="#" class="cta-btn" style="background: transparent; color: white; border-color: white;">Shop Now</a>
+      <a href="#shop" onclick="filterProducts('sale')" class="cta-btn" style="background: transparent; color: white; border-color: white;">Shop Now</a>
     </div>
   </div>
   <div class="banner-item">
@@ -921,7 +921,7 @@ footer {
     <div class="banner-overlay">
       <h3>Wedding Season</h3>
       <p>Exclusive Designs</p>
-      <a href="#" class="cta-btn" style="background: transparent; color: white; border-color: white;">Explore</a>
+      <a href="#shop" onclick="filterProducts('premium')" class="cta-btn" style="background: transparent; color: white; border-color: white;">Explore</a>
     </div>
   </div>
 </div>
@@ -988,35 +988,36 @@ footer {
       <p>Your destination for premium women's ethnic wear. We bring you the finest suit sets, dresses, and traditional wear at unbeatable prices. Visit our store in Urmar Tanda or shop online.</p>
     </div>
     
-    <div class="footer-links">
-      <h4>Shop</h4>
-      <ul>
-        <li><a href="#">New Arrivals</a></li>
-        <li><a href="#">Suit Sets</a></li>
-        <li><a href="#">Dresses</a></li>
-        <li><a href="#">Sale</a></li>
-      </ul>
-    </div>
+   <div class="footer-links">
+  <h4>Shop</h4>
+  <ul>
+    <li><a href="#shop" onclick="filterProducts('all')">New Arrivals</a></li>
+    <li><a href="#shop" onclick="filterProducts('suit')">Suit Sets</a></li>
+    <li><a href="#shop" onclick="filterProducts('dress')">Dresses</a></li>
+    <li><a href="#shop" onclick="filterProducts('sale')">Sale</a></li>
+  </ul>
+</div>
     
-    <div class="footer-links">
-      <h4>Help</h4>
-      <ul>
-        <li><a href="#">Track Order</a></li>
-        <li><a href="#">Returns</a></li>
-        <li><a href="#">Shipping Info</a></li>
-        <li><a href="#">Size Guide</a></li>
-      </ul>
-    </div>
+   <div class="footer-links">
+  <h4>Help</h4>
+  <ul>
+    <li><a href="https://wa.me/916284348760?text=Hello, I want to track my order" target="_blank">Track Order</a></li>
+    <li><a href="https://wa.me/916284348760?text=Hello, I want to return my order" target="_blank">Returns</a></li>
+    <li><a href="#" onclick="showShippingInfo()">Shipping Info</a></li>
+    <li><a href="#" onclick="showSizeGuide()">Size Guide</a></li>
+  </ul>
+</div>
     
-    <div class="footer-links">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="#">Opp PNB Bank, Thana Chowk</a></li>
-        <li><a href="#">Urmar Tanda, Punjab 144204</a></li>
-        <li><a href="tel:+916284348760">+91 62843 48760</a></li>
-        <li><a href="#">Mon-Sat: 10AM - 9PM</a></li>
-      </ul>
-    </div>
+   <div class="footer-links">
+  <h4>Contact</h4>
+  <ul>
+    <li><a href="https://maps.google.com/?q=Urmar+Tanda+Punjab+144204" target="_blank"><i class="fas fa-map-marker-alt"></i> Opp PNB Bank, Thana Chowk</a></li>
+    <li><a href="https://maps.google.com/?q=Urmar+Tanda+Punjab+144204" target="_blank">Urmar Tanda, Punjab 144204</a></li>
+    <li><a href="tel:+916284348760"><i class="fas fa-phone"></i> +91 62843 48760</a></li>
+    <li><a href="https://wa.me/916284348760" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a></li>
+    <li><span style="color: #999; font-size: 14px;"><i class="fas fa-clock"></i> Mon-Sat: 10AM - 9PM</span></li>
+  </ul>
+</div>
   </div>
   
   <div class="footer-bottom">
@@ -1025,6 +1026,181 @@ footer {
 </footer>
 
 <script>
+  // ==========================================
+// PROFESSIONAL LINK FUNCTIONS
+// ==========================================
+
+// Filter products by category
+function filterProducts(category) {
+  const grid = document.getElementById('productsGrid');
+  let filtered = products;
+  
+  if (category === 'suit') {
+    filtered = products.filter(p => p.name.toLowerCase().includes('suit') || p.name.toLowerCase().includes('salwar'));
+  } else if (category === 'dress') {
+    filtered = products.filter(p => p.name.toLowerCase().includes('dress') || p.name.toLowerCase().includes('kurti') || p.name.toLowerCase().includes('lehenga'));
+  } else if (category === 'sale') {
+    filtered = products.filter(p => p.badge === 'Sale' || (p.originalPrice - p.price) > 500);
+  } else if (category === 'premium') {
+    filtered = products.filter(p => p.badge === 'Premium' || p.badge === 'Bestseller');
+  }
+  
+  // Re-render with filtered products
+  if (filtered.length === 0) {
+    grid.innerHTML = '<p style="text-align: center; padding: 60px; color: #666; font-size: 18px;">No products found in this category.<br><a href="#shop" onclick="filterProducts(\'all\'); return false;" style="color: #c9a962; text-decoration: underline;">View all products</a></p>';
+  } else {
+    renderFilteredProducts(filtered);
+  }
+  
+  // Smooth scroll to products
+  document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Render filtered products
+function renderFilteredProducts(productList) {
+  const grid = document.getElementById('productsGrid');
+  
+  grid.innerHTML = productList.map(product => {
+    const discount = Math.round((1 - product.price/product.originalPrice) * 100);
+    const hasGallery = product.images && product.images.length > 1;
+    
+    return `
+      <div class="product-card">
+        <div class="product-image">
+          ${hasGallery ? `
+            <div class="image-gallery">
+              <img 
+                src="${product.images[0]}" 
+                class="gallery-main"
+                alt="${product.name}"
+                onclick="window.open(this.src, '_blank')"
+                title="Click to enlarge"
+              >
+              <div class="gallery-thumbs">
+                ${product.images.map((img, idx) => `
+                  <img 
+                    src="${img}" 
+                    class="gallery-thumb ${idx === 0 ? 'active' : ''}"
+                    onclick="changeGalleryImage(this.parentElement.previousElementSibling, '${img}', this)"
+                    alt="View ${idx + 1}"
+                    title="View image ${idx + 1}"
+                  >
+                `).join('')}
+              </div>
+            </div>
+          ` : `
+            <img 
+              src="${product.images ? product.images[0] : product.image}" 
+              alt="${product.name}"
+              style="width: 100%; height: 100%; object-fit: cover;"
+            >
+          `}
+          ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+          <button class="wishlist-btn" onclick="addToWishlist(${product.id})">
+            <i class="far fa-heart"></i>
+          </button>
+          <div class="quick-add">
+            <button class="quick-add-btn" onclick="addToCart(${product.id})" title="Add to Bag">
+              +
+            </button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">${product.brand}</div>
+          <h3 class="product-title">${product.name}</h3>
+          <div class="product-price">
+            <span class="current-price">₹${product.price}</span>
+            <span class="original-price">₹${product.originalPrice}</span>
+            <span class="discount">${discount}% off</span>
+          </div>
+          <p style="font-size: 12px; color: #666; margin-top: 8px;">
+            ${product.colors.join(' • ')}
+          </p>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// Search functionality
+function toggleSearch() {
+  const searchTerm = prompt('Search products (e.g., suit, dress, red, etc.):');
+  if (searchTerm && searchTerm.trim() !== '') {
+    const grid = document.getElementById('productsGrid');
+    const filtered = products.filter(p => 
+      p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      p.colors.some(c => c.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      p.badge?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    
+    if (filtered.length > 0) {
+      renderFilteredProducts(filtered);
+      document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+    } else {
+      alert('No products found for: ' + searchTerm);
+    }
+  }
+}
+
+// Login popup
+function showLogin() {
+  const email = prompt('Enter your email to login:');
+  if (email) {
+    alert('Welcome! You are now logged in as: ' + email + '\n\n(This is a demo. In real website, this would verify your account.)');
+    localStorage.setItem('fch_user', email);
+  }
+}
+
+// Wishlist popup
+function showWishlist() {
+  const wishlist = JSON.parse(localStorage.getItem('fch_wishlist')) || [];
+  if (wishlist.length === 0) {
+    alert('Your wishlist is empty!\n\nClick the heart icon on any product to add it here.');
+  } else {
+    alert('Your Wishlist (' + wishlist.length + ' items):\n\n' + wishlist.map(p => '• ' + p.name).join('\n'));
+  }
+}
+
+// Shipping info popup
+function showShippingInfo() {
+  alert('📦 SHIPPING INFORMATION\n\n' +
+        '• Free shipping on orders above ₹999\n' +
+        '• Delivery within 3-5 business days\n' +
+        '• Cash on delivery available\n' +
+        '• Tracking number sent via WhatsApp\n\n' +
+        'For queries: WhatsApp +91 62843 48760');
+}
+
+// Size guide popup
+function showSizeGuide() {
+  alert('📏 SIZE GUIDE\n\n' +
+        'UNSTITCHED SUITS:\n' +
+        '• Top (Kameez): 2.5 meters\n' +
+        '• Bottom (Salwar): 2 meters\n' +
+        '• Dupatta: 2.25 meters\n\n' +
+        'STITCHED SUITS:\n' +
+        '• Small (S): 36" chest\n' +
+        '• Medium (M): 38" chest\n' +
+        '• Large (L): 40" chest\n' +
+        '• XL: 42" chest\n\n' +
+        'Need help? WhatsApp us your measurements!');
+}
+
+// Update wishlist function to actually save
+function addToWishlist(id) {
+  const product = products.find(p => p.id === id);
+  let wishlist = JSON.parse(localStorage.getItem('fch_wishlist')) || [];
+  
+  // Check if already in wishlist
+  if (wishlist.some(p => p.id === id)) {
+    alert('This item is already in your wishlist! ❤️');
+    return;
+  }
+  
+  wishlist.push(product);
+  localStorage.setItem('fch_wishlist', JSON.stringify(wishlist));
+  alert('Added to wishlist! ❤️\n\nTotal items: ' + wishlist.length);
+}
 // ==========================================
 // YOUR PRODUCTS - FIRST ONE USES YOUR PHOTOS
 // ==========================================
@@ -1260,7 +1436,7 @@ function updateCart() {
   
   cartItems.innerHTML = cart.map((item, index) => `
     <div class="cart-item">
-      <img src="${item.image}" alt="${item.name}">
+     <img src="${item.images ? item.images[0] : item.image}" alt="${item.name}">
       <div class="cart-item-details" style="flex: 1;">
         <h4>${item.name}</h4>
         <p>₹${item.price}</p>
@@ -1320,6 +1496,7 @@ updateCart();
 
 </body>
 </html>
+
 
 
 
