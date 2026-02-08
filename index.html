@@ -8,6 +8,60 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
+  /* Image Gallery Styles */
+.image-gallery {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery-main {
+  width: 100%;
+  height: 78%;
+  object-fit: cover;
+  transition: opacity 0.3s;
+  cursor: pointer;
+}
+
+.gallery-thumbs {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  background: rgba(255,255,255,0.95);
+  overflow-x: auto;
+  justify-content: center;
+}
+
+.gallery-thumb {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  flex-shrink: 0;
+  border-radius: 4px;
+}
+
+.gallery-thumb:hover,
+.gallery-thumb.active {
+  border-color: #c9a962;
+  transform: scale(1.05);
+}
+
+/* Hide scrollbar for thumbnails */
+.gallery-thumbs::-webkit-scrollbar {
+  height: 4px;
+}
+
+.gallery-thumbs::-webkit-scrollbar-thumb {
+  background: #c9a962;
+  border-radius: 2px;
+}
 :root {
   --primary: #1a1a1a;
   --accent: #c9a962;
@@ -941,34 +995,134 @@ footer {
 // ==========================================
 // YOUR PRODUCTS - FIRST ONE USES YOUR PHOTOS
 // ==========================================
-// Try to load from localStorage first, then fallback to default
+// ==========================================
+// PRODUCTS ARRAY - WITH ADMIN PANEL SUPPORT
+// ==========================================
+
+// Step 1: Try to load from localStorage (set by admin panel)
+// Step 2: If not found, use this default array
+// Step 3: Also try to load from products.json file
+
 let products = JSON.parse(localStorage.getItem('fch_products')) || [
+  // Product 1: Your first product (Floral Suit)
   {
     id: 1,
     name: "Floral Print Suit Set with Golden Lace Dupatta",
     brand: "Fancy Cloth House",
     price: 956,
     originalPrice: 1299,
-    images: ["images/suit-floral-model.jpg", "images/suit-floral-flatlay.jpg"],
+    images: [
+      "images/suit-floral-model.jpg",
+      "images/suit-floral-flatlay.jpg"
+    ],
     badge: "Bestseller",
     colors: ["Black", "Red", "Teal", "Mustard"]
+  },
+  
+  // Product 2: Your NEW product (Pure Natural Salwar - 7 images)
+  {
+    id: 2,
+    name: "Pure Natural Salwar Suit with Dupatta Work",
+    brand: "Fancy Cloth House",
+    price: 2850,
+    originalPrice: 3500,
+    images: [
+      "images/salwar-suit-purple-model.jpg",      // Main photo
+      "images/salwar-suit-all-colors-model.jpg",  // All colors
+      "images/salwar-suit-purple-flatlay.jpg",    // Purple detail
+      "images/salwar-suit-red-flatlay.jpg",       // Red detail
+      "images/salwar-suit-black-flatlay.jpg",     // Black detail
+      "images/salwar-suit-yellow-flatlay.jpg",    // Yellow detail
+      "images/salwar-suit-red2-flatlay.jpg"       // Red variant
+    ],
+    badge: "New",
+    colors: ["Purple", "Red", "Black", "Yellow"]
+  },
+  
+  // Products 3-7: Sample products (single images)
+  {
+    id: 3,
+    name: "Embroidered Silk Suit",
+    brand: "Premium Collection",
+    price: 1499,
+    originalPrice: 1999,
+    images: ["https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600"],
+    badge: "New",
+    colors: ["Green", "Pink", "Maroon"]
+  },
+  {
+    id: 4,
+    name: "Party Wear Georgette Set",
+    brand: "Fancy Cloth House",
+    price: 1299,
+    originalPrice: 1699,
+    images: ["https://images.unsplash.com/photo-1583391733951-5525b57f8c22?w=600"],
+    badge: "Trending",
+    colors: ["Black", "Navy", "Wine"]
+  },
+  {
+    id: 5,
+    name: "Casual Printed Kurti Set",
+    brand: "Daily Wear",
+    price: 699,
+    originalPrice: 999,
+    images: ["https://images.unsplash.com/photo-1610030469668-8cf1a2f5494a?w=600"],
+    badge: "Sale",
+    colors: ["White", "Yellow", "Peach"]
+  },
+  {
+    id: 6,
+    name: "Wedding Special Lehenga",
+    brand: "Bridal Collection",
+    price: 2999,
+    originalPrice: 3999,
+    images: ["https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600"],
+    badge: "Premium",
+    colors: ["Red", "Gold"]
+  },
+  {
+    id: 7,
+    name: "Chiffon Dupatta Set",
+    brand: "Fancy Cloth House",
+    price: 899,
+    originalPrice: 1199,
+    images: ["https://images.unsplash.com/photo-1605763240004-7e93b172d754?w=600"],
+    badge: null,
+    colors: ["Pink", "Blue", "Green"]
   }
 ];
 
 let cart = [];
 
-// Also try to load from products.json file (for GitHub Pages)
+// Function to change gallery image (for products with multiple images)
+function changeGalleryImage(mainImg, newSrc, thumbElement) {
+  mainImg.style.opacity = '0.5';
+  setTimeout(() => {
+    mainImg.src = newSrc;
+    mainImg.style.opacity = '1';
+  }, 150);
+  
+  const thumbs = thumbElement.parentElement.querySelectorAll('.gallery-thumb');
+  thumbs.forEach(t => t.classList.remove('active'));
+  thumbElement.classList.add('active');
+}
+
+// Try to load from products.json (if admin panel created it)
 fetch('products.json')
   .then(response => response.json())
   .then(data => {
-    if (data && data.products) {
+    if (data && data.products && data.products.length > 0) {
       products = data.products;
       localStorage.setItem('fch_products', JSON.stringify(products));
       renderProducts();
+      console.log('Loaded products from products.json');
     }
   })
-  .catch(err => console.log('Using localStorage products'));
-
+  .catch(err => {
+    console.log('Using default products (products.json not found)');
+    // Save default products to localStorage for admin panel
+    localStorage.setItem('fch_products', JSON.stringify(products));
+  });
 // Function to toggle between model and flat lay images
 function toggleImage(imgElement) {
   const currentSrc = imgElement.src;
@@ -986,13 +1140,34 @@ function renderProducts() {
   grid.innerHTML = products.map(product => `
     <div class="product-card">
       <div class="product-image">
+       ${product.images && product.images.length > 1 ? `
+  <div class="image-gallery">
+    <img 
+      src="${product.images[0]}" 
+      class="gallery-main"
+      alt="${product.name}"
+      onclick="window.open(this.src, '_blank')"
+      title="Click to enlarge"
+    >
+    <div class="gallery-thumbs">
+      ${product.images.map((img, idx) => `
         <img 
-          src="${product.image}" 
-          data-alt="${product.imageAlt || ''}"
-          alt="${product.name}"
-          onclick="toggleImage(this)"
-          style="cursor: pointer;"
-          title="Click to see fabric details"
+          src="${img}" 
+          class="gallery-thumb ${idx === 0 ? 'active' : ''}"
+          onclick="changeGalleryImage(this.parentElement.previousElementSibling, '${img}', this)"
+          alt="View ${idx + 1}"
+          title="View image ${idx + 1}"
+        >
+      `).join('')}
+    </div>
+  </div>
+` : `
+  <img 
+    src="${product.images ? product.images[0] : product.image}" 
+    alt="${product.name}"
+    style="width: 100%; height: 100%; object-fit: cover;"
+  >
+`}
         >
         ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
         <button class="wishlist-btn" onclick="addToWishlist(${product.id})">
@@ -1113,6 +1288,7 @@ updateCart();
 
 </body>
 </html>
+
 
 
 
