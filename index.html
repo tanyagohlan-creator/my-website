@@ -941,71 +941,33 @@ footer {
 // ==========================================
 // YOUR PRODUCTS - FIRST ONE USES YOUR PHOTOS
 // ==========================================
-const products = [
+// Try to load from localStorage first, then fallback to default
+let products = JSON.parse(localStorage.getItem('fch_products')) || [
   {
     id: 1,
     name: "Floral Print Suit Set with Golden Lace Dupatta",
     brand: "Fancy Cloth House",
     price: 956,
     originalPrice: 1299,
-    image: "images/suit-floral-model.jpg",        // Your model photo
-    imageAlt: "images/suit-floral-flatlay.jpg",   // Your flat lay photo
+    images: ["images/suit-floral-model.jpg", "images/suit-floral-flatlay.jpg"],
     badge: "Bestseller",
     colors: ["Black", "Red", "Teal", "Mustard"]
-  },
-  {
-    id: 2,
-    name: "Embroidered Silk Suit",
-    brand: "Premium Collection",
-    price: 1499,
-    originalPrice: 1999,
-    image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600",
-    badge: "New",
-    colors: ["Green", "Pink", "Maroon"]
-  },
-  {
-    id: 3,
-    name: "Party Wear Georgette Set",
-    brand: "Fancy Cloth House",
-    price: 1299,
-    originalPrice: 1699,
-    image: "https://images.unsplash.com/photo-1583391733951-5525b57f8c22?w=600",
-    badge: "Trending",
-    colors: ["Black", "Navy", "Wine"]
-  },
-  {
-    id: 4,
-    name: "Casual Printed Kurti Set",
-    brand: "Daily Wear",
-    price: 699,
-    originalPrice: 999,
-    image: "https://images.unsplash.com/photo-1610030469668-8cf1a2f5494a?w=600",
-    badge: "Sale",
-    colors: ["White", "Yellow", "Peach"]
-  },
-  {
-    id: 5,
-    name: "Wedding Special Lehenga",
-    brand: "Bridal Collection",
-    price: 2999,
-    originalPrice: 3999,
-    image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600",
-    badge: "Premium",
-    colors: ["Red", "Gold"]
-  },
-  {
-    id: 6,
-    name: "Chiffon Dupatta Set",
-    brand: "Fancy Cloth House",
-    price: 899,
-    originalPrice: 1199,
-    image: "https://images.unsplash.com/photo-1605763240004-7e93b172d754?w=600",
-    badge: null,
-    colors: ["Pink", "Blue", "Green"]
   }
 ];
 
 let cart = [];
+
+// Also try to load from products.json file (for GitHub Pages)
+fetch('products.json')
+  .then(response => response.json())
+  .then(data => {
+    if (data && data.products) {
+      products = data.products;
+      localStorage.setItem('fch_products', JSON.stringify(products));
+      renderProducts();
+    }
+  })
+  .catch(err => console.log('Using localStorage products'));
 
 // Function to toggle between model and flat lay images
 function toggleImage(imgElement) {
@@ -1151,6 +1113,7 @@ updateCart();
 
 </body>
 </html>
+
 
 
 
