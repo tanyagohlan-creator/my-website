@@ -1034,194 +1034,12 @@ footer {
 </footer>
 
 <script>
-  // ==========================================
-// PROFESSIONAL LINK FUNCTIONS
+ <script>
 // ==========================================
-
-// Filter products by category
-function filterProducts(category) {
-  const grid = document.getElementById('productsGrid');
-  let filtered = products;
-  
-  if (category === 'suit') {
-    filtered = products.filter(p => p.name.toLowerCase().includes('suit') || p.name.toLowerCase().includes('salwar'));
-  } else if (category === 'dress') {
-    filtered = products.filter(p => p.name.toLowerCase().includes('dress') || p.name.toLowerCase().includes('kurti') || p.name.toLowerCase().includes('lehenga'));
-  } else if (category === 'sale') {
-    filtered = products.filter(p => p.badge === 'Sale' || (p.originalPrice - p.price) > 500);
-  } else if (category === 'premium') {
-    filtered = products.filter(p => p.badge === 'Premium' || p.badge === 'Bestseller');
-  }
-  
-  // Re-render with filtered products
-  if (filtered.length === 0) {
-    grid.innerHTML = '<p style="text-align: center; padding: 60px; color: #666; font-size: 18px;">No products found in this category.<br><a href="#shop" onclick="filterProducts(\'all\'); return false;" style="color: #c9a962; text-decoration: underline;">View all products</a></p>';
-  } else {
-    renderFilteredProducts(filtered);
-  }
-  
-  // Smooth scroll to products
-  document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
-}
-
-// Render filtered products
-function renderFilteredProducts(productList) {
-  const grid = document.getElementById('productsGrid');
-  
-  grid.innerHTML = productList.map(product => {
-    const discount = Math.round((1 - product.price/product.originalPrice) * 100);
-    const hasGallery = product.images && product.images.length > 1;
-    
-    return `
-      <div class="product-card">
-        <div class="product-image">
-          ${hasGallery ? `
-            <div class="image-gallery">
-              <img 
-                src="${product.images[0]}" 
-                class="gallery-main"
-                alt="${product.name}"
-                onclick="window.open(this.src, '_blank')"
-                title="Click to enlarge"
-              >
-              <div class="gallery-thumbs">
-                ${product.images.map((img, idx) => `
-                  <img 
-                    src="${img}" 
-                    class="gallery-thumb ${idx === 0 ? 'active' : ''}"
-                    onclick="changeGalleryImage(this.parentElement.previousElementSibling, '${img}', this)"
-                    alt="View ${idx + 1}"
-                    title="View image ${idx + 1}"
-                  >
-                `).join('')}
-              </div>
-            </div>
-          ` : `
-            <img 
-              src="${product.images ? product.images[0] : product.image}" 
-              alt="${product.name}"
-              style="width: 100%; height: 100%; object-fit: cover;"
-            >
-          `}
-          ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
-          <button class="wishlist-btn" onclick="addToWishlist(${product.id})">
-            <i class="far fa-heart"></i>
-          </button>
-          <div class="quick-add">
-            <button class="quick-add-btn" onclick="addToCart(${product.id})" title="Add to Bag">
-              +
-            </button>
-          </div>
-        </div>
-        <div class="product-info">
-          <div class="product-brand">${product.brand}</div>
-          <h3 class="product-title">${product.name}</h3>
-          <div class="product-price">
-            <span class="current-price">₹${product.price}</span>
-            <span class="original-price">₹${product.originalPrice}</span>
-            <span class="discount">${discount}% off</span>
-          </div>
-          <p style="font-size: 12px; color: #666; margin-top: 8px;">
-            ${product.colors.join(' • ')}
-          </p>
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-// Search functionality
-function toggleSearch() {
-  const searchTerm = prompt('Search products (e.g., suit, dress, red, etc.):');
-  if (searchTerm && searchTerm.trim() !== '') {
-    const grid = document.getElementById('productsGrid');
-    const filtered = products.filter(p => 
-      p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      p.colors.some(c => c.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      p.badge?.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    
-    if (filtered.length > 0) {
-      renderFilteredProducts(filtered);
-      document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
-    } else {
-      alert('No products found for: ' + searchTerm);
-    }
-  }
-}
-
-// Login popup
-function showLogin() {
-  const email = prompt('Enter your email to login:');
-  if (email) {
-    alert('Welcome! You are now logged in as: ' + email + '\n\n(This is a demo. In real website, this would verify your account.)');
-    localStorage.setItem('fch_user', email);
-  }
-}
-
-// Wishlist popup
-function showWishlist() {
-  const wishlist = JSON.parse(localStorage.getItem('fch_wishlist')) || [];
-  if (wishlist.length === 0) {
-    alert('Your wishlist is empty!\n\nClick the heart icon on any product to add it here.');
-  } else {
-    alert('Your Wishlist (' + wishlist.length + ' items):\n\n' + wishlist.map(p => '• ' + p.name).join('\n'));
-  }
-}
-
-// Shipping info popup
-function showShippingInfo() {
-  alert('📦 SHIPPING INFORMATION\n\n' +
-        '• Free shipping on orders above ₹999\n' +
-        '• Delivery within 3-5 business days\n' +
-        '• Cash on delivery available\n' +
-        '• Tracking number sent via WhatsApp\n\n' +
-        'For queries: WhatsApp +91 62843 48760');
-}
-
-// Size guide popup
-function showSizeGuide() {
-  alert('📏 SIZE GUIDE\n\n' +
-        'UNSTITCHED SUITS:\n' +
-        '• Top (Kameez): 2.5 meters\n' +
-        '• Bottom (Salwar): 2 meters\n' +
-        '• Dupatta: 2.25 meters\n\n' +
-        'STITCHED SUITS:\n' +
-        '• Small (S): 36" chest\n' +
-        '• Medium (M): 38" chest\n' +
-        '• Large (L): 40" chest\n' +
-        '• XL: 42" chest\n\n' +
-        'Need help? WhatsApp us your measurements!');
-}
-
-// Update wishlist function to actually save
-function addToWishlist(id) {
-  const product = products.find(p => p.id === id);
-  let wishlist = JSON.parse(localStorage.getItem('fch_wishlist')) || [];
-  
-  // Check if already in wishlist
-  if (wishlist.some(p => p.id === id)) {
-    alert('This item is already in your wishlist! ❤️');
-    return;
-  }
-  
-  wishlist.push(product);
-  localStorage.setItem('fch_wishlist', JSON.stringify(wishlist));
-  alert('Added to wishlist! ❤️\n\nTotal items: ' + wishlist.length);
-}
+// PRODUCTS ARRAY
 // ==========================================
-// YOUR PRODUCTS - FIRST ONE USES YOUR PHOTOS
-// ==========================================
-// ==========================================
-// PRODUCTS ARRAY - WITH ADMIN PANEL SUPPORT
-// ==========================================
-
-// Step 1: Try to load from localStorage (set by admin panel)
-// Step 2: If not found, use this default array
-// Step 3: Also try to load from products.json file
 
 let products = JSON.parse(localStorage.getItem('fch_products')) || [
-  // Product 1: Your first product (Floral Suit)
   {
     id: 1,
     name: "Floral Print Suit Set with Golden Lace Dupatta",
@@ -1235,8 +1053,6 @@ let products = JSON.parse(localStorage.getItem('fch_products')) || [
     badge: "Bestseller",
     colors: ["Black", "Red", "Teal", "Mustard"]
   },
-  
-  // Product 2: Your NEW product (Pure Natural Salwar - 7 images)
   {
     id: 2,
     name: "Pure Natural Salwar Suit with Dupatta Work",
@@ -1244,18 +1060,16 @@ let products = JSON.parse(localStorage.getItem('fch_products')) || [
     price: 2850,
     originalPrice: 3500,
     images: [
-      "images/salwar-suit-purple-model.jpg",      // Main photo
-      "images/salwar-suit-all-colors-model.jpg",  // All colors
-      "images/salwar-suit-purple-flatlay.jpg",    // Purple detail
-      "images/salwar-suit-red-flatlay.jpg",       // Red detail
-      "images/salwar-suit-black-flatlay.jpg",     // Black detail
-      "images/salwar-suit-yellow-flatlay.jpg"    // Yellow detail
+      "images/salwar-suit-purple-model.jpg",
+      "images/salwar-suit-all-colors-model.jpg",
+      "images/salwar-suit-purple-flatlay.jpg",
+      "images/salwar-suit-red-flatlay.jpg",
+      "images/salwar-suit-black-flatlay.jpg",
+      "images/salwar-suit-yellow-flatlay.jpg"
     ],
     badge: "New",
     colors: ["Purple", "Red", "Black", "Yellow"]
   },
-  
-  // Products 3-7: Sample products (single images)
   {
     id: 3,
     name: "Embroidered Silk Suit",
@@ -1310,32 +1124,8 @@ let products = JSON.parse(localStorage.getItem('fch_products')) || [
 
 let cart = [];
 
-// Function to change gallery image (for products with multiple images)
-function changeGalleryImage(mainImg, newSrc, thumbElement) {
-  mainImg.style.opacity = '0.5';
-  setTimeout(() => {
-    mainImg.src = newSrc;
-    mainImg.style.opacity = '1';
-  }, 150);
-  
-  const thumbs = thumbElement.parentElement.querySelectorAll('.gallery-thumb');
-  thumbs.forEach(t => t.classList.remove('active'));
-  thumbElement.classList.add('active');
-}
-  function changeGalleryImage(mainImg, newSrc, thumbElement) {
-  mainImg.style.opacity = '0.5';
-  setTimeout(() => {
-    mainImg.src = newSrc;
-    mainImg.style.opacity = '1';
-  }, 150);
-  
-  const thumbs = thumbElement.parentElement.querySelectorAll('.gallery-thumb');
-  thumbs.forEach(t => t.classList.remove('active'));
-  thumbElement.classList.add('active');
-}
-
 // ==========================================
-// WISHLIST FUNCTION
+// WISHLIST FUNCTION (ONLY ONE - FIXED)
 // ==========================================
 
 function addToWishlist(id) {
@@ -1350,7 +1140,7 @@ function addToWishlist(id) {
   wishlist.push(product);
   localStorage.setItem('fch_wishlist', JSON.stringify(wishlist));
   
-  // Visual feedback - fill the heart
+  // Visual feedback
   const btn = event.target.closest('.wishlist-btn');
   if (btn) {
     btn.classList.add('active');
@@ -1361,115 +1151,94 @@ function addToWishlist(id) {
 }
 
 // ==========================================
-// INITIALIZE
+// RENDER PRODUCTS (CLEAN - NO DUPLICATES)
 // ==========================================
 
-renderProducts();
-updateCart();
-
-// Try to load from products.json (if admin panel created it)
-fetch('products.json')
-  .then(response => response.json())
-  .then(data => {
-    if (data && data.products && data.products.length > 0) {
-      products = data.products;
-      localStorage.setItem('fch_products', JSON.stringify(products));
-      renderProducts();
-      console.log('Loaded products from products.json');
-    }
-  })
-  .catch(err => {
-    console.log('Using default products (products.json not found)');
-    // Save default products to localStorage for admin panel
-    localStorage.setItem('fch_products', JSON.stringify(products));
-  });
-// Function to toggle between model and flat lay images
-function toggleImage(imgElement) {
-  const currentSrc = imgElement.src;
-  const altSrc = imgElement.getAttribute('data-alt');
-  
-  if (altSrc && altSrc !== "null" && altSrc !== "" && altSrc !== "undefined") {
-    imgElement.src = altSrc;
-    imgElement.setAttribute('data-alt', currentSrc);
-  }
-}
-
-// Render Products
 function renderProducts() {
   const grid = document.getElementById('productsGrid');
-  grid.innerHTML = products.map(product => `
-    <div class="product-card">
-      <div class="product-image">
-       ${product.images && product.images.length > 1 ? `
-  <div class="image-gallery">
-    <img 
-      src="${product.images[0]}" 
-      class="gallery-main"
-      alt="${product.name}"
-      onclick="window.open(this.src, '_blank')"
-      title="Click to enlarge"
-    >
-    <div class="gallery-thumbs">
-      ${product.images.map((img, idx) => `
-        <img 
-          src="${img}" 
-          class="gallery-thumb ${idx === 0 ? 'active' : ''}"
-          onclick="changeGalleryImage(this.parentElement.previousElementSibling, '${img}', this)"
-          alt="View ${idx + 1}"
-          title="View image ${idx + 1}"
-        >
-      `).join('')}
-    </div>
-  </div>
-` : `
-  <img 
-    src="${product.images ? product.images[0] : product.image}" 
-    alt="${product.name}"
-    style="width: 100%; height: 100%; object-fit: cover;"
-  >
-`}
-        >
-        ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
-        function addToWishlist(id) {
-  const product = products.find(p => p.id === id);
-  let wishlist = JSON.parse(localStorage.getItem('fch_wishlist')) || [];
   
-  // Check if already in wishlist
-  if (wishlist.some(p => p.id === id)) {
-    alert('This item is already in your wishlist! ❤️');
-    return;
-  }
-  
-  wishlist.push(product);
-  localStorage.setItem('fch_wishlist', JSON.stringify(wishlist));
-  alert('Added to wishlist! ❤️\n\nTotal items: ' + wishlist.length);
-}       
-        <div class="quick-add">
-         <button class="quick-add-btn" onclick="addToCart(${product.id})" title="Add to Bag">
-  +
-</button>
+  grid.innerHTML = products.map(product => {
+    const discount = Math.round((1 - product.price/product.originalPrice) * 100);
+    const hasGallery = product.images && product.images.length > 1;
+    
+    return `
+      <div class="product-card">
+        <div class="product-image">
+          ${hasGallery ? `
+            <div class="image-gallery">
+              <img 
+                src="${product.images[0]}" 
+                class="gallery-main"
+                alt="${product.name}"
+                onclick="window.open(this.src, '_blank')"
+                title="Click to enlarge"
+              >
+              <div class="gallery-thumbs">
+                ${product.images.map((img, idx) => `
+                  <img 
+                    src="${img}" 
+                    class="gallery-thumb ${idx === 0 ? 'active' : ''}"
+                    onclick="changeGalleryImage(this.parentElement.previousElementSibling, '${img}', this)"
+                    alt="View ${idx + 1}"
+                    title="View image ${idx + 1}"
+                  >
+                `).join('')}
+              </div>
+            </div>
+          ` : `
+            <img 
+              src="${product.images[0]}" 
+              alt="${product.name}"
+              style="width: 100%; height: 100%; object-fit: cover;"
+            >
+          `}
+          
+          ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+          
+          <button class="wishlist-btn" onclick="addToWishlist(${product.id})">
+            <i class="far fa-heart"></i>
+          </button>
+          
+          <div class="quick-add">
+            <button class="quick-add-btn" onclick="addToCart(${product.id})" title="Add to Bag">
+              +
+            </button>
+          </div>
+        </div>
+        
+        <div class="product-info">
+          <div class="product-brand">${product.brand}</div>
+          <h3 class="product-title">${product.name}</h3>
+          <div class="product-price">
+            <span class="current-price">₹${product.price}</span>
+            <span class="original-price">₹${product.originalPrice}</span>
+            <span class="discount">${discount}% off</span>
+          </div>
+          <p style="font-size: 12px; color: #666; margin-top: 8px;">
+            ${product.colors.join(' • ')}
+          </p>
         </div>
       </div>
-      <div class="product-info">
-        <div class="product-brand">${product.brand}</div>
-        <h3 class="product-title">${product.name}</h3>
-        <div class="product-price">
-          <span class="current-price">₹${product.price}</span>
-          <span class="original-price">₹${product.originalPrice}</span>
-          <span class="discount">${Math.round((1 - product.price/product.originalPrice) * 100)}% off</span>
-        </div>
-        <p style="font-size: 12px; color: #666; margin-top: 8px;">
-          ${product.colors.join(' • ')}
-        </p>
-        <p style="font-size: 11px; color: #999; margin-top: 5px;">
-          Click image to view fabric
-        </p>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
-// Cart Functions
+// ==========================================
+// OTHER FUNCTIONS
+// ==========================================
+
+function changeGalleryImage(mainImg, newSrc, thumbElement) {
+  mainImg.style.opacity = '0.5';
+  setTimeout(() => {
+    mainImg.src = newSrc;
+    mainImg.style.opacity = '1';
+  }, 150);
+  
+  const thumbs = thumbElement.parentElement.querySelectorAll('.gallery-thumb');
+  thumbs.forEach(t => t.classList.remove('active'));
+  thumbElement.classList.add('active');
+}
+
 function addToCart(productId) {
   const product = products.find(p => p.id === productId);
   const existingItem = cart.find(item => item.id === productId);
@@ -1499,7 +1268,7 @@ function updateCart() {
   
   cartItems.innerHTML = cart.map((item, index) => `
     <div class="cart-item">
-     <img src="${item.images ? item.images[0] : item.image}" alt="${item.name}">
+      <img src="${item.images[0]}" alt="${item.name}">
       <div class="cart-item-details" style="flex: 1;">
         <h4>${item.name}</h4>
         <p>₹${item.price}</p>
@@ -1548,17 +1317,141 @@ function checkout() {
   window.open(`https://wa.me/916284348760?text=${message}`, '_blank');
 }
 
-function addToWishlist(id) {
-  alert('Added to wishlist!');
+// ==========================================
+// FILTER & UTILITY FUNCTIONS
+// ==========================================
+
+function filterProducts(category) {
+  const grid = document.getElementById('productsGrid');
+  let filtered = products;
+  
+  if (category === 'suit') {
+    filtered = products.filter(p => p.name.toLowerCase().includes('suit') || p.name.toLowerCase().includes('salwar'));
+  } else if (category === 'dress') {
+    filtered = products.filter(p => p.name.toLowerCase().includes('dress') || p.name.toLowerCase().includes('kurti') || p.name.toLowerCase().includes('lehenga'));
+  } else if (category === 'sale') {
+    filtered = products.filter(p => p.badge === 'Sale' || (p.originalPrice - p.price) > 500);
+  } else if (category === 'premium') {
+    filtered = products.filter(p => p.badge === 'Premium' || p.badge === 'Bestseller');
+  }
+  
+  if (filtered.length === 0) {
+    grid.innerHTML = '<p style="text-align: center; padding: 60px; color: #666; font-size: 18px;">No products found in this category.</p>';
+  } else {
+    renderFilteredProducts(filtered);
+  }
+  
+  document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
 }
 
-// Initialize
+function renderFilteredProducts(productList) {
+  const grid = document.getElementById('productsGrid');
+  
+  grid.innerHTML = productList.map(product => {
+    const discount = Math.round((1 - product.price/product.originalPrice) * 100);
+    const hasGallery = product.images && product.images.length > 1;
+    
+    return `
+      <div class="product-card">
+        <div class="product-image">
+          ${hasGallery ? `
+            <div class="image-gallery">
+              <img 
+                src="${product.images[0]}" 
+                class="gallery-main"
+                alt="${product.name}"
+                onclick="window.open(this.src, '_blank')"
+              >
+              <div class="gallery-thumbs">
+                ${product.images.map((img, idx) => `
+                  <img 
+                    src="${img}" 
+                    class="gallery-thumb ${idx === 0 ? 'active' : ''}"
+                    onclick="changeGalleryImage(this.parentElement.previousElementSibling, '${img}', this)"
+                  >
+                `).join('')}
+              </div>
+            </div>
+          ` : `
+            <img src="${product.images[0]}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;">
+          `}
+          ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+          <button class="wishlist-btn" onclick="addToWishlist(${product.id})">
+            <i class="far fa-heart"></i>
+          </button>
+          <div class="quick-add">
+            <button class="quick-add-btn" onclick="addToCart(${product.id})">+</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">${product.brand}</div>
+          <h3 class="product-title">${product.name}</h3>
+          <div class="product-price">
+            <span class="current-price">₹${product.price}</span>
+            <span class="original-price">₹${product.originalPrice}</span>
+            <span class="discount">${discount}% off</span>
+          </div>
+          <p style="font-size: 12px; color: #666; margin-top: 8px;">
+            ${product.colors.join(' • ')}
+          </p>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function toggleSearch() {
+  const searchTerm = prompt('Search products:');
+  if (searchTerm) {
+    const filtered = products.filter(p => 
+      p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      p.colors.some(c => c.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+    if (filtered.length > 0) {
+      renderFilteredProducts(filtered);
+      document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+    } else {
+      alert('No products found for: ' + searchTerm);
+    }
+  }
+}
+
+function showLogin() {
+  const email = prompt('Enter your email:');
+  if (email) {
+    alert('Welcome! Logged in as: ' + email);
+    localStorage.setItem('fch_user', email);
+  }
+}
+
+function showWishlist() {
+  const wishlist = JSON.parse(localStorage.getItem('fch_wishlist')) || [];
+  if (wishlist.length === 0) {
+    alert('Your wishlist is empty!');
+  } else {
+    alert('Your Wishlist (' + wishlist.length + ' items):\n\n' + wishlist.map(p => '• ' + p.name).join('\n'));
+  }
+}
+
+function showShippingInfo() {
+  alert('📦 Free shipping on orders above ₹999\nDelivery: 3-5 days\nCOD available');
+}
+
+function showSizeGuide() {
+  alert('📏 Unstitched: Top 2.5m, Bottom 2m, Dupatta 2.25m');
+}
+
+// ==========================================
+// INITIALIZE
+// ==========================================
+
 renderProducts();
 updateCart();
 </script>
 
 </body>
 </html>
+
 
 
 
