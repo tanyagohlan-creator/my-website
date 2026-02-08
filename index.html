@@ -22,18 +22,20 @@
   object-fit: cover;
   cursor: pointer;
 }
-
 .gallery-thumbs {
   height: 60px;
   display: flex;
   gap: 8px;
   padding: 8px;
-  background: white;
+  background: rgba(255,255,255,0.98);
   overflow-x: auto;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 100;
+  border-top: 2px solid #c9a962;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
 }
-
 .gallery-thumb {
   width: 45px;
   height: 45px;
@@ -357,12 +359,12 @@ header {
   transform: translateY(0);
 }
 
-/* Quick Add - Side Circle Button (Option 4) */
+/* Quick Add - Side Circle Button (MOVED TO TOP) */
 .quick-add {
   position: absolute;
   right: 15px;
-  bottom: 80px; /* Above thumbnails */
-  z-index: 10;
+  top: 80px;        /* Changed from bottom to top */
+  z-index: 5;       /* Lower than thumbnails */
   opacity: 0;
   transform: translateX(10px);
   transition: all 0.3s;
@@ -421,13 +423,13 @@ header {
   opacity: 1;
 }
 
-/* Mobile adjustment */
 @media (max-width: 768px) {
   .quick-add {
     right: 10px;
-    bottom: 75px;
+    top: 70px;      /* Top on mobile */
+    bottom: auto;
   }
-  
+
   .quick-add-btn {
     width: 45px;
     height: 45px;
@@ -1298,6 +1300,7 @@ console.log('✅ Website loaded successfully!');
 </script>
 </body>
 </html>
+
 
 
 
