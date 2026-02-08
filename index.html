@@ -30,7 +30,6 @@ body {
   line-height: 1.6;
 }
 
-/* Announcement Bar */
 .announcement {
   background: var(--primary);
   color: white;
@@ -40,7 +39,6 @@ body {
   letter-spacing: 1px;
 }
 
-/* Header */
 header {
   position: sticky;
   top: 0;
@@ -142,7 +140,6 @@ header {
   justify-content: center;
 }
 
-/* Hero Section */
 .hero {
   position: relative;
   height: 85vh;
@@ -190,7 +187,6 @@ header {
   color: white;
 }
 
-/* Features Bar */
 .features {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -221,7 +217,6 @@ header {
   font-weight: 600;
 }
 
-/* Section Headers */
 .section-header {
   text-align: center;
   padding: 80px 0 40px;
@@ -241,7 +236,6 @@ header {
   text-transform: uppercase;
 }
 
-/* Product Grid */
 .products-section {
   max-width: 1400px;
   margin: 0 auto;
@@ -254,7 +248,6 @@ header {
   gap: 30px;
 }
 
-/* Product Card */
 .product-card {
   background: white;
   border-radius: 8px;
@@ -276,7 +269,6 @@ header {
   background: #f8f8f8;
 }
 
-/* Image Gallery Styles */
 .image-gallery {
   width: 100%;
   height: 100%;
@@ -339,7 +331,6 @@ header {
   transform: scale(1.05);
 }
 
-/* Single Image */
 .single-image {
   width: 100%;
   height: 100%;
@@ -509,7 +500,6 @@ header {
   border-color: var(--accent);
 }
 
-/* Collection Banner */
 .collection-banner {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -559,7 +549,6 @@ header {
   margin-bottom: 20px;
 }
 
-/* Cart Sidebar */
 .cart-sidebar {
   position: fixed;
   top: 0;
@@ -762,7 +751,6 @@ header {
   background: var(--light-gray);
 }
 
-/* Trust Section */
 .trust-section {
   background: var(--light-gray);
   padding: 80px 50px;
@@ -801,7 +789,6 @@ header {
   line-height: 1.6;
 }
 
-/* Footer */
 footer {
   background: var(--primary);
   color: white;
@@ -867,7 +854,6 @@ footer {
   font-size: 13px;
 }
 
-/* Toast Notification */
 .toast {
   position: fixed;
   bottom: 30px;
@@ -889,7 +875,6 @@ footer {
   transform: translateX(-50%) translateY(0);
 }
 
-/* Responsive */
 @media (max-width: 1024px) {
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1191,7 +1176,7 @@ footer {
 
 <script>
 // ==========================================
-// PRODUCTS DATA - UPDATED WITH WORKING IMAGES
+// PRODUCTS DATA - USING YOUR ACTUAL IMAGES
 // ==========================================
 
 const products = [
@@ -1202,8 +1187,8 @@ const products = [
     price: 956,
     originalPrice: 1299,
     images: [
-      "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600",
-      "https://images.unsplash.com/photo-1610030469629-dc6f4c8ce95e?w=600"
+      "images/suit-floral-model.jpg",
+      "images/suit-floral-flatlay.jpg"
     ],
     badge: "Bestseller",
     colors: ["Black", "Red", "Teal", "Mustard"],
@@ -1216,9 +1201,12 @@ const products = [
     price: 2850,
     originalPrice: 3500,
     images: [
-      "https://images.unsplash.com/photo-1583391733951-5525b57f8c22?w=600",
-      "https://images.unsplash.com/photo-1610030469668-8cf1a2f5494a?w=600",
-      "https://images.unsplash.com/photo-1605763240004-7e93b172d754?w=600"
+      "images/salwar-suit-purple-model.jpg",
+      "images/salwar-suit-all-colors-model.jpg",
+      "images/salwar-suit-purple-flatlay.jpg",
+      "images/salwar-suit-red-flatlay.jpg",
+      "images/salwar-suit-black-flatlay.jpg",
+      "images/salwar-suit-yellow-flatlay.jpg"
     ],
     badge: "New",
     colors: ["Purple", "Red", "Black", "Yellow"],
@@ -1230,7 +1218,7 @@ const products = [
     brand: "Premium Collection",
     price: 1499,
     originalPrice: 1999,
-    images: ["https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600"],
+    images: ["images/suit1-2.jpg"],
     badge: "New",
     colors: ["Green", "Pink", "Maroon"],
     category: "suit"
@@ -1241,7 +1229,7 @@ const products = [
     brand: "Fancy Cloth House",
     price: 1299,
     originalPrice: 1699,
-    images: ["https://images.unsplash.com/photo-1583391733951-5525b57f8c22?w=600"],
+    images: ["images/suit-floral-model.jpg"],
     badge: "Trending",
     colors: ["Black", "Navy", "Wine"],
     category: "dress"
@@ -1252,7 +1240,7 @@ const products = [
     brand: "Daily Wear",
     price: 699,
     originalPrice: 999,
-    images: ["https://images.unsplash.com/photo-1610030469668-8cf1a2f5494a?w=600"],
+    images: ["images/suit1-2.jpg"],
     badge: "Sale",
     colors: ["White", "Yellow", "Peach"],
     category: "dress"
@@ -1263,7 +1251,7 @@ const products = [
     brand: "Bridal Collection",
     price: 2999,
     originalPrice: 3999,
-    images: ["https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600"],
+    images: ["images/salwar-suit-purple-model.jpg"],
     badge: "Premium",
     colors: ["Red", "Gold"],
     category: "dress"
@@ -1274,16 +1262,12 @@ const products = [
     brand: "Fancy Cloth House",
     price: 899,
     originalPrice: 1199,
-    images: ["https://images.unsplash.com/photo-1605763240004-7e93b172d754?w=600"],
+    images: ["images/suit-floral-flatlay.jpg"],
     badge: null,
     colors: ["Pink", "Blue", "Green"],
     category: "suit"
   }
 ];
-
-// ==========================================
-// STATE MANAGEMENT
-// ==========================================
 
 let cart = JSON.parse(localStorage.getItem('fch_cart')) || [];
 let wishlist = JSON.parse(localStorage.getItem('fch_wishlist')) || [];
@@ -1321,6 +1305,7 @@ function renderProducts(productList = products) {
                 src="${product.images[0]}" 
                 class="gallery-main"
                 alt="${product.name}"
+                onerror="this.src='https://via.placeholder.com/400x600?text=Image+Not+Found'"
                 onclick="openImageModal('${product.images[0]}')"
               >
               <div class="gallery-thumbs">
@@ -1330,6 +1315,7 @@ function renderProducts(productList = products) {
                     class="gallery-thumb ${idx === 0 ? 'active' : ''}"
                     onclick="changeGalleryImage(this, '${img}')"
                     alt="View ${idx + 1}"
+                    onerror="this.style.display='none'"
                   >
                 `).join('')}
               </div>
@@ -1339,6 +1325,7 @@ function renderProducts(productList = products) {
               src="${product.images[0]}" 
               class="single-image"
               alt="${product.name}"
+              onerror="this.src='https://via.placeholder.com/400x600?text=Image+Not+Found'"
               onclick="openImageModal('${product.images[0]}')"
             >
           `}
@@ -1402,11 +1389,10 @@ function getColorCode(colorName) {
 function filterProducts(category) {
   currentFilter = category;
   
-  // Update nav active state
   document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
-  document.getElementById(`nav-${category}`)?.classList.add('active');
+  const navLink = document.getElementById(`nav-${category}`);
+  if (navLink) navLink.classList.add('active');
   
-  // Update section title
   const titles = {
     'all': 'New Arrivals',
     'suit': 'Suit Sets',
@@ -1498,7 +1484,7 @@ function updateCart() {
   
   cartItems.innerHTML = cart.map((item, index) => `
     <div class="cart-item">
-      <img src="${item.images[0]}" alt="${item.name}">
+      <img src="${item.images[0]}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/80x100?text=No+Image'">
       <div class="cart-item-details">
         <h4>${item.name}</h4>
         <p>₹${item.price} ${item.colors[0]}</p>
@@ -1585,8 +1571,6 @@ function showWishlist() {
     showToast('Your wishlist is empty!');
     return;
   }
-  
-  // Temporarily show wishlist items
   renderProducts(wishlist);
   document.getElementById('sectionTitle').textContent = 'My Wishlist';
   document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
@@ -1658,15 +1642,13 @@ function showToast(message) {
 renderProducts();
 updateCart();
 
-// Check for returning user
 const user = localStorage.getItem('fch_user');
-if (user) {
-  console.log('Welcome back:', user);
-}
+if (user) console.log('Welcome back:', user);
 </script>
 
 </body>
 </html>
+
 
 
 
