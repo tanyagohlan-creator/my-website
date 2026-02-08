@@ -1,1 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel - Fancy Cloth House</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+  font-family: 'Inter', sans-serif; 
+  background: #f5f5f5; 
+  padding: 20px;
+}
+
+.admin-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.header {
+  background: #1a1a1a;
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+.header h1 { font-size: 24px; margin-bottom: 5px; }
+.header p { color: #999; font-size: 14px; }
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+
+.tab {
+  flex: 1;
+  padding: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  transition: all 0.3s;
+}
+
+.tab.active {
+  color: #c9a962;
+  border-bottom: 2px solid #c9a962;
+}
+
+.tab-content {
+  display: none;
+  padding: 30px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #c9a962;
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.image-upload {
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.image-upload:hover {
+  border-color: #c9a962;
+  background: #fafafa;
+}
+
+.image-upload i {
+  font-size: 32px;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+.image-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.preview-item {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #eee;
+}
+
+.preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.preview-item .remove {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 24px;
+  height: 24px;
+  background: rgba(255,0,0,0.8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.btn {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary {
+  background: #1a1a1a;
+  color: white;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background: #c9a962;
+}
+
+.btn-secondary {
+  background: #f5f5f5;
+  color: #333;
+  margin-right: 10px;
+}
+
+.product-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.product-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  gap: 15px;
+}
+
+.product-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-info {
+  flex: 1;
+}
+
+.product-info h4 {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.product-info p {
+  font-size: 12px;
+  color: #666;
+}
+
+.product-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-small {
+  padding: 6px 12px;
+  font-size: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-edit { background: #c9a962; color: white; }
+.btn-delete { background: #ff4444; color: white; }
+
+.success-message {
+  background: #2ecc71;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: none;
+}
+
+.error-message {
+  background: #ff4444;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: none;
+}
+
+.hidden-input {
+  display: none;
+}
+
+.helper-text {
+  font-size: 12px;
+  color: #999;
+  margin-top: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="admin-container">
+  <div class="header">
+    <h1><i class="fas fa-store"></i> Fancy Cloth House</h1>
+    <p>Product Management Panel</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('add')">
+      <i class="fas fa-plus"></i> Add Product
+    </button>
+    <button class="tab" onclick="showTab('manage')">
+      <i class="fas fa-list"></i> Manage Products
+    </button>
+  </div>
+
+  <!-- Add Product Tab -->
+  <div id="add-tab" class="tab-content active">
+    <div class="success-message" id="successMsg">
+      <i class="fas fa-check-circle"></i> Product saved successfully!
+    </div>
+    
+    <div class="error-message" id="errorMsg">
+      <i class="fas fa-exclamation-circle"></i> <span id="errorText"></span>
+    </div>
+
+    <form id="productForm">
+      <div class="form-group">
+        <label>Product Name *</label>
+        <input type="text" id="productName" placeholder="e.g., Pure Natural Salwar Suit" required>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <div class="form-group">
+          <label>Price (₹) *</label>
+          <input type="number" id="productPrice" placeholder="2850" required>
+        </div>
+        <div class="form-group">
+          <label>Original Price (₹)</label>
+          <input type="number" id="productOriginalPrice" placeholder="3500">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Badge</label>
+        <select id="productBadge">
+          <option value="">None</option>
+          <option value="New">New</option>
+          <option value="Sale">Sale</option>
+          <option value="Bestseller">Bestseller</option>
+          <option value="Trending">Trending</option>
+          <option value="Premium">Premium</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Available Colors *</label>
+        <input type="text" id="productColors" placeholder="Purple, Red, Black, Yellow" required>
+        <p class="helper-text">Separate colors with commas</p>
+      </div>
+
+      <div class="form-group">
+        <label>Product Images * (Max 10)</label>
+        <div class="image-upload" onclick="document.getElementById('imageInput').click()">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <p>Click to upload images</p>
+          <p class="helper-text">First image will be main photo</p>
+        </div>
+        <input type="file" id="imageInput" class="hidden-input" multiple accept="image/*" onchange="handleImages(this)">
+        
+        <div class="image-preview" id="imagePreview"></div>
+        <input type="hidden" id="imageData" value="[]">
+      </div>
+
+      <button type="submit" class="btn btn-primary">
+        <i class="fas fa-save"></i> Save Product
+      </button>
+    </form>
+  </div>
+
+  <!-- Manage Products Tab -->
+  <div id="manage-tab" class="tab-content">
+    <div class="product-list" id="productList">
+      <p style="text-align: center; color: #999; padding: 40px;">
+        Loading products...
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+// Store products in localStorage (simulating database)
+let products = JSON.parse(localStorage.getItem('fch_products')) || [
+  // Default first product
+  {
+    id: 1,
+    name: "Floral Print Suit Set with Golden Lace Dupatta",
+    brand: "Fancy Cloth House",
+    price: 956,
+    originalPrice: 1299,
+    images: ["images/suit-floral-model.jpg", "images/suit-floral-flatlay.jpg"],
+    badge: "Bestseller",
+    colors: ["Black", "Red", "Teal", "Mustard"]
+  }
+];
+
+let currentImages = [];
+
+// Tab switching
+function showTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  
+  event.target.classList.add('active');
+  document.getElementById(tab + '-tab').classList.add('active');
+  
+  if (tab === 'manage') loadProductList();
+}
+
+// Handle image upload
+function handleImages(input) {
+  const files = Array.from(input.files);
+  const preview = document.getElementById('imagePreview');
+  
+  files.forEach(file => {
+    if (currentImages.length >= 10) {
+      alert('Maximum 10 images allowed');
+      return;
+    }
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      currentImages.push({
+        name: file.name,
+        data: e.target.result
+      });
+      updatePreview();
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function updatePreview() {
+  const preview = document.getElementById('imagePreview');
+  preview.innerHTML = currentImages.map((img, idx) => `
+    <div class="preview-item">
+      <img src="${img.data}" alt="${img.name}">
+      <button type="button" class="remove" onclick="removeImage(${idx})">×</button>
+      ${idx === 0 ? '<span style="position: absolute; bottom: 5px; left: 5px; background: #c9a962; color: white; font-size: 10px; padding: 2px 6px; border-radius: 4px;">Main</span>' : ''}
+    </div>
+  `).join('');
+  
+  document.getElementById('imageData').value = JSON.stringify(currentImages);
+}
+
+function removeImage(index) {
+  currentImages.splice(index, 1);
+  updatePreview();
+}
+
+// Form submission
+document.getElementById('productForm').onsubmit = function(e) {
+  e.preventDefault();
+  
+  if (currentImages.length === 0) {
+    showError('Please upload at least one image');
+    return;
+  }
+  
+  const newProduct = {
+    id: Date.now(),
+    name: document.getElementById('productName').value,
+    brand: "Fancy Cloth House",
+    price: parseInt(document.getElementById('productPrice').value),
+    originalPrice: parseInt(document.getElementById('productOriginalPrice').value) || parseInt(document.getElementById('productPrice').value),
+    images: currentImages.map(img => img.data),
+    badge: document.getElementById('productBadge').value,
+    colors: document.getElementById('productColors').value.split(',').map(c => c.trim())
+  };
+  
+  products.push(newProduct);
+  localStorage.setItem('fch_products', JSON.stringify(products));
+  
+  // Export to JSON file
+  exportToJSON();
+  
+  showSuccess();
+  this.reset();
+  currentImages = [];
+  updatePreview();
+};
+
+function exportToJSON() {
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({products: products}, null, 2));
+  const downloadAnchorNode = document.createElement('a');
+  downloadAnchorNode.setAttribute("href", dataStr);
+  downloadAnchorNode.setAttribute("download", "products.json");
+  document.body.appendChild(downloadAnchorNode);
+  downloadAnchorNode.click();
+  downloadAnchorNode.remove();
+}
+
+function showSuccess() {
+  const msg = document.getElementById('successMsg');
+  msg.style.display = 'block';
+  setTimeout(() => msg.style.display = 'none', 3000);
+}
+
+function showError(text) {
+  const msg = document.getElementById('errorMsg');
+  document.getElementById('errorText').textContent = text;
+  msg.style.display = 'block';
+  setTimeout(() => msg.style.display = 'none', 3000);
+}
+
+// Load product list
+function loadProductList() {
+  const list = document.getElementById('productList');
+  
+  if (products.length === 0) {
+    list.innerHTML = '<p style="text-align: center; color: #999; padding: 40px;">No products yet</p>';
+    return;
+  }
+  
+  list.innerHTML = products.map(p => `
+    <div class="product-item">
+      <img src="${p.images[0]}" alt="${p.name}">
+      <div class="product-info">
+        <h4>${p.name}</h4>
+        <p>₹${p.price} ${p.badge ? '• ' + p.badge : ''}</p>
+      </div>
+      <div class="product-actions">
+        <button class="btn-small btn-edit" onclick="editProduct(${p.id})">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button class="btn-small btn-delete" onclick="deleteProduct(${p.id})">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function deleteProduct(id) {
+  if (confirm('Delete this product?')) {
+    products = products.filter(p => p.id !== id);
+    localStorage.setItem('fch_products', JSON.stringify(products));
+    loadProductList();
+    exportToJSON();
+  }
+}
+
+function editProduct(id) {
+  const product = products.find(p => p.id === id);
+  // Fill form with product data
+  document.getElementById('productName').value = product.name;
+  document.getElementById('productPrice').value = product.price;
+  document.getElementById('productOriginalPrice').value = product.originalPrice;
+  document.getElementById('productBadge').value = product.badge;
+  document.getElementById('productColors').value = product.colors.join(', ');
+  
+  // Load images
+  currentImages = product.images.map((img, idx) => ({
+    name: 'image-' + idx,
+    data: img
+  }));
+  updatePreview();
+  
+  // Switch to add tab
+  showTab('add');
+  document.querySelector('.tab').click();
+  
+  // Remove old product
+  deleteProduct(id);
+}
+</script>
+
+</body>
+</html>
