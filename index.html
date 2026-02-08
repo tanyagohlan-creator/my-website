@@ -1167,18 +1167,29 @@ function renderProducts() {
     return `
       <div class="product-card">
         <div class="product-image">
-          ${hasGallery ? `
-            <div class="image-gallery">
-              <img src="${product.images[0]}" class="gallery-main" alt="${product.name}" onclick="window.open(this.src, '_blank')">
-              <div class="gallery-thumbs">
-                ${product.images.map((img, idx) => `
-                  <img src="${img}" class="gallery-thumb ${idx === 0 ? 'active' : ''}" onclick="changeGalleryImage(this.parentElement.previousElementSibling, '${img}', this)">
-                `).join('')}
-              </div>
-            </div>
-          ` : `
-            <img src="${product.images[0]}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;">
-          `}
+        ${product.images && product.images.length > 1 ? `
+  <div class="image-gallery">
+    <img 
+      src="${product.images[0]}" 
+      class="gallery-main" 
+      alt="${product.name}" 
+      onclick="window.open(this.src, '_blank')"
+      style="flex: 1; width: 100%; object-fit: cover;"
+    >
+    <div class="gallery-thumbs" style="height: 60px; display: flex; gap: 8px; padding: 8px; background: white; overflow-x: auto; justify-content: center; align-items: center;">
+      ${product.images.map((img, idx) => `
+        <img 
+          src="${img}" 
+          class="gallery-thumb ${idx === 0 ? 'active' : ''}" 
+          onclick="changeGalleryImage(this.parentElement.previousElementSibling, '${img}', this)"
+          style="width: 45px; height: 45px; object-fit: cover; border: 2px solid ${idx === 0 ? '#c9a962' : '#ddd'}; cursor: pointer; border-radius: 4px; flex-shrink: 0;"
+        >
+      `).join('')}
+    </div>
+  </div>
+` : `
+  <img src="${product.images[0]}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;">
+`}
           ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
           <button class="wishlist-btn" onclick="addToWishlist(${product.id})"><i class="far fa-heart"></i></button>
           <div class="quick-add"><button class="quick-add-btn" onclick="addToCart(${product.id})">+</button></div>
@@ -1287,6 +1298,7 @@ console.log('✅ Website loaded successfully!');
 </script>
 </body>
 </html>
+
 
 
 
