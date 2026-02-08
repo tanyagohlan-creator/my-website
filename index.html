@@ -82,6 +82,7 @@ header {
   letter-spacing: 1px;
   position: relative;
   transition: color 0.3s;
+  cursor: pointer;
 }
 
 .nav-links a::after {
@@ -95,8 +96,15 @@ header {
   transition: width 0.3s;
 }
 
-.nav-links a:hover::after {
+.nav-links a:hover::after,
+.nav-links a.active::after {
   width: 100%;
+}
+
+.mobile-menu-btn {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
 }
 
 .nav-icons {
@@ -174,6 +182,7 @@ header {
   text-transform: uppercase;
   transition: all 0.3s;
   border: 2px solid white;
+  cursor: pointer;
 }
 
 .cta-btn:hover {
@@ -248,14 +257,16 @@ header {
 /* Product Card */
 .product-card {
   background: white;
-  border-radius: 0;
+  border-radius: 8px;
   overflow: hidden;
   transition: all 0.4s;
   position: relative;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .product-card:hover {
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  transform: translateY(-5px);
 }
 
 .product-image {
@@ -278,20 +289,34 @@ header {
   width: 100%;
   height: calc(100% - 70px);
   object-fit: cover;
-  cursor: pointer;
-  transition: opacity 0.3s;
+  cursor: zoom-in;
+  transition: transform 0.3s;
+}
+
+.gallery-main:hover {
+  transform: scale(1.05);
 }
 
 .gallery-thumbs {
   height: 70px;
   display: flex;
-  gap: 10px;
+  gap: 8px;
   padding: 10px;
   background: white;
   overflow-x: auto;
   justify-content: center;
   align-items: center;
   border-top: 2px solid var(--accent);
+  scrollbar-width: thin;
+}
+
+.gallery-thumbs::-webkit-scrollbar {
+  height: 4px;
+}
+
+.gallery-thumbs::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 2px;
 }
 
 .gallery-thumb {
@@ -314,11 +339,16 @@ header {
   transform: scale(1.05);
 }
 
-/* Single Image (no gallery) */
+/* Single Image */
 .single-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.single-image:hover {
+  transform: scale(1.05);
 }
 
 .product-badge {
@@ -333,6 +363,7 @@ header {
   text-transform: uppercase;
   letter-spacing: 1px;
   z-index: 10;
+  border-radius: 4px;
 }
 
 .wishlist-btn {
@@ -352,7 +383,8 @@ header {
   transform: translateY(-10px);
   transition: all 0.3s;
   z-index: 10;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  color: var(--text);
 }
 
 .product-card:hover .wishlist-btn {
@@ -363,14 +395,9 @@ header {
 .wishlist-btn.active {
   background: #ff4444;
   color: white;
-  opacity: 1 !important;
+  opacity: 1;
 }
 
-.wishlist-btn.active i {
-  color: white;
-}
-
-/* Quick Add Button */
 .quick-add {
   position: absolute;
   right: 15px;
@@ -427,6 +454,11 @@ header {
   color: var(--primary);
   margin-bottom: 10px;
   line-height: 1.4;
+  cursor: pointer;
+}
+
+.product-title:hover {
+  color: var(--accent);
 }
 
 .product-price {
@@ -435,6 +467,7 @@ header {
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
 .current-price {
@@ -455,6 +488,27 @@ header {
   font-weight: 600;
 }
 
+.color-swatches {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.color-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.color-swatch:hover {
+  transform: scale(1.2);
+  border-color: var(--accent);
+}
+
 /* Collection Banner */
 .collection-banner {
   display: grid;
@@ -467,6 +521,7 @@ header {
   position: relative;
   height: 600px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .banner-item img {
@@ -483,7 +538,7 @@ header {
 .banner-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -555,14 +610,38 @@ header {
 .close-cart {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 28px;
   cursor: pointer;
+  color: var(--text);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+
+.close-cart:hover {
+  background: var(--light-gray);
 }
 
 .cart-items {
   flex: 1;
   overflow-y: auto;
   padding: 20px 30px;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.empty-cart i {
+  font-size: 60px;
+  color: #ddd;
+  margin-bottom: 20px;
 }
 
 .cart-item {
@@ -613,6 +692,7 @@ header {
   justify-content: center;
   font-size: 16px;
   transition: all 0.2s;
+  border-radius: 4px;
 }
 
 .qty-btn:hover {
@@ -658,10 +738,28 @@ header {
   letter-spacing: 2px;
   cursor: pointer;
   transition: background 0.3s;
+  border-radius: 4px;
 }
 
 .checkout-btn:hover {
   background: var(--accent);
+}
+
+.continue-shopping {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.continue-shopping:hover {
+  background: var(--light-gray);
 }
 
 /* Trust Section */
@@ -769,6 +867,28 @@ footer {
   font-size: 13px;
 }
 
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--primary);
+  color: white;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-size: 14px;
+  z-index: 3000;
+  opacity: 0;
+  transition: all 0.3s;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .products-grid {
@@ -797,6 +917,10 @@ footer {
     display: none;
   }
   
+  .mobile-menu-btn {
+    display: block;
+  }
+  
   .hero-content h1 {
     font-size: 36px;
   }
@@ -808,11 +932,11 @@ footer {
   .feature {
     border-right: none;
     border-bottom: 1px solid var(--border);
+    padding: 20px;
   }
   
   .products-grid {
     grid-template-columns: 1fr;
-    padding: 0 20px;
   }
   
   .products-section {
@@ -826,11 +950,20 @@ footer {
   
   .trust-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .trust-section {
+    padding: 40px 20px;
   }
   
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+  
+  footer {
+    padding: 60px 20px 20px;
   }
   
   .quick-add {
@@ -843,6 +976,14 @@ footer {
   .wishlist-btn {
     opacity: 1;
     transform: none;
+    width: 36px;
+    height: 36px;
+  }
+  
+  .quick-add-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
   }
 }
 </style>
@@ -860,11 +1001,11 @@ footer {
   <div class="nav-container">
     <a href="#" class="logo">Fancy Cloth House</a>
     
-    <ul class="nav-links">
-      <li><a href="#shop" onclick="filterProducts('all')">New Arrivals</a></li>
-      <li><a href="#shop" onclick="filterProducts('suit')">Suit Sets</a></li>
-      <li><a href="#shop" onclick="filterProducts('dress')">Dresses</a></li>
-      <li><a href="#shop" onclick="filterProducts('sale')">Sale</a></li>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#shop" onclick="filterProducts('all')" class="active" id="nav-all">New Arrivals</a></li>
+      <li><a href="#shop" onclick="filterProducts('suit')" id="nav-suit">Suit Sets</a></li>
+      <li><a href="#shop" onclick="filterProducts('dress')" id="nav-dress">Dresses</a></li>
+      <li><a href="#shop" onclick="filterProducts('sale')" id="nav-sale">Sale</a></li>
     </ul>
     
     <div class="nav-icons">
@@ -875,6 +1016,7 @@ footer {
         <i class="fas fa-shopping-bag"></i>
         <span class="cart-count" id="cartCount">0</span>
       </div>
+      <i class="fas fa-bars mobile-menu-btn" onclick="toggleMobileMenu()"></i>
     </div>
   </div>
 </header>
@@ -884,7 +1026,7 @@ footer {
   <div class="hero-content">
     <h1>Summer Elegance</h1>
     <p>Discover Premium Ethnic Wear</p>
-    <a href="#shop" class="cta-btn">Explore Collection</a>
+    <a href="#shop" class="cta-btn" onclick="filterProducts('all')">Explore Collection</a>
   </div>
 </section>
 
@@ -911,7 +1053,7 @@ footer {
 <!-- New Arrivals -->
 <section id="shop">
   <div class="section-header">
-    <h2>New Arrivals</h2>
+    <h2 id="sectionTitle">New Arrivals</h2>
     <p>Handpicked Premium Collection</p>
   </div>
   
@@ -924,20 +1066,20 @@ footer {
 
 <!-- Collection Banner -->
 <div class="collection-banner">
-  <div class="banner-item">
+  <div class="banner-item" onclick="filterProducts('sale')">
     <img src="https://images.unsplash.com/photo-1610030469629-dc6f4c8ce95e?w=800" alt="Festive Collection">
     <div class="banner-overlay">
       <h3>Festive Collection</h3>
       <p>Up to 40% Off</p>
-      <a href="#shop" onclick="filterProducts('sale')" class="cta-btn" style="background: transparent; color: white; border-color: white;">Shop Now</a>
+      <span class="cta-btn" style="background: transparent; color: white; border-color: white; display: inline-block;">Shop Now</span>
     </div>
   </div>
-  <div class="banner-item">
+  <div class="banner-item" onclick="filterProducts('premium')">
     <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800" alt="Wedding Season">
     <div class="banner-overlay">
       <h3>Wedding Season</h3>
       <p>Exclusive Designs</p>
-      <a href="#shop" onclick="filterProducts('premium')" class="cta-btn" style="background: transparent; color: white; border-color: white;">Explore</a>
+      <span class="cta-btn" style="background: transparent; color: white; border-color: white; display: inline-block;">Explore</span>
     </div>
   </div>
 </div>
@@ -974,7 +1116,7 @@ footer {
 <!-- Cart Sidebar -->
 <div class="cart-sidebar" id="cartSidebar">
   <div class="cart-header">
-    <h3>Shopping Bag</h3>
+    <h3>Shopping Bag (<span id="cartItemCount">0</span>)</h3>
     <button class="close-cart" onclick="toggleCart()">×</button>
   </div>
   
@@ -990,11 +1132,17 @@ footer {
     <button class="checkout-btn" onclick="checkout()">
       Proceed to Checkout
     </button>
+    <button class="continue-shopping" onclick="toggleCart()">
+      Continue Shopping
+    </button>
     <p style="text-align: center; margin-top: 15px; font-size: 12px; color: #666;">
       Shipping & taxes calculated at checkout
     </p>
   </div>
 </div>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast"></div>
 
 <!-- Footer -->
 <footer>
@@ -1043,7 +1191,7 @@ footer {
 
 <script>
 // ==========================================
-// PRODUCTS DATA
+// PRODUCTS DATA - UPDATED WITH WORKING IMAGES
 // ==========================================
 
 const products = [
@@ -1054,11 +1202,12 @@ const products = [
     price: 956,
     originalPrice: 1299,
     images: [
-      "images/suit-floral-model.jpg",
-      "images/suit-floral-flatlay.jpg"
+      "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600",
+      "https://images.unsplash.com/photo-1610030469629-dc6f4c8ce95e?w=600"
     ],
     badge: "Bestseller",
-    colors: ["Black", "Red", "Teal", "Mustard"]
+    colors: ["Black", "Red", "Teal", "Mustard"],
+    category: "suit"
   },
   {
     id: 2,
@@ -1067,15 +1216,13 @@ const products = [
     price: 2850,
     originalPrice: 3500,
     images: [
-      "images/salwar-suit-purple-model.jpg",
-      "images/salwar-suit-all-colors-model.jpg",
-      "images/salwar-suit-purple-flatlay.jpg",
-      "images/salwar-suit-red-flatlay.jpg",
-      "images/salwar-suit-black-flatlay.jpg",
-      "images/salwar-suit-yellow-flatlay.jpg"
+      "https://images.unsplash.com/photo-1583391733951-5525b57f8c22?w=600",
+      "https://images.unsplash.com/photo-1610030469668-8cf1a2f5494a?w=600",
+      "https://images.unsplash.com/photo-1605763240004-7e93b172d754?w=600"
     ],
     badge: "New",
-    colors: ["Purple", "Red", "Black", "Yellow"]
+    colors: ["Purple", "Red", "Black", "Yellow"],
+    category: "suit"
   },
   {
     id: 3,
@@ -1085,7 +1232,8 @@ const products = [
     originalPrice: 1999,
     images: ["https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600"],
     badge: "New",
-    colors: ["Green", "Pink", "Maroon"]
+    colors: ["Green", "Pink", "Maroon"],
+    category: "suit"
   },
   {
     id: 4,
@@ -1095,7 +1243,8 @@ const products = [
     originalPrice: 1699,
     images: ["https://images.unsplash.com/photo-1583391733951-5525b57f8c22?w=600"],
     badge: "Trending",
-    colors: ["Black", "Navy", "Wine"]
+    colors: ["Black", "Navy", "Wine"],
+    category: "dress"
   },
   {
     id: 5,
@@ -1105,7 +1254,8 @@ const products = [
     originalPrice: 999,
     images: ["https://images.unsplash.com/photo-1610030469668-8cf1a2f5494a?w=600"],
     badge: "Sale",
-    colors: ["White", "Yellow", "Peach"]
+    colors: ["White", "Yellow", "Peach"],
+    category: "dress"
   },
   {
     id: 6,
@@ -1115,7 +1265,8 @@ const products = [
     originalPrice: 3999,
     images: ["https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600"],
     badge: "Premium",
-    colors: ["Red", "Gold"]
+    colors: ["Red", "Gold"],
+    category: "dress"
   },
   {
     id: 7,
@@ -1125,11 +1276,18 @@ const products = [
     originalPrice: 1199,
     images: ["https://images.unsplash.com/photo-1605763240004-7e93b172d754?w=600"],
     badge: null,
-    colors: ["Pink", "Blue", "Green"]
+    colors: ["Pink", "Blue", "Green"],
+    category: "suit"
   }
 ];
 
-let cart = [];
+// ==========================================
+// STATE MANAGEMENT
+// ==========================================
+
+let cart = JSON.parse(localStorage.getItem('fch_cart')) || [];
+let wishlist = JSON.parse(localStorage.getItem('fch_wishlist')) || [];
+let currentFilter = 'all';
 
 // ==========================================
 // PRODUCT RENDERING
@@ -1139,16 +1297,23 @@ function renderProducts(productList = products) {
   const grid = document.getElementById('productsGrid');
   
   if (productList.length === 0) {
-    grid.innerHTML = '<p style="text-align: center; padding: 60px; color: #666; font-size: 18px;">No products found in this category.</p>';
+    grid.innerHTML = `
+      <div style="grid-column: 1/-1; text-align: center; padding: 60px;">
+        <i class="fas fa-search" style="font-size: 48px; color: #ddd; margin-bottom: 20px;"></i>
+        <p style="color: #666; font-size: 18px;">No products found in this category.</p>
+        <button onclick="filterProducts('all')" class="cta-btn" style="margin-top: 20px;">View All Products</button>
+      </div>
+    `;
     return;
   }
   
   grid.innerHTML = productList.map(product => {
     const discount = Math.round((1 - product.price/product.originalPrice) * 100);
     const hasGallery = product.images && product.images.length > 1;
+    const inWishlist = wishlist.some(w => w.id === product.id);
     
     return `
-      <div class="product-card">
+      <div class="product-card" data-id="${product.id}">
         <div class="product-image">
           ${hasGallery ? `
             <div class="image-gallery">
@@ -1156,8 +1321,7 @@ function renderProducts(productList = products) {
                 src="${product.images[0]}" 
                 class="gallery-main"
                 alt="${product.name}"
-                onclick="window.open(this.src, '_blank')"
-                title="Click to enlarge"
+                onclick="openImageModal('${product.images[0]}')"
               >
               <div class="gallery-thumbs">
                 ${product.images.map((img, idx) => `
@@ -1166,7 +1330,6 @@ function renderProducts(productList = products) {
                     class="gallery-thumb ${idx === 0 ? 'active' : ''}"
                     onclick="changeGalleryImage(this, '${img}')"
                     alt="View ${idx + 1}"
-                    title="View image ${idx + 1}"
                   >
                 `).join('')}
               </div>
@@ -1176,11 +1339,12 @@ function renderProducts(productList = products) {
               src="${product.images[0]}" 
               class="single-image"
               alt="${product.name}"
+              onclick="openImageModal('${product.images[0]}')"
             >
           `}
           ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
-          <button class="wishlist-btn" onclick="addToWishlist(${product.id})">
-            <i class="far fa-heart"></i>
+          <button class="wishlist-btn ${inWishlist ? 'active' : ''}" onclick="toggleWishlist(${product.id})">
+            <i class="${inWishlist ? 'fas' : 'far'} fa-heart"></i>
           </button>
           <div class="quick-add">
             <button class="quick-add-btn" onclick="addToCart(${product.id})" title="Add to Bag">
@@ -1190,15 +1354,17 @@ function renderProducts(productList = products) {
         </div>
         <div class="product-info">
           <div class="product-brand">${product.brand}</div>
-          <h3 class="product-title">${product.name}</h3>
+          <h3 class="product-title" onclick="showProductDetails(${product.id})">${product.name}</h3>
           <div class="product-price">
             <span class="current-price">₹${product.price}</span>
             <span class="original-price">₹${product.originalPrice}</span>
             <span class="discount">${discount}% off</span>
           </div>
-          <p style="font-size: 12px; color: #666; margin-top: 8px;">
-            ${product.colors.join(' • ')}
-          </p>
+          <div class="color-swatches">
+            ${product.colors.map(color => `
+              <div class="color-swatch" style="background: ${getColorCode(color)}" title="${color}"></div>
+            `).join('')}
+          </div>
         </div>
       </div>
     `;
@@ -1206,22 +1372,27 @@ function renderProducts(productList = products) {
 }
 
 function changeGalleryImage(thumbElement, newSrc) {
-  // Find the main image (previous sibling of the parent)
   const gallery = thumbElement.closest('.image-gallery');
   const mainImg = gallery.querySelector('.gallery-main');
   
-  // Fade effect
   mainImg.style.opacity = '0.7';
-  
   setTimeout(() => {
     mainImg.src = newSrc;
     mainImg.style.opacity = '1';
   }, 150);
   
-  // Update active state on thumbnails
-  const allThumbs = gallery.querySelectorAll('.gallery-thumb');
-  allThumbs.forEach(t => t.classList.remove('active'));
+  gallery.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
   thumbElement.classList.add('active');
+}
+
+function getColorCode(colorName) {
+  const colors = {
+    'Black': '#1a1a1a', 'Red': '#c41e3a', 'Teal': '#008080', 'Mustard': '#ffdb58',
+    'Purple': '#800080', 'Yellow': '#ffd700', 'Green': '#228b22', 'Pink': '#ff69b4',
+    'Maroon': '#800000', 'Navy': '#000080', 'Wine': '#722f37', 'White': '#f5f5f5',
+    'Peach': '#ffdab9', 'Gold': '#daa520', 'Blue': '#4169e1'
+  };
+  return colors[colorName] || '#ccc';
 }
 
 // ==========================================
@@ -1229,21 +1400,35 @@ function changeGalleryImage(thumbElement, newSrc) {
 // ==========================================
 
 function filterProducts(category) {
+  currentFilter = category;
+  
+  // Update nav active state
+  document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+  document.getElementById(`nav-${category}`)?.classList.add('active');
+  
+  // Update section title
+  const titles = {
+    'all': 'New Arrivals',
+    'suit': 'Suit Sets',
+    'dress': 'Dresses',
+    'sale': 'Sale Items',
+    'premium': 'Premium Collection'
+  };
+  document.getElementById('sectionTitle').textContent = titles[category] || 'Products';
+  
   let filtered = products;
   
   if (category === 'suit') {
-    filtered = products.filter(p => p.name.toLowerCase().includes('suit') || p.name.toLowerCase().includes('salwar'));
+    filtered = products.filter(p => p.category === 'suit');
   } else if (category === 'dress') {
-    filtered = products.filter(p => p.name.toLowerCase().includes('dress') || p.name.toLowerCase().includes('kurti') || p.name.toLowerCase().includes('lehenga'));
+    filtered = products.filter(p => p.category === 'dress');
   } else if (category === 'sale') {
     filtered = products.filter(p => p.badge === 'Sale' || (p.originalPrice - p.price) > 500);
   } else if (category === 'premium') {
-    filtered = products.filter(p => p.badge === 'Premium' || p.badge === 'Bestseller');
+    filtered = products.filter(p => ['Premium', 'Bestseller', 'New'].includes(p.badge));
   }
   
   renderProducts(filtered);
-  
-  // Smooth scroll to products
   document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -1258,9 +1443,10 @@ function toggleSearch() {
     
     if (filtered.length > 0) {
       renderProducts(filtered);
+      document.getElementById('sectionTitle').textContent = `Search: "${searchTerm}"`;
       document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
     } else {
-      alert('No products found for: ' + searchTerm);
+      showToast('No products found for: ' + searchTerm);
     }
   }
 }
@@ -1279,19 +1465,33 @@ function addToCart(productId) {
     cart.push({ ...product, qty: 1 });
   }
   
+  saveCart();
   updateCart();
-  toggleCart();
+  showToast(`${product.name} added to bag!`);
+}
+
+function saveCart() {
+  localStorage.setItem('fch_cart', JSON.stringify(cart));
 }
 
 function updateCart() {
   const cartItems = document.getElementById('cartItems');
   const cartCount = document.getElementById('cartCount');
+  const cartItemCount = document.getElementById('cartItemCount');
   const cartTotal = document.getElementById('cartTotal');
   
-  cartCount.textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+  const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+  cartCount.textContent = totalItems;
+  cartItemCount.textContent = totalItems;
   
   if (cart.length === 0) {
-    cartItems.innerHTML = '<p style="text-align: center; padding: 40px; color: #666;">Your bag is empty</p>';
+    cartItems.innerHTML = `
+      <div class="empty-cart">
+        <i class="fas fa-shopping-bag"></i>
+        <p>Your bag is empty</p>
+        <p style="font-size: 14px; margin-top: 10px;">Add items to get started</p>
+      </div>
+    `;
     cartTotal.textContent = '0';
     return;
   }
@@ -1301,7 +1501,7 @@ function updateCart() {
       <img src="${item.images[0]}" alt="${item.name}">
       <div class="cart-item-details">
         <h4>${item.name}</h4>
-        <p>₹${item.price}</p>
+        <p>₹${item.price} ${item.colors[0]}</p>
         <div class="qty-selector">
           <button class="qty-btn" onclick="changeQty(${index}, -1)">−</button>
           <span>${item.qty}</span>
@@ -1321,12 +1521,15 @@ function changeQty(index, delta) {
   if (cart[index].qty <= 0) {
     cart.splice(index, 1);
   }
+  saveCart();
   updateCart();
 }
 
 function removeItem(index) {
   cart.splice(index, 1);
+  saveCart();
   updateCart();
+  showToast('Item removed from bag');
 }
 
 function toggleCart() {
@@ -1339,57 +1542,65 @@ function toggleCart() {
 }
 
 function checkout() {
-  if (cart.length === 0) return;
+  if (cart.length === 0) {
+    showToast('Your bag is empty!');
+    return;
+  }
   
   let message = "Hello! I want to order:%0A%0A";
   cart.forEach(item => {
-    message += `${item.name} x ${item.qty} - ₹${item.price * item.qty}%0A`;
+    message += `• ${item.name}%0A  Qty: ${item.qty} | Price: ₹${item.price * item.qty}%0A%0A`;
   });
-  message += `%0ATotal: ₹${document.getElementById('cartTotal').textContent}`;
+  message += `*Total: ₹${document.getElementById('cartTotal').textContent}*%0A%0APlease confirm availability.`;
   
   window.open(`https://wa.me/916284348760?text=${message}`, '_blank');
 }
 
 // ==========================================
-// WISHLIST & USER FUNCTIONS
+// WISHLIST FUNCTIONS
 // ==========================================
 
-function addToWishlist(id) {
+function toggleWishlist(id) {
   const product = products.find(p => p.id === id);
-  let wishlist = JSON.parse(localStorage.getItem('fch_wishlist')) || [];
+  const index = wishlist.findIndex(w => w.id === id);
   
-  if (wishlist.some(p => p.id === id)) {
-    alert('This item is already in your wishlist! ❤️');
-    return;
+  if (index > -1) {
+    wishlist.splice(index, 1);
+    showToast('Removed from wishlist');
+  } else {
+    wishlist.push(product);
+    showToast('Added to wishlist! ❤️');
   }
   
-  wishlist.push(product);
   localStorage.setItem('fch_wishlist', JSON.stringify(wishlist));
-  
-  // Visual feedback
-  const btn = event.target.closest('.wishlist-btn');
-  if (btn) {
-    btn.classList.add('active');
-    btn.innerHTML = '<i class="fas fa-heart"></i>';
-  }
-  
-  alert('Added to wishlist! ❤️\n\nTotal items: ' + wishlist.length);
+  renderProducts(currentFilter === 'all' ? products : products.filter(p => {
+    if (currentFilter === 'suit') return p.category === 'suit';
+    if (currentFilter === 'dress') return p.category === 'dress';
+    return true;
+  }));
 }
 
 function showWishlist() {
-  const wishlist = JSON.parse(localStorage.getItem('fch_wishlist')) || [];
   if (wishlist.length === 0) {
-    alert('Your wishlist is empty!\n\nClick the heart icon on any product to add it here.');
-  } else {
-    alert('Your Wishlist (' + wishlist.length + ' items):\n\n' + wishlist.map(p => '• ' + p.name).join('\n'));
+    showToast('Your wishlist is empty!');
+    return;
   }
+  
+  // Temporarily show wishlist items
+  renderProducts(wishlist);
+  document.getElementById('sectionTitle').textContent = 'My Wishlist';
+  document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
 }
+
+// ==========================================
+// USER FUNCTIONS
+// ==========================================
 
 function showLogin() {
   const email = prompt('Enter your email to login:');
   if (email) {
-    alert('Welcome! You are now logged in as: ' + email + '\n\n(This is a demo. In real website, this would verify your account.)');
     localStorage.setItem('fch_user', email);
+    showToast('Welcome back! 👋');
   }
 }
 
@@ -1399,7 +1610,7 @@ function showShippingInfo() {
         '• Delivery within 3-5 business days\n' +
         '• Cash on delivery available\n' +
         '• Tracking number sent via WhatsApp\n\n' +
-        'For queries: WhatsApp +91 62843 48760');
+        'Contact: +91 62843 48760');
 }
 
 function showSizeGuide() {
@@ -1412,8 +1623,32 @@ function showSizeGuide() {
         '• Small (S): 36" chest\n' +
         '• Medium (M): 38" chest\n' +
         '• Large (L): 40" chest\n' +
-        '• XL: 42" chest\n\n' +
-        'Need help? WhatsApp us your measurements!');
+        '• XL: 42" chest');
+}
+
+function showProductDetails(id) {
+  const product = products.find(p => p.id === id);
+  alert(`📌 ${product.name}\n\n` +
+        `Brand: ${product.brand}\n` +
+        `Price: ₹${product.price} (was ₹${product.originalPrice})\n` +
+        `Colors: ${product.colors.join(', ')}\n\n` +
+        `Click "Add to Bag" to purchase via WhatsApp!`);
+}
+
+function openImageModal(src) {
+  window.open(src, '_blank');
+}
+
+function toggleMobileMenu() {
+  const nav = document.getElementById('navLinks');
+  nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+}
+
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
 // ==========================================
@@ -1422,10 +1657,17 @@ function showSizeGuide() {
 
 renderProducts();
 updateCart();
+
+// Check for returning user
+const user = localStorage.getItem('fch_user');
+if (user) {
+  console.log('Welcome back:', user);
+}
 </script>
 
 </body>
 </html>
+
 
 
 
