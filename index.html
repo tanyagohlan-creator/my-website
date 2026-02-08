@@ -54,7 +54,15 @@
   --light-gray: #f5f5f5;
   --border: #e0e0e0;
 }
+.wishlist-btn.active {
+  background: #ff4444;
+  color: white;
+  opacity: 1 !important;
+}
 
+.wishlist-btn.active i {
+  color: white;
+}
 * {
   margin: 0;
   padding: 0;
@@ -1314,6 +1322,50 @@ function changeGalleryImage(mainImg, newSrc, thumbElement) {
   thumbs.forEach(t => t.classList.remove('active'));
   thumbElement.classList.add('active');
 }
+  function changeGalleryImage(mainImg, newSrc, thumbElement) {
+  mainImg.style.opacity = '0.5';
+  setTimeout(() => {
+    mainImg.src = newSrc;
+    mainImg.style.opacity = '1';
+  }, 150);
+  
+  const thumbs = thumbElement.parentElement.querySelectorAll('.gallery-thumb');
+  thumbs.forEach(t => t.classList.remove('active'));
+  thumbElement.classList.add('active');
+}
+
+// ==========================================
+// WISHLIST FUNCTION
+// ==========================================
+
+function addToWishlist(id) {
+  const product = products.find(p => p.id === id);
+  let wishlist = JSON.parse(localStorage.getItem('fch_wishlist')) || [];
+  
+  if (wishlist.some(p => p.id === id)) {
+    alert('This item is already in your wishlist! ❤️');
+    return;
+  }
+  
+  wishlist.push(product);
+  localStorage.setItem('fch_wishlist', JSON.stringify(wishlist));
+  
+  // Visual feedback - fill the heart
+  const btn = event.target.closest('.wishlist-btn');
+  if (btn) {
+    btn.classList.add('active');
+    btn.innerHTML = '<i class="fas fa-heart"></i>';
+  }
+  
+  alert('Added to wishlist! ❤️\n\nTotal items: ' + wishlist.length);
+}
+
+// ==========================================
+// INITIALIZE
+// ==========================================
+
+renderProducts();
+updateCart();
 
 // Try to load from products.json (if admin panel created it)
 fetch('products.json')
@@ -1378,9 +1430,20 @@ function renderProducts() {
 `}
         >
         ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
-        <button class="wishlist-btn" onclick="addToWishlist(${product.id})">
-          <i class="far fa-heart"></i>
-        </button>
+        function addToWishlist(id) {
+  const product = products.find(p => p.id === id);
+  let wishlist = JSON.parse(localStorage.getItem('fch_wishlist')) || [];
+  
+  // Check if already in wishlist
+  if (wishlist.some(p => p.id === id)) {
+    alert('This item is already in your wishlist! ❤️');
+    return;
+  }
+  
+  wishlist.push(product);
+  localStorage.setItem('fch_wishlist', JSON.stringify(wishlist));
+  alert('Added to wishlist! ❤️\n\nTotal items: ' + wishlist.length);
+}       
         <div class="quick-add">
          <button class="quick-add-btn" onclick="addToCart(${product.id})" title="Add to Bag">
   +
@@ -1496,6 +1559,7 @@ updateCart();
 
 </body>
 </html>
+
 
 
 
