@@ -1556,53 +1556,11 @@ function renderProducts(productList = products) {
       </div>
     </div>
   </a>
-`;`
-            <img 
-              src="${product.images[0]}" 
-              class="single-image"
-              alt="${product.name}"
-              onerror="this.src='https://via.placeholder.com/400x600?text=Image+Not+Found'"
-              onclick="openImageModal('${product.images[0]}')"
-            >
-          `}
-          ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
-          <button class="wishlist-btn ${inWishlist ? 'active' : ''}" onclick="toggleWishlist(${product.id})">
-            <i class="${inWishlist ? 'fas' : 'far'} fa-heart"></i>
-          </button>
-          <div class="share-btn">
-            <button onclick="openShareModal(${product.id})" title="Share Product">
-              <i class="fas fa-share-alt"></i>
-            </button>
-          </div>
-          <div class="quick-add">
-            <button class="quick-add-btn" onclick="addToCart(${product.id})" title="Add to Bag">
-              +
-            </button>
-          </div>
-        </div>
-        <div class="product-info">
-          <div class="product-brand">${product.brand}</div>
-          <h3 class="product-title" onclick="showProductDetails(${product.id})">${product.name}</h3>
-          <div class="product-price">
-            <span class="current-price">₹${product.price}</span>
-            <span class="original-price">₹${product.originalPrice}</span>
-            <span class="discount">${discount}% off</span>
-          </div>
-          <div class="color-swatches">
-            ${product.colors.map(color => `
-              <div class="color-swatch" style="background: ${getColorCode(color)}" title="${color}"></div>
-            `).join('')}
-          </div>
-          <a href="product.html?id=${product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}" class="product-link" onclick="event.stopPropagation()">
-            <i class="fas fa-link"></i> Copy Product Link
-          </a>
-        </div>
-      </div>
-    `;
-  }).join('');
-  
-  // Check if URL has a product hash and scroll to it
-  checkUrlHash();
+`;
+      }).join('');
+
+  checkUrlHash();`
+           
 }
 
 function changeGalleryImage(thumbElement, newSrc) {
@@ -2030,10 +1988,15 @@ function initProductLinks() {
 
 // Initialize when page loads
 document.addEventListener('DOMContentLoaded', initProductLinks);
+  document.addEventListener("DOMContentLoaded", () => {
+  renderProducts();
+  updateCart();
+});
 </script>
 </body>
 </script>
 </html>
+
 
 
 
