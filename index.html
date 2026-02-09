@@ -6,7 +6,6 @@
 <title>Fancy Cloth House | Premium Women's Ethnic Wear</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <style>
 :root {
   --primary: #1a1a1a;
@@ -84,7 +83,6 @@ header {
   letter-spacing: 1px;
   position: relative;
   transition: color 0.3s;
-  cursor: pointer;
 }
 
 .nav-links a::after {
@@ -183,7 +181,6 @@ header {
   text-transform: uppercase;
   transition: all 0.3s;
   border: 2px solid white;
-  cursor: pointer;
 }
 
 .cta-btn:hover {
@@ -260,17 +257,7 @@ header {
   position: relative;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   scroll-margin-top: 100px;
-}
-
-.product-card:target {
-  animation: highlight 2s ease;
-  box-shadow: 0 0 0 4px var(--accent), 0 20px 40px rgba(0,0,0,0.15);
-}
-
-@keyframes highlight {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-  100% { transform: scale(1); }
+  cursor: pointer;
 }
 
 .product-card:hover {
@@ -297,7 +284,6 @@ header {
   width: 100%;
   height: calc(100% - 70px);
   object-fit: cover;
-  cursor: zoom-in;
   transition: transform 0.3s;
 }
 
@@ -315,7 +301,6 @@ header {
   justify-content: center;
   align-items: center;
   border-top: 2px solid var(--accent);
-  scrollbar-width: thin;
 }
 
 .gallery-thumbs::-webkit-scrollbar {
@@ -497,11 +482,6 @@ header {
   color: var(--primary);
   margin-bottom: 10px;
   line-height: 1.4;
-  cursor: pointer;
-}
-
-.product-title:hover {
-  color: var(--accent);
 }
 
 .product-price {
@@ -552,25 +532,6 @@ header {
   border-color: var(--accent);
 }
 
-.product-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: 10px;
-  padding: 6px 12px;
-  background: var(--light-gray);
-  color: var(--text);
-  text-decoration: none;
-  font-size: 12px;
-  border-radius: 20px;
-  transition: all 0.3s;
-}
-
-.product-link:hover {
-  background: var(--accent);
-  color: white;
-}
-
 .collection-banner {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -618,208 +579,6 @@ header {
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 20px;
-}
-
-.cart-sidebar {
-  position: fixed;
-  top: 0;
-  right: -450px;
-  width: 450px;
-  height: 100vh;
-  background: white;
-  box-shadow: -10px 0 30px rgba(0,0,0,0.1);
-  z-index: 2000;
-  transition: right 0.4s;
-  display: flex;
-  flex-direction: column;
-}
-
-.cart-sidebar.open {
-  right: 0;
-}
-
-.cart-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 1999;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s;
-}
-
-.cart-overlay.open {
-  opacity: 1;
-  visibility: visible;
-}
-
-.cart-header {
-  padding: 30px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.cart-header h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 24px;
-  font-weight: 400;
-}
-
-.close-cart {
-  background: none;
-  border: none;
-  font-size: 28px;
-  cursor: pointer;
-  color: var(--text);
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: all 0.3s;
-}
-
-.close-cart:hover {
-  background: var(--light-gray);
-}
-
-.cart-items {
-  flex: 1;
-  overflow-y: auto;
-  padding: 20px 30px;
-}
-
-.empty-cart {
-  text-align: center;
-  padding: 60px 20px;
-  color: #666;
-}
-
-.empty-cart i {
-  font-size: 60px;
-  color: #ddd;
-  margin-bottom: 20px;
-}
-
-.cart-item {
-  display: flex;
-  gap: 15px;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.cart-item img {
-  width: 80px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 4px;
-}
-
-.cart-item-details {
-  flex: 1;
-}
-
-.cart-item-details h4 {
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 5px;
-  line-height: 1.4;
-}
-
-.cart-item-details p {
-  font-size: 13px;
-  color: #666;
-  margin-bottom: 10px;
-}
-
-.qty-selector {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.qty-btn {
-  width: 28px;
-  height: 28px;
-  border: 1px solid var(--border);
-  background: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  transition: all 0.2s;
-  border-radius: 4px;
-}
-
-.qty-btn:hover {
-  background: var(--light-gray);
-}
-
-.remove-item {
-  margin-left: auto;
-  color: #999;
-  cursor: pointer;
-  font-size: 20px;
-  padding: 5px;
-  transition: color 0.3s;
-}
-
-.remove-item:hover {
-  color: #ff4444;
-}
-
-.cart-footer {
-  padding: 30px;
-  border-top: 1px solid var(--border);
-  background: var(--light-gray);
-}
-
-.cart-total {
-  display: flex;
-  justify-content: space-between;
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-.checkout-btn {
-  width: 100%;
-  padding: 16px;
-  background: var(--primary);
-  color: white;
-  border: none;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: background 0.3s;
-  border-radius: 4px;
-}
-
-.checkout-btn:hover {
-  background: var(--accent);
-}
-
-.continue-shopping {
-  width: 100%;
-  padding: 12px;
-  background: transparent;
-  color: var(--text);
-  border: 1px solid var(--border);
-  font-size: 13px;
-  cursor: pointer;
-  margin-top: 10px;
-  border-radius: 4px;
-  transition: all 0.3s;
-}
-
-.continue-shopping:hover {
-  background: var(--light-gray);
 }
 
 .trust-section {
@@ -946,97 +705,7 @@ footer {
   transform: translateX(-50%) translateY(0);
 }
 
-.share-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  z-index: 3000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-
-.share-modal.open {
-  display: flex;
-}
-
-.share-content {
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  max-width: 500px;
-  width: 90%;
-  text-align: center;
-}
-
-.share-content h3 {
-  font-family: 'Playfair Display', serif;
-  margin-bottom: 20px;
-}
-
-.share-link {
-  display: flex;
-  gap: 10px;
-  margin: 20px 0;
-}
-
-.share-link input {
-  flex: 1;
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-.share-link button {
-  padding: 12px 20px;
-  background: var(--accent);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.share-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.share-btn-social {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
-  color: white;
-  transition: transform 0.3s;
-}
-
-.share-btn-social:hover {
-  transform: scale(1.1);
-}
-
-.share-btn-social.whatsapp { background: #25d366; }
-.share-btn-social.facebook { background: #1877f2; }
-.share-btn-social.instagram { background: #e4405f; }
-.share-btn-social.copy { background: var(--primary); }
-
-.close-share {
-  margin-top: 20px;
-  padding: 10px 30px;
-  background: var(--light-gray);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
+/* Responsive Design */
 @media (max-width: 1024px) {
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1090,11 +759,6 @@ footer {
     padding: 0 20px 80px;
   }
   
-  .cart-sidebar {
-    width: 100%;
-    right: -100%;
-  }
-  
   .trust-grid {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -1112,24 +776,6 @@ footer {
   footer {
     padding: 60px 20px 20px;
   }
-  
-  .quick-add, .share-btn {
-    opacity: 1;
-    transform: none;
-  }
-  
-  .wishlist-btn {
-    opacity: 1;
-    transform: none;
-    width: 36px;
-    height: 36px;
-  }
-  
-  .quick-add-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-  }
 }
 </style>
 </head>
@@ -1144,7 +790,7 @@ footer {
 <!-- Header -->
 <header>
   <div class="nav-container">
-    <a href="#" class="logo">Fancy Cloth House</a>
+    <a href="index.html" class="logo">Fancy Cloth House</a>
     
     <ul class="nav-links" id="navLinks">
       <li><a href="#shop" onclick="filterProducts('all')" class="active" id="nav-all">New Arrivals</a></li>
@@ -1157,8 +803,8 @@ footer {
       <i class="fas fa-search" onclick="toggleSearch()" title="Search"></i>
       <i class="fas fa-user" onclick="showLogin()" title="My Account"></i>
       <i class="fas fa-heart" onclick="showWishlist()" title="Wishlist"></i>
-      <div class="cart-icon" onclick="toggleCart()" title="Shopping Bag">
-        <i class="fas fa-shopping-bag"></i>
+      <div class="cart-icon" title="Shopping Bag">
+        <i class="fas fa-shopping-bag" onclick="toggleCart()"></i>
         <span class="cart-count" id="cartCount">0</span>
       </div>
       <i class="fas fa-bars mobile-menu-btn" onclick="toggleMobileMenu()"></i>
@@ -1212,7 +858,7 @@ footer {
 <!-- Collection Banner -->
 <div class="collection-banner">
   <div class="banner-item" onclick="filterProducts('sale')">
-    <img src="https://images.unsplash.com/photo-1610030469629-dc6f4c8ce95e?w=800" alt="Festive Collection">
+    <img src="https://images.unsplash.com/photo-1610030469629-dc6f4c8ce95e?w=800" alt="Festive Collection" onerror="this.src='https://via.placeholder.com/800x600?text=Festive+Collection'">
     <div class="banner-overlay">
       <h3>Festive Collection</h3>
       <p>Up to 40% Off</p>
@@ -1220,7 +866,7 @@ footer {
     </div>
   </div>
   <div class="banner-item" onclick="filterProducts('premium')">
-    <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800" alt="Wedding Season">
+    <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800" alt="Wedding Season" onerror="this.src='https://via.placeholder.com/800x600?text=Wedding+Season'">
     <div class="banner-overlay">
       <h3>Wedding Season</h3>
       <p>Exclusive Designs</p>
@@ -1255,64 +901,6 @@ footer {
   </div>
 </section>
 
-<!-- Cart Overlay -->
-<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
-
-<!-- Cart Sidebar -->
-<div class="cart-sidebar" id="cartSidebar">
-  <div class="cart-header">
-    <h3>Shopping Bag (<span id="cartItemCount">0</span>)</h3>
-    <button class="close-cart" onclick="toggleCart()">×</button>
-  </div>
-  
-  <div class="cart-items" id="cartItems">
-    <!-- Cart items injected here -->
-  </div>
-  
-  <div class="cart-footer">
-    <div class="cart-total">
-      <span>Subtotal</span>
-      <span>₹<span id="cartTotal">0</span></span>
-    </div>
-    <button class="checkout-btn" onclick="checkout()">
-      Proceed to Checkout
-    </button>
-    <button class="continue-shopping" onclick="toggleCart()">
-      Continue Shopping
-    </button>
-    <p style="text-align: center; margin-top: 15px; font-size: 12px; color: #666;">
-      Shipping & taxes calculated at checkout
-    </p>
-  </div>
-</div>
-
-<!-- Share Modal -->
-<div class="share-modal" id="shareModal" onclick="closeShareModal(event)">
-  <div class="share-content" onclick="event.stopPropagation()">
-    <h3>Share Product</h3>
-    <p id="shareProductName" style="color: #666; margin-bottom: 20px;"></p>
-    <div class="share-link">
-      <input type="text" id="shareLinkInput" readonly>
-      <button onclick="copyShareLink()">Copy</button>
-    </div>
-    <div class="share-buttons">
-      <button class="share-btn-social whatsapp" onclick="shareToWhatsApp()" title="Share on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-      </button>
-      <button class="share-btn-social facebook" onclick="shareToFacebook()" title="Share on Facebook">
-        <i class="fab fa-facebook-f"></i>
-      </button>
-      <button class="share-btn-social instagram" onclick="shareToInstagram()" title="Copy for Instagram">
-        <i class="fab fa-instagram"></i>
-      </button>
-      <button class="share-btn-social copy" onclick="copyShareLink()" title="Copy Link">
-        <i class="fas fa-link"></i>
-      </button>
-    </div>
-    <button class="close-share" onclick="closeShareModal()">Close</button>
-  </div>
-</div>
-
 <!-- Toast Notification -->
 <div class="toast" id="toast"></div>
 
@@ -1337,8 +925,8 @@ footer {
     <div class="footer-links">
       <h4>Help</h4>
       <ul>
-        <li><a href="https://wa.me/916284348760?text=Hello, I want to track my order" target="_blank">Track Order</a></li>
-        <li><a href="https://wa.me/916284348760?text=Hello, I want to return my order" target="_blank">Returns</a></li>
+        <li><a href="#" onclick="showToast('Contact us on WhatsApp: +91 62843 48760')">Track Order</a></li>
+        <li><a href="#" onclick="showToast('7-day return policy. Contact us on WhatsApp.')">Returns</a></li>
         <li><a href="#" onclick="showShippingInfo()">Shipping Info</a></li>
         <li><a href="#" onclick="showSizeGuide()">Size Guide</a></li>
       </ul>
@@ -1363,7 +951,7 @@ footer {
 
 <script>
 // ==========================================
-// PRODUCTS DATA - USING YOUR ACTUAL IMAGES
+// PRODUCTS DATA
 // ==========================================
 
 const products = [
@@ -1437,21 +1025,21 @@ const products = [
     category: "dress",
     description: "Comfortable daily wear kurti set with beautiful prints. Great value for money."
   },
-{
-  id: 6,
-  name: "Wedding Special Lehenga - Pure Fandy Work",
-  brand: "Bridal Collection",
-  price: 2499,
-  originalPrice: 3999,
-  images: [
-    "images/wedding-lehenga-model.png",      
-    "images/wedding-lehenga-flatlay.jpeg"    
-  ],
-  badge: "Premium",
-  colors: ["Teal"],
-  category: "dress",
-  description: "Exquisite bridal lehenga featuring pure fandy fabric with intricate gold salwar work and heavy dupatta. Perfect for wedding celebrations."
-},
+  {
+    id: 6,
+    name: "Wedding Special Lehenga - Pure Fandy Work",
+    brand: "Bridal Collection",
+    price: 2499,
+    originalPrice: 3999,
+    images: [
+      "images/wedding-lehenga-model.png",      
+      "images/wedding-lehenga-flatlay.jpeg"    
+    ],
+    badge: "Premium",
+    colors: ["Teal"],
+    category: "dress",
+    description: "Exquisite bridal lehenga featuring pure fandy fabric with intricate gold salwar work and heavy dupatta. Perfect for wedding celebrations."
+  },
   {
     id: 7,
     name: "Chiffon Dupatta Set",
@@ -1469,7 +1057,6 @@ const products = [
 let cart = JSON.parse(localStorage.getItem('fch_cart')) || [];
 let wishlist = JSON.parse(localStorage.getItem('fch_wishlist')) || [];
 let currentFilter = 'all';
-let currentShareProduct = null;
 
 // ==========================================
 // PRODUCT RENDERING
@@ -1493,10 +1080,9 @@ function renderProducts(productList = products) {
     const discount = Math.round((1 - product.price/product.originalPrice) * 100);
     const hasGallery = product.images && product.images.length > 1;
     const inWishlist = wishlist.some(w => w.id === product.id);
-    const productUrl = `https://tanyagohlan-creator.github.io/my-website/#product-${product.id}`;
     
     return `
-      <div class="product-card" id="product-${product.id}" data-id="${product.id}">
+      <div class="product-card" data-id="${product.id}" onclick="viewProduct(${product.id})">
         <div class="product-image">
           ${hasGallery ? `
             <div class="image-gallery">
@@ -1505,14 +1091,13 @@ function renderProducts(productList = products) {
                 class="gallery-main"
                 alt="${product.name}"
                 onerror="this.src='https://via.placeholder.com/400x600?text=Image+Not+Found'"
-                onclick="openImageModal('${product.images[0]}')"
               >
               <div class="gallery-thumbs">
-                ${product.images.map((img, idx) => `
+                ${product.images.slice(0, 3).map((img, idx) => `
                   <img 
                     src="${img}" 
                     class="gallery-thumb ${idx === 0 ? 'active' : ''}"
-                    onclick="changeGalleryImage(this, '${img}')"
+                    onclick="changeGalleryImage(event, this, '${img}')"
                     alt="View ${idx + 1}"
                     onerror="this.style.display='none'"
                   >
@@ -1525,27 +1110,21 @@ function renderProducts(productList = products) {
               class="single-image"
               alt="${product.name}"
               onerror="this.src='https://via.placeholder.com/400x600?text=Image+Not+Found'"
-              onclick="openImageModal('${product.images[0]}')"
             >
           `}
           ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
-          <button class="wishlist-btn ${inWishlist ? 'active' : ''}" onclick="toggleWishlist(${product.id})">
+          <button class="wishlist-btn ${inWishlist ? 'active' : ''}" onclick="event.stopPropagation(); toggleWishlist(${product.id})">
             <i class="${inWishlist ? 'fas' : 'far'} fa-heart"></i>
           </button>
-          <div class="share-btn">
-            <button onclick="openShareModal(${product.id})" title="Share Product">
-              <i class="fas fa-share-alt"></i>
-            </button>
-          </div>
           <div class="quick-add">
-            <button class="quick-add-btn" onclick="addToCart(${product.id})" title="Add to Bag">
+            <button class="quick-add-btn" onclick="event.stopPropagation(); addToCart(${product.id})" title="Add to Bag">
               +
             </button>
           </div>
         </div>
         <div class="product-info">
           <div class="product-brand">${product.brand}</div>
-          <h3 class="product-title" onclick="showProductDetails(${product.id})">${product.name}</h3>
+          <h3 class="product-title">${product.name}</h3>
           <div class="product-price">
             <span class="current-price">₹${product.price}</span>
             <span class="original-price">₹${product.originalPrice}</span>
@@ -1556,19 +1135,14 @@ function renderProducts(productList = products) {
               <div class="color-swatch" style="background: ${getColorCode(color)}" title="${color}"></div>
             `).join('')}
           </div>
-          <a href="${productUrl}" class="product-link" onclick="event.stopPropagation()">
-            <i class="fas fa-link"></i> Copy Product Link
-          </a>
         </div>
       </div>
     `;
   }).join('');
-  
-  // Check if URL has a product hash and scroll to it
-  checkUrlHash();
 }
 
-function changeGalleryImage(thumbElement, newSrc) {
+function changeGalleryImage(event, thumbElement, newSrc) {
+  event.stopPropagation();
   const gallery = thumbElement.closest('.image-gallery');
   const mainImg = gallery.querySelector('.gallery-main');
   
@@ -1593,67 +1167,11 @@ function getColorCode(colorName) {
 }
 
 // ==========================================
-// SHARE FUNCTIONS
+// PRODUCT NAVIGATION
 // ==========================================
 
-function openShareModal(productId) {
-  const product = products.find(p => p.id === productId);
-  currentShareProduct = product;
-  
-  const shareUrl = `https://tanyagohlan-creator.github.io/my-website/#product-${product.id}`;
-  
-  document.getElementById('shareProductName').textContent = product.name;
-  document.getElementById('shareLinkInput').value = shareUrl;
-  document.getElementById('shareModal').classList.add('open');
-}
-
-function closeShareModal(event) {
-  if (!event || event.target.id === 'shareModal' || event.target.classList.contains('close-share')) {
-    document.getElementById('shareModal').classList.remove('open');
-  }
-}
-
-function copyShareLink() {
-  const input = document.getElementById('shareLinkInput');
-  input.select();
-  document.execCommand('copy');
-  showToast('Link copied to clipboard!');
-}
-
-function shareToWhatsApp() {
-  const product = currentShareProduct;
-  const url = `https://tanyagohlan-creator.github.io/my-website/#product-${product.id}`;
-  const text = `Check out this beautiful ${product.name} from Fancy Cloth House! Only ₹${product.price} (was ₹${product.originalPrice}). Shop now: ${url}`;
-  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-}
-
-function shareToFacebook() {
-  const product = currentShareProduct;
-  const url = `https://tanyagohlan-creator.github.io/my-website/#product-${product.id}`;
-  window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
-}
-
-function shareToInstagram() {
-  const product = currentShareProduct;
-  const url = `https://tanyagohlan-creator.github.io/my-website/#product-${product.id}`;
-  const text = `Check out this beautiful ${product.name} from Fancy Cloth House! Only ₹${product.price} (was ₹${product.originalPrice}). Shop now: ${url}`;
-  
-  navigator.clipboard.writeText(text).then(() => {
-    showToast('Caption copied! Paste in Instagram');
-  });
-}
-
-function checkUrlHash() {
-  const hash = window.location.hash;
-  if (hash && hash.startsWith('#product-')) {
-    const productId = hash.replace('#product-', '');
-    const element = document.getElementById(`product-${productId}`);
-    if (element) {
-      setTimeout(() => {
-        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 500);
-    }
-  }
+function viewProduct(productId) {
+  window.location.href = `product.html?id=${productId}`;
 }
 
 // ==========================================
@@ -1735,85 +1253,13 @@ function saveCart() {
 }
 
 function updateCart() {
-  const cartItems = document.getElementById('cartItems');
   const cartCount = document.getElementById('cartCount');
-  const cartItemCount = document.getElementById('cartItemCount');
-  const cartTotal = document.getElementById('cartTotal');
-  
   const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
   cartCount.textContent = totalItems;
-  cartItemCount.textContent = totalItems;
-  
-  if (cart.length === 0) {
-    cartItems.innerHTML = `
-      <div class="empty-cart">
-        <i class="fas fa-shopping-bag"></i>
-        <p>Your bag is empty</p>
-        <p style="font-size: 14px; margin-top: 10px;">Add items to get started</p>
-      </div>
-    `;
-    cartTotal.textContent = '0';
-    return;
-  }
-  
-  cartItems.innerHTML = cart.map((item, index) => `
-    <div class="cart-item">
-      <img src="${item.images[0]}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/80x100?text=No+Image'">
-      <div class="cart-item-details">
-        <h4>${item.name}</h4>
-        <p>₹${item.price} ${item.colors[0]}</p>
-        <div class="qty-selector">
-          <button class="qty-btn" onclick="changeQty(${index}, -1)">−</button>
-          <span>${item.qty}</span>
-          <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
-        </div>
-      </div>
-      <span class="remove-item" onclick="removeItem(${index})">×</span>
-    </div>
-  `).join('');
-  
-  const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-  cartTotal.textContent = total.toLocaleString();
-}
-
-function changeQty(index, delta) {
-  cart[index].qty += delta;
-  if (cart[index].qty <= 0) {
-    cart.splice(index, 1);
-  }
-  saveCart();
-  updateCart();
-}
-
-function removeItem(index) {
-  cart.splice(index, 1);
-  saveCart();
-  updateCart();
-  showToast('Item removed from bag');
 }
 
 function toggleCart() {
-  const sidebar = document.getElementById('cartSidebar');
-  const overlay = document.getElementById('cartOverlay');
-  
-  sidebar.classList.toggle('open');
-  overlay.classList.toggle('open');
-  document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
-}
-
-function checkout() {
-  if (cart.length === 0) {
-    showToast('Your bag is empty!');
-    return;
-  }
-  
-  let message = "Hello! I want to order:%0A%0A";
-  cart.forEach(item => {
-    message += `• ${item.name}%0A  Qty: ${item.qty} | Price: ₹${item.price * item.qty}%0A%0A`;
-  });
-  message += `*Total: ₹${document.getElementById('cartTotal').textContent}*%0A%0APlease confirm availability.`;
-  
-  window.open(`https://wa.me/916284348760?text=${message}`, '_blank');
+  showToast('Cart feature will be available soon!');
 }
 
 // ==========================================
@@ -1851,7 +1297,7 @@ function showWishlist() {
 }
 
 // ==========================================
-// USER FUNCTIONS
+// UTILITY FUNCTIONS
 // ==========================================
 
 function showLogin() {
@@ -1884,23 +1330,6 @@ function showSizeGuide() {
         '• XL: 42" chest');
 }
 
-function showProductDetails(id) {
-  const product = products.find(p => p.id === id);
-  const url = `https://tanyagohlan-creator.github.io/my-website/#product-${product.id}`;
-  
-  alert(`📌 ${product.name}\n\n` +
-        `Brand: ${product.brand}\n` +
-        `Price: ₹${product.price} (was ₹${product.originalPrice})\n` +
-        `Colors: ${product.colors.join(', ')}\n\n` +
-        `Description: ${product.description}\n\n` +
-        `Product Link: ${url}\n\n` +
-        `Click "Add to Bag" to purchase via WhatsApp!`);
-}
-
-function openImageModal(src) {
-  window.open(src, '_blank');
-}
-
 function toggleMobileMenu() {
   const nav = document.getElementById('navLinks');
   nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
@@ -1920,96 +1349,17 @@ function showToast(message) {
 renderProducts();
 updateCart();
 
-// Listen for hash changes
-window.addEventListener('hashchange', checkUrlHash);
-
-const user = localStorage.getItem('fch_user');
-if (user) console.log('Welcome back:', user);
-</script>
-<script>
-// Product data - Add all your products here
-const products = {
-    'cotton-floral-red': {
-        name: 'Red Cotton Floral Unstitched Suit',
-        price: 1299,
-        originalPrice: 2499,
-        image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=1000&fit=crop',
-        subtitle: 'Beautiful red cotton with floral print'
-    },
-    'cotton-blue-traditional': {
-        name: 'Blue Traditional Cotton Suit',
-        price: 1199,
-        originalPrice: 2299,
-        image: 'https://images.unsplash.com/photo-1583391733950-7c63e5c541b9?w=800&h=1000&fit=crop',
-        subtitle: 'Elegant blue traditional design'
-    },
-    'silk-green-festive': {
-        name: 'Green Festive Silk Blend Suit',
-        price: 1599,
-        originalPrice: 2999,
-        image: 'https://images.unsplash.com/photo-1610030463067-06bb08b3dd9a?w=800&h=1000&fit=crop',
-        subtitle: 'Perfect for festivals and weddings'
-    },
-    'cotton-pink-daily': {
-        name: 'Pink Daily Wear Cotton Suit',
-        price: 999,
-        originalPrice: 1999,
-        image: 'https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=800&h=1000&fit=crop',
-        subtitle: 'Comfortable daily wear cotton'
+// Check for hash in URL for product highlighting
+window.addEventListener('hashchange', function() {
+  const hash = window.location.hash;
+  if (hash && hash.startsWith('#product-')) {
+    const productId = hash.replace('#product-', '');
+    const element = document.querySelector(`[data-id="${productId}"]`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-    // Add more products here following the same format
-};
-
-// Function to make product cards clickable
-function initProductLinks() {
-    // Find all product cards - adjust selector based on your HTML
-    const cards = document.querySelectorAll('.product-card, .item, .product, .suit-card, .grid-item');
-    
-    cards.forEach((card, index) => {
-        // Get product info from the card
-        const img = card.querySelector('img');
-        const title = card.querySelector('h3, h2, .title, .product-name');
-        const price = card.querySelector('.price, .current-price, .new-price');
-        
-        if (title && img) {
-            // Find matching product or create ID from title
-            const productName = title.textContent.trim();
-            const productId = Object.keys(products).find(key => 
-                products[key].name === productName
-            ) || 'product-' + index;
-            
-            // Make card clickable
-            card.style.cursor = 'pointer';
-            card.addEventListener('click', function(e) {
-                // Don't navigate if clicking on a button or link inside the card
-                if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') return;
-                window.location.href = 'product.html?id=' + productId;
-            });
-            
-            // Add hover effect
-            card.style.transition = 'transform 0.3s, box-shadow 0.3s';
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px)';
-                this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.15)';
-            });
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = '';
-            });
-        }
-    });
-}
-
-// Initialize when page loads
-document.addEventListener('DOMContentLoaded', initProductLinks);
+  }
+});
 </script>
 </body>
-</script>
 </html>
-
-
-
-
-
-
-
