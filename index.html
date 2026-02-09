@@ -1,1165 +1,1938 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Cotton Unstitched Suit - Fancy Cloth House</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #8B1538;
-            --primary-light: #D4A5A5;
-            --gold: #D4AF37;
-            --dark: #2C2C2C;
-            --light: #F9F7F4;
-            --text: #555;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        /* Navigation */
-        nav {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-icons {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .nav-icons i {
-            font-size: 1.2rem;
-            cursor: pointer;
-            color: var(--dark);
-        }
-
-        /* Breadcrumb */
-        .breadcrumb {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-            font-size: 0.9rem;
-            color: var(--text);
-        }
-
-        .breadcrumb a {
-            color: var(--text);
-            text-decoration: none;
-        }
-
-        .breadcrumb a:hover {
-            color: var(--primary);
-        }
-
-        /* Product Container */
-        .product-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem 4rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        /* Image Gallery */
-        .gallery-section {
-            position: sticky;
-            top: 100px;
-            height: fit-content;
-        }
-
-        .main-image-container {
-            position: relative;
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            margin-bottom: 1rem;
-        }
-
-        .main-image {
-            width: 100%;
-            height: 600px;
-            object-fit: cover;
-            cursor: zoom-in;
-            transition: transform 0.3s;
-        }
-
-        .main-image:hover {
-            transform: scale(1.02);
-        }
-
-        .gallery-thumbnails {
-            display: flex;
-            gap: 1rem;
-            overflow-x: auto;
-            padding-bottom: 0.5rem;
-        }
-
-        .thumb {
-            width: 80px;
-            height: 80px;
-            border-radius: 8px;
-            object-fit: cover;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: all 0.3s;
-            opacity: 0.7;
-        }
-
-        .thumb.active, .thumb:hover {
-            border-color: var(--primary);
-            opacity: 1;
-        }
-
-        /* Product Details */
-        .product-details {
-            padding-top: 1rem;
-        }
-
-        .product-header {
-            margin-bottom: 1.5rem;
-        }
-
-        .product-tag {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .product-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
-        }
-
-        .product-subtitle {
-            color: var(--text);
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-        }
-
-        .price-section {
-            margin: 1.5rem 0;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .price {
-            font-size: 2rem;
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .original-price {
-            font-size: 1.2rem;
-            color: #999;
-            text-decoration: line-through;
-            margin-left: 1rem;
-        }
-
-        .discount-badge {
-            background: var(--gold);
-            color: white;
-            padding: 0.2rem 0.8rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            margin-left: 1rem;
-        }
-
-        .tax-info {
-            font-size: 0.85rem;
-            color: var(--text);
-            margin-top: 0.5rem;
-        }
-
-        /* Key Features */
-        .key-features {
-            display: flex;
-            gap: 2rem;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
-        }
-
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--text);
-        }
-
-        .feature i {
-            color: var(--primary);
-        }
-
-        /* Unstitched Specific Details */
-        .fabric-details {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin: 2rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .detail-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .detail-item {
-            display: flex;
-            flex-direction: column;
-            padding: 0.8rem;
-            background: var(--light);
-            border-radius: 8px;
-        }
-
-        .detail-label {
-            font-size: 0.8rem;
-            color: var(--text);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .detail-value {
-            font-weight: 600;
-            color: var(--dark);
-            margin-top: 0.2rem;
-        }
-
-        /* Size Chart for Unstitched */
-        .size-section {
-            margin: 2rem 0;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .size-chart {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .size-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .size-table th, .size-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-
-        .size-table th {
-            background: var(--light);
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        .size-note {
-            padding: 1rem;
-            background: #FFF8E1;
-            color: #856404;
-            font-size: 0.9rem;
-            border-left: 4px solid var(--gold);
-        }
-
-        /* Quantity and Actions */
-        .purchase-section {
-            margin: 2rem 0;
-            padding: 2rem 0;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-        }
-
-        .quantity-selector {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .qty-btn {
-            width: 40px;
-            height: 40px;
-            border: 1px solid #ddd;
-            background: white;
-            cursor: pointer;
-            border-radius: 8px;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-        }
-
-        .qty-btn:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .qty-input {
-            width: 60px;
-            height: 40px;
-            text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn {
-            flex: 1;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #6B1028;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(139, 21, 56, 0.3);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* Trust Badges */
-        .trust-badges {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #eee;
-        }
-
-        .badge {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.85rem;
-            color: var(--text);
-        }
-
-        .badge i {
-            color: var(--gold);
-            font-size: 1.2rem;
-        }
-
-        /* Tabs Section */
-        .tabs-section {
-            max-width: 1400px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-        }
-
-        .tabs {
-            display: flex;
-            gap: 2rem;
-            border-bottom: 2px solid #eee;
-            margin-bottom: 2rem;
-        }
-
-        .tab {
-            padding: 1rem 0;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--text);
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s;
-        }
-
-        .tab.active {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .info-block h3 {
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .info-block ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .info-block li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            color: var(--text);
-        }
-
-        .info-block li:before {
-            content: "•";
-            color: var(--primary);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        /* Reviews Section */
-        .reviews-summary {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .rating-big {
-            text-align: center;
-        }
-
-        .rating-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--dark);
-        }
-
-        .stars {
-            color: var(--gold);
-            font-size: 1.2rem;
-            margin: 0.5rem 0;
-        }
-
-        .review-item {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .review-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-        }
-
-        .reviewer-name {
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        .review-date {
-            color: #999;
-            font-size: 0.9rem;
-        }
-
-        .review-content {
-            color: var(--text);
-            line-height: 1.8;
-        }
-
-        .verified-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            color: #28a745;
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-        }
-
-        /* Related Products */
-        .related-section {
-            max-width: 1400px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-            cursor: pointer;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-        }
-
-        .product-info {
-            padding: 1.5rem;
-        }
-
-        .product-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .product-price {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 1.1rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .product-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .gallery-section {
-                position: relative;
-                top: 0;
-            }
-
-            .main-image {
-                height: 400px;
-            }
-
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-links {
-                display: none;
-            }
-        }
-
-        /* Image Zoom Modal */
-        .zoom-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .zoom-modal.active {
-            display: flex;
-        }
-
-        .zoom-image {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-        }
-
-        .close-zoom {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fancy Cloth House | Premium Women's Ethnic Wear</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root {
+  --primary: #1a1a1a;
+  --accent: #c9a962;
+  --bg: #fafafa;
+  --text: #333;
+  --light-gray: #f5f5f5;
+  --border: #e0e0e0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.announcement {
+  background: var(--primary);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  padding: 0 50px;
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.mobile-menu-btn {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.nav-icons i {
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.nav-icons i:hover {
+  color: var(--accent);
+}
+
+.cart-icon {
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--accent);
+  color: white;
+  font-size: 10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero {
+  position: relative;
+  height: 85vh;
+  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+              url('images/new-banner.png') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 64px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  letter-spacing: 3px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: 16px 40px;
+  background: white;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+.cta-btn:hover {
+  background: transparent;
+  color: white;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: white;
+  border-bottom: 1px solid var(--border);
+}
+
+.feature {
+  padding: 30px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+
+.feature:last-child {
+  border-right: none;
+}
+
+.feature i {
+  font-size: 24px;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.feature h4 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.section-header {
+  text-align: center;
+  padding: 80px 0 40px;
+}
+
+.section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+.section-header p {
+  color: #666;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.products-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 50px 80px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.product-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.4s;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  scroll-margin-top: 100px;
+}
+
+.product-card:target {
+  animation: highlight 2s ease;
+  box-shadow: 0 0 0 4px var(--accent), 0 20px 40px rgba(0,0,0,0.15);
+}
+
+@keyframes highlight {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.product-card:hover {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  transform: translateY(-5px);
+}
+
+.product-image {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background: #f8f8f8;
+}
+
+.image-gallery {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-main {
+  flex: 1;
+  width: 100%;
+  height: calc(100% - 70px);
+  object-fit: cover;
+  cursor: zoom-in;
+  transition: transform 0.3s;
+}
+
+.gallery-main:hover {
+  transform: scale(1.05);
+}
+
+.gallery-thumbs {
+  height: 70px;
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  background: white;
+  overflow-x: auto;
+  justify-content: center;
+  align-items: center;
+  border-top: 2px solid var(--accent);
+  scrollbar-width: thin;
+}
+
+.gallery-thumbs::-webkit-scrollbar {
+  height: 4px;
+}
+
+.gallery-thumbs::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.gallery-thumb {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border: 2px solid #ddd;
+  cursor: pointer;
+  border-radius: 4px;
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+
+.gallery-thumb:hover {
+  border-color: #999;
+}
+
+.gallery-thumb.active {
+  border-color: var(--accent);
+  transform: scale(1.05);
+}
+
+.single-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.single-image:hover {
+  transform: scale(1.05);
+}
+
+.product-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: var(--accent);
+  color: white;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 10;
+  border-radius: 4px;
+}
+
+.wishlist-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  color: var(--text);
+}
+
+.product-card:hover .wishlist-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wishlist-btn.active {
+  background: #ff4444;
+  color: white;
+  opacity: 1;
+}
+
+.quick-add {
+  position: absolute;
+  right: 15px;
+  top: 70px;
+  z-index: 10;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.3s;
+}
+
+.product-card:hover .quick-add {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.quick-add-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  border: none;
+  font-size: 24px;
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s;
+}
+
+.quick-add-btn:hover {
+  background: var(--accent);
+  transform: scale(1.1);
+}
+
+.share-btn {
+  position: absolute;
+  left: 15px;
+  top: 70px;
+  z-index: 10;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s;
+}
+
+.product-card:hover .share-btn {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.share-btn button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  color: var(--primary);
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: all 0.3s;
+}
+
+.share-btn button:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.product-info {
+  padding: 20px;
+  text-align: center;
+}
+
+.product-brand {
+  font-size: 12px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.product-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--primary);
+  margin-bottom: 10px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.product-title:hover {
+  color: var(--accent);
+}
+
+.product-price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.current-price {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.original-price {
+  font-size: 14px;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.discount {
+  font-size: 12px;
+  color: #2ecc71;
+  font-weight: 600;
+}
+
+.color-swatches {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.color-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.color-swatch:hover {
+  transform: scale(1.2);
+  border-color: var(--accent);
+}
+
+.product-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: var(--light-gray);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 12px;
+  border-radius: 20px;
+  transition: all 0.3s;
+}
+
+.product-link:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.collection-banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin: 40px 0;
+}
+
+.banner-item {
+  position: relative;
+  height: 600px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.banner-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s;
+}
+
+.banner-item:hover img {
+  transform: scale(1.05);
+}
+
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 40px;
+  color: white;
+}
+
+.banner-overlay h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.banner-overlay p {
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -450px;
+  width: 450px;
+  height: 100vh;
+  background: white;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+  z-index: 2000;
+  transition: right 0.4s;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-sidebar.open {
+  right: 0;
+}
+
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+
+.cart-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cart-header {
+  padding: 30px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.close-cart {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--text);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+
+.close-cart:hover {
+  background: var(--light-gray);
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 30px;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.empty-cart i {
+  font-size: 60px;
+  color: #ddd;
+  margin-bottom: 20px;
+}
+
+.cart-item {
+  display: flex;
+  gap: 15px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.cart-item img {
+  width: 80px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.cart-item-details {
+  flex: 1;
+}
+
+.cart-item-details h4 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  line-height: 1.4;
+}
+
+.cart-item-details p {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.qty-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--border);
+  background: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.2s;
+  border-radius: 4px;
+}
+
+.qty-btn:hover {
+  background: var(--light-gray);
+}
+
+.remove-item {
+  margin-left: auto;
+  color: #999;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 5px;
+  transition: color 0.3s;
+}
+
+.remove-item:hover {
+  color: #ff4444;
+}
+
+.cart-footer {
+  padding: 30px;
+  border-top: 1px solid var(--border);
+  background: var(--light-gray);
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 16px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: background 0.3s;
+  border-radius: 4px;
+}
+
+.checkout-btn:hover {
+  background: var(--accent);
+}
+
+.continue-shopping {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.continue-shopping:hover {
+  background: var(--light-gray);
+}
+
+.trust-section {
+  background: var(--light-gray);
+  padding: 80px 50px;
+}
+
+.trust-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.trust-item {
+  text-align: center;
+  padding: 30px;
+}
+
+.trust-item i {
+  font-size: 40px;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.trust-item h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.trust-item p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
+
+footer {
+  background: var(--primary);
+  color: white;
+  padding: 80px 50px 30px;
+}
+
+.footer-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+
+.footer-brand h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.footer-brand p {
+  color: #999;
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.footer-links h4 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.footer-links ul {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: #999;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  padding-top: 30px;
+  text-align: center;
+  color: #666;
+  font-size: 13px;
+}
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--primary);
+  color: white;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-size: 14px;
+  z-index: 3000;
+  opacity: 0;
+  transition: all 0.3s;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.share-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 3000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-modal.open {
+  display: flex;
+}
+
+.share-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+}
+
+.share-content h3 {
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 20px;
+}
+
+.share-link {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.share-link input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.share-link button {
+  padding: 12px 20px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.share-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.share-btn-social {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: white;
+  transition: transform 0.3s;
+}
+
+.share-btn-social:hover {
+  transform: scale(1.1);
+}
+
+.share-btn-social.whatsapp { background: #25d366; }
+.share-btn-social.facebook { background: #1877f2; }
+.share-btn-social.instagram { background: #e4405f; }
+.share-btn-social.copy { background: var(--primary); }
+
+.close-share {
+  margin-top: 20px;
+  padding: 10px 30px;
+  background: var(--light-gray);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .collection-banner {
+    grid-template-columns: 1fr;
+  }
+  
+  .trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 0 20px;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .hero-content h1 {
+    font-size: 36px;
+  }
+  
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .feature {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 20px;
+  }
+  
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .products-section {
+    padding: 0 20px 80px;
+  }
+  
+  .cart-sidebar {
+    width: 100%;
+    right: -100%;
+  }
+  
+  .trust-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .trust-section {
+    padding: 40px 20px;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  footer {
+    padding: 60px 20px 20px;
+  }
+  
+  .quick-add, .share-btn {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .wishlist-btn {
+    opacity: 1;
+    transform: none;
+    width: 36px;
+    height: 36px;
+  }
+  
+  .quick-add-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+</style>
 </head>
+
 <body>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="#" class="logo">Fancy Cloth House</a>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Suit Sets</a></li>
-                <li><a href="#">Dresses</a></li>
-                <li><a href="#">New Arrivals</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-            <div class="nav-icons">
-                <i class="fas fa-search"></i>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-shopping-bag"></i>
-            </div>
-        </div>
-    </nav>
+<!-- Announcement -->
+<div class="announcement">
+  Free Shipping on Orders Above ₹999 | New Summer Collection Now Live
+</div>
 
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-        <a href="#">Home</a> / <a href="#">Unstitched Suits</a> / <a href="#">Cotton Collection</a> / Premium Cotton Unstitched Suit
+<!-- Header -->
+<header>
+  <div class="nav-container">
+    <a href="#" class="logo">Fancy Cloth House</a>
+    
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#shop" onclick="filterProducts('all')" class="active" id="nav-all">New Arrivals</a></li>
+      <li><a href="#shop" onclick="filterProducts('suit')" id="nav-suit">Suit Sets</a></li>
+      <li><a href="#shop" onclick="filterProducts('dress')" id="nav-dress">Dresses</a></li>
+      <li><a href="#shop" onclick="filterProducts('sale')" id="nav-sale">Sale</a></li>
+    </ul>
+    
+    <div class="nav-icons">
+      <i class="fas fa-search" onclick="toggleSearch()" title="Search"></i>
+      <i class="fas fa-user" onclick="showLogin()" title="My Account"></i>
+      <i class="fas fa-heart" onclick="showWishlist()" title="Wishlist"></i>
+      <div class="cart-icon" onclick="toggleCart()" title="Shopping Bag">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+      <i class="fas fa-bars mobile-menu-btn" onclick="toggleMobileMenu()"></i>
     </div>
+  </div>
+</header>
 
-    <!-- Product Container -->
-    <div class="product-container">
-        <!-- Image Gallery -->
-        <div class="gallery-section">
-            <div class="main-image-container">
-                <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=1000&fit=crop" alt="Premium Cotton Unstitched Suit" class="main-image" onclick="openZoom()">
-            </div>
-            <div class="gallery-thumbnails">
-                <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=200&h=200&fit=crop" class="thumb active" onclick="changeImage(this)">
-                <img src="https://images.unsplash.com/photo-1583391733950-7c63e5c541b9?w=200&h=200&fit=crop" class="thumb" onclick="changeImage(this)">
-                <img src="https://images.unsplash.com/photo-1610030463067-06bb08b3dd9a?w=200&h=200&fit=crop" class="thumb" onclick="changeImage(this)">
-                <img src="https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=200&h=200&fit=crop" class="thumb" onclick="changeImage(this)">
-            </div>
-        </div>
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Shashvat Elegance</h1>
+    <p>Discover Premium Ethnic Wear</p>
+    <a href="#shop" class="cta-btn" onclick="filterProducts('all')">Explore Collection</a>
+  </div>
+</section>
 
-        <!-- Product Details -->
-        <div class="product-details">
-            <div class="product-header">
-                <span class="product-tag">Unstitched</span>
-                <h1 class="product-title">Premium Cotton Unstitched Suit with Chiffon Dupatta</h1>
-                <p class="product-subtitle">Elegant floral printed cotton fabric perfect for summer wear</p>
-            </div>
+<!-- Features -->
+<div class="features">
+  <div class="feature">
+    <i class="fas fa-truck"></i>
+    <h4>Free Shipping</h4>
+  </div>
+  <div class="feature">
+    <i class="fas fa-undo"></i>
+    <h4>Easy Returns</h4>
+  </div>
+  <div class="feature">
+    <i class="fas fa-shield-alt"></i>
+    <h4>Secure Payment</h4>
+  </div>
+  <div class="feature">
+    <i class="fas fa-headset"></i>
+    <h4>24/7 Support</h4>
+  </div>
+</div>
 
-            <div class="price-section">
-                <span class="price">₹1,299</span>
-                <span class="original-price">₹2,499</span>
-                <span class="discount-badge">48% OFF</span>
-                <p class="tax-info">MRP Inclusive of all taxes</p>
-            </div>
-
-            <div class="key-features">
-                <div class="feature">
-                    <i class="fas fa-truck"></i>
-                    <span>Free Shipping</span>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-undo"></i>
-                    <span>Easy Returns</span>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>Authentic Fabric</span>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-cut"></i>
-                    <span>Unstitched Material</span>
-                </div>
-            </div>
-
-            <div class="fabric-details">
-                <h3 class="section-title"><i class="fas fa-info-circle"></i> Fabric Details</h3>
-                <div class="detail-grid">
-                    <div class="detail-item">
-                        <span class="detail-label">Top Material</span>
-                        <span class="detail-value">Pure Cotton (2.5 meters)</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Bottom Material</span>
-                        <span class="detail-value">Cotton (2.5 meters)</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Dupatta</span>
-                        <span class="detail-value">Chiffon (2.25 meters)</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Work/Print</span>
-                        <span class="detail-value">Digital Floral Print</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Width</span>
-                        <span class="detail-value">44 inches</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Care Instructions</span>
-                        <span class="detail-value">Hand Wash / Dry Clean</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="size-section">
-                <h3 class="section-title"><i class="fas fa-ruler"></i> Unstitched Material Guide</h3>
-                <div class="size-chart">
-                    <table class="size-table">
-                        <thead>
-                            <tr>
-                                <th>Component</th>
-                                <th>Length</th>
-                                <th>Width</th>
-                                <th>Suitable For</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Top (Kameez)</td>
-                                <td>2.5 meters</td>
-                                <td>44 inches</td>
-                                <td>Up to 48" chest</td>
-                            </tr>
-                            <tr>
-                                <td>Bottom (Salwar)</td>
-                                <td>2.5 meters</td>
-                                <td>44 inches</td>
-                                <td>All sizes</td>
-                            </tr>
-                            <tr>
-                                <td>Dupatta</td>
-                                <td>2.25 meters</td>
-                                <td>36 inches</td>
-                                <td>Standard size</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="size-note">
-                        <strong>Note:</strong> This is unstitched fabric. You will receive loose material that needs to be stitched according to your measurements. We recommend getting it stitched by a professional tailor.
-                    </div>
-                </div>
-            </div>
-
-            <div class="purchase-section">
-                <div class="quantity-selector">
-                    <span>Quantity:</span>
-                    <button class="qty-btn" onclick="updateQty(-1)">-</button>
-                    <input type="number" class="qty-input" value="1" min="1" id="qty">
-                    <button class="qty-btn" onclick="updateQty(1)">+</button>
-                </div>
-                <div class="action-buttons">
-                    <button class="btn btn-primary">Add to Cart</button>
-                    <button class="btn btn-secondary">Buy Now</button>
-                </div>
-            </div>
-
-            <div class="trust-badges">
-                <div class="badge">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Genuine Product</span>
-                </div>
-                <div class="badge">
-                    <i class="fas fa-undo"></i>
-                    <span>7 Days Return</span>
-                </div>
-                <div class="badge">
-                    <i class="fas fa-lock"></i>
-                    <span>Secure Payment</span>
-                </div>
-                <div class="badge">
-                    <i class="fas fa-headset"></i>
-                    <span>24/7 Support</span>
-                </div>
-            </div>
-        </div>
+<!-- New Arrivals -->
+<section id="shop">
+  <div class="section-header">
+    <h2 id="sectionTitle">New Arrivals</h2>
+    <p>Handpicked Premium Collection</p>
+  </div>
+  
+  <div class="products-section">
+    <div class="products-grid" id="productsGrid">
+      <!-- Products injected by JS -->
     </div>
+  </div>
+</section>
 
-    <!-- Tabs Section -->
-    <div class="tabs-section">
-        <div class="tabs">
-            <div class="tab active" onclick="switchTab(this, 'description')">Description</div>
-            <div class="tab" onclick="switchTab(this, 'shipping')">Shipping & Returns</div>
-            <div class="tab" onclick="switchTab(this, 'care')">Care Instructions</div>
-            <div class="tab" onclick="switchTab(this, 'reviews')">Reviews (128)</div>
-        </div>
-
-        <div id="description" class="tab-content active">
-            <div class="content-grid">
-                <div class="info-block">
-                    <h3>Product Description</h3>
-                    <p style="color: var(--text); line-height: 1.8; margin-bottom: 1rem;">
-                        Elevate your ethnic wardrobe with this exquisite unstitched cotton suit set. Crafted from premium quality pure cotton, this fabric offers breathability and comfort perfect for all-day wear. The vibrant digital floral print adds a contemporary touch to traditional attire.
-                    </p>
-                    <p style="color: var(--text); line-height: 1.8;">
-                        The set includes matching cotton fabric for the bottom and a lightweight chiffon dupatta with elegant border detailing. Customize the stitching according to your preferred style - whether it's a classic straight cut, trendy A-line, or comfortable Anarkali.
-                    </p>
-                </div>
-                <div class="info-block">
-                    <h3>What's Included</h3>
-                    <ul>
-                        <li>2.5 meters Cotton fabric for Top (Unstitched)</li>
-                        <li>2.5 meters Cotton fabric for Bottom (Unstitched)</li>
-                        <li>2.25 meters Chiffon Dupatta</li>
-                        <li>Matching thread spool</li>
-                        <li>Stitching instruction card</li>
-                        <li>Care label attached</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div id="shipping" class="tab-content">
-            <div class="content-grid">
-                <div class="info-block">
-                    <h3>Shipping Information</h3>
-                    <ul>
-                        <li>Free shipping on all orders above ₹999</li>
-                        <li>Orders processed within 24 hours</li>
-                        <li>Delivery time: 3-5 business days (Metro cities)</li>
-                        <li>Delivery time: 5-7 business days (Other cities)</li>
-                        <li>Tracking number provided via SMS/Email</li>
-                        <li>Cash on Delivery available (₹50 extra)</li>
-                    </ul>
-                </div>
-                <div class="info-block">
-                    <h3>Return & Exchange Policy</h3>
-                    <ul>
-                        <li>7-day easy return policy</li>
-                        <li>Product must be unused with original packaging</li>
-                        <li>Exchange available for size issues (unstitched only)</li>
-                        <li>Refund processed within 5-7 business days</li>
-                        <li>Defective items eligible for full refund</li>
-                        <li>Contact us at: support@fancyclothhouse.com</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div id="care" class="tab-content">
-            <div class="content-grid">
-                <div class="info-block">
-                    <h3>Fabric Care</h3>
-                    <ul>
-                        <li>Hand wash separately in cold water</li>
-                        <li>Use mild detergent only</li>
-                        <li>Do not bleach or wring</li>
-                        <li>Dry in shade to prevent color fading</li>
-                        <li>Iron on medium heat</li>
-                        <li>Dry clean recommended for first wash</li>
-                    </ul>
-                </div>
-                <div class="info-block">
-                    <h3>Storage Tips</h3>
-                    <ul>
-                        <li>Store in cool, dry place</li>
-                        <li>Use cotton bags for storage</li>
-                        <li>Keep away from direct sunlight</li>
-                        <li>Avoid plastic covers for long storage</li>
-                        <li>Refold occasionally to prevent creases</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div id="reviews" class="tab-content">
-            <div class="reviews-summary">
-                <div class="rating-big">
-                    <div class="rating-number">4.8</div>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <div>Based on 128 reviews</div>
-                </div>
-                <div style="flex: 1;">
-                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
-                        <span>5 stars</span>
-                        <div style="flex: 1; height: 8px; background: #eee; border-radius: 4px; overflow: hidden;">
-                            <div style="width: 85%; height: 100%; background: var(--gold);"></div>
-                        </div>
-                        <span>85%</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
-                        <span>4 stars</span>
-                        <div style="flex: 1; height: 8px; background: #eee; border-radius: 4px; overflow: hidden;">
-                            <div style="width: 10%; height: 100%; background: var(--gold);"></div>
-                        </div>
-                        <span>10%</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
-                        <span>3 stars</span>
-                        <div style="flex: 1; height: 8px; background: #eee; border-radius: 4px; overflow: hidden;">
-                            <div style="width: 3%; height: 100%; background: var(--gold);"></div>
-                        </div>
-                        <span>3%</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="review-item">
-                <div class="review-header">
-                    <div>
-                        <div class="reviewer-name">Priya Sharma</div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="review-date">2 days ago</div>
-                </div>
-                <div class="review-content">
-                    Absolutely love the fabric quality! The cotton is soft and the print is exactly as shown in the pictures. Got it stitched into an Anarkali suit and it looks gorgeous. Will definitely order more!
-                </div>
-                <div class="verified-badge">
-                    <i class="fas fa-check-circle"></i> Verified Purchase
-                </div>
-            </div>
-
-            <div class="review-item">
-                <div class="review-header">
-                    <div>
-                        <div class="reviewer-name">Anjali Patel</div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="review-date">1 week ago</div>
-                </div>
-                <div class="review-content">
-                    Great value for money. The material length is sufficient even for plus sizes. The chiffon dupatta is lightweight and elegant. Delivery was prompt and packaging was secure.
-                </div>
-                <div class="verified-badge">
-                    <i class="fas fa-check-circle"></i> Verified Purchase
-                </div>
-            </div>
-
-            <div class="review-item">
-                <div class="review-header">
-                    <div>
-                        <div class="reviewer-name">Meera Reddy</div>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="far fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="review-date">2 weeks ago</div>
-                </div>
-                <div class="review-content">
-                    Fabric is good but color is slightly different from the image. Still a beautiful piece. The unstitched material gives flexibility to customize according to my preference.
-                </div>
-                <div class="verified-badge">
-                    <i class="fas fa-check-circle"></i> Verified Purchase
-                </div>
-            </div>
-        </div>
+<!-- Collection Banner -->
+<div class="collection-banner">
+  <div class="banner-item" onclick="filterProducts('sale')">
+    <img src="https://images.unsplash.com/photo-1610030469629-dc6f4c8ce95e?w=800" alt="Festive Collection">
+    <div class="banner-overlay">
+      <h3>Festive Collection</h3>
+      <p>Up to 40% Off</p>
+      <span class="cta-btn" style="background: transparent; color: white; border-color: white; display: inline-block;">Shop Now</span>
     </div>
-
-    <!-- Related Products -->
-    <div class="related-section">
-        <div class="section-header">
-            <h2>You May Also Like</h2>
-            <p style="color: var(--text);">Similar unstitched collections</p>
-        </div>
-        <div class="products-grid">
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&h=500&fit=crop" class="product-image" alt="Product">
-                <div class="product-info">
-                    <h3 class="product-name">Chanderi Silk Unstitched Suit</h3>
-                    <p class="product-price">₹1,599</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1583391733950-7c63e5c541b9?w=400&h=500&fit=crop" class="product-image" alt="Product">
-                <div class="product-info">
-                    <h3 class="product-name">Linen Cotton Unstitched Set</h3>
-                    <p class="product-price">₹1,199</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1610030463067-06bb08b3dd9a?w=400&h=500&fit=crop" class="product-image" alt="Product">
-                <div class="product-info">
-                    <h3 class="product-name">Rayon Printed Unstitched Suit</h3>
-                    <p class="product-price">₹999</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=400&h=500&fit=crop" class="product-image" alt="Product">
-                <div class="product-info">
-                    <h3 class="product-name">Cotton Silk Unstitched Material</h3>
-                    <p class="product-price">₹1,399</p>
-                </div>
-            </div>
-        </div>
+  </div>
+  <div class="banner-item" onclick="filterProducts('premium')">
+    <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800" alt="Wedding Season">
+    <div class="banner-overlay">
+      <h3>Wedding Season</h3>
+      <p>Exclusive Designs</p>
+      <span class="cta-btn" style="background: transparent; color: white; border-color: white; display: inline-block;">Explore</span>
     </div>
+  </div>
+</div>
 
-    <!-- Zoom Modal -->
-    <div class="zoom-modal" id="zoomModal" onclick="closeZoom()">
-        <span class="close-zoom">&times;</span>
-        <img src="" class="zoom-image" id="zoomImage">
+<!-- Trust Section -->
+<section class="trust-section">
+  <div class="trust-grid">
+    <div class="trust-item">
+      <i class="fas fa-gem"></i>
+      <h4>Premium Quality</h4>
+      <p>Handpicked fabrics and intricate embroidery for the perfect finish</p>
     </div>
+    <div class="trust-item">
+      <i class="fas fa-rupee-sign"></i>
+      <h4>Best Prices</h4>
+      <p>Direct from manufacturers to you, no middlemen markup</p>
+    </div>
+    <div class="trust-item">
+      <i class="fas fa-palette"></i>
+      <h4>Latest Designs</h4>
+      <p>New arrivals every week keeping up with fashion trends</p>
+    </div>
+    <div class="trust-item">
+      <i class="fas fa-store"></i>
+      <h4>Trusted Store</h4>
+      <p>10+ years of serving customers in Urmar Tanda, Punjab</p>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // Image Gallery
-        function changeImage(thumb) {
-            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-            thumb.classList.add('active');
-            document.querySelector('.main-image').src = thumb.src.replace('w=200&h=200', 'w=800&h=1000');
-        }
+<!-- Cart Overlay -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
 
-        // Zoom Modal
-        function openZoom() {
-            const modal = document.getElementById('zoomModal');
-            const zoomImg = document.getElementById('zoomImage');
-            zoomImg.src = document.querySelector('.main-image').src;
-            modal.classList.add('active');
-        }
+<!-- Cart Sidebar -->
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Shopping Bag (<span id="cartItemCount">0</span>)</h3>
+    <button class="close-cart" onclick="toggleCart()">×</button>
+  </div>
+  
+  <div class="cart-items" id="cartItems">
+    <!-- Cart items injected here -->
+  </div>
+  
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Subtotal</span>
+      <span>₹<span id="cartTotal">0</span></span>
+    </div>
+    <button class="checkout-btn" onclick="checkout()">
+      Proceed to Checkout
+    </button>
+    <button class="continue-shopping" onclick="toggleCart()">
+      Continue Shopping
+    </button>
+    <p style="text-align: center; margin-top: 15px; font-size: 12px; color: #666;">
+      Shipping & taxes calculated at checkout
+    </p>
+  </div>
+</div>
 
-        function closeZoom() {
-            document.getElementById('zoomModal').classList.remove('active');
-        }
+<!-- Share Modal -->
+<div class="share-modal" id="shareModal" onclick="closeShareModal(event)">
+  <div class="share-content" onclick="event.stopPropagation()">
+    <h3>Share Product</h3>
+    <p id="shareProductName" style="color: #666; margin-bottom: 20px;"></p>
+    <div class="share-link">
+      <input type="text" id="shareLinkInput" readonly>
+      <button onclick="copyShareLink()">Copy</button>
+    </div>
+    <div class="share-buttons">
+      <button class="share-btn-social whatsapp" onclick="shareToWhatsApp()" title="Share on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </button>
+      <button class="share-btn-social facebook" onclick="shareToFacebook()" title="Share on Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </button>
+      <button class="share-btn-social instagram" onclick="shareToInstagram()" title="Copy for Instagram">
+        <i class="fab fa-instagram"></i>
+      </button>
+      <button class="share-btn-social copy" onclick="copyShareLink()" title="Copy Link">
+        <i class="fas fa-link"></i>
+      </button>
+    </div>
+    <button class="close-share" onclick="closeShareModal()">Close</button>
+  </div>
+</div>
 
-        // Quantity Selector
-        function updateQty(change) {
-            const input = document.getElementById('qty');
-            let val = parseInt(input.value) + change;
-            if (val < 1) val = 1;
-            input.value = val;
-        }
+<!-- Toast Notification -->
+<div class="toast" id="toast"></div>
 
-        // Tabs
-        function switchTab(tab, contentId) {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            
-            tab.classList.add('active');
-            document.getElementById(contentId).classList.add('active');
-        }
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>Fancy Cloth House</h3>
+      <p>Your destination for premium women's ethnic wear. We bring you the finest suit sets, dresses, and traditional wear at unbeatable prices. Visit our store in Urmar Tanda or shop online.</p>
+    </div>
+    
+    <div class="footer-links">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#shop" onclick="filterProducts('all')">New Arrivals</a></li>
+        <li><a href="#shop" onclick="filterProducts('suit')">Suit Sets</a></li>
+        <li><a href="#shop" onclick="filterProducts('dress')">Dresses</a></li>
+        <li><a href="#shop" onclick="filterProducts('sale')">Sale</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-links">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="https://wa.me/916284348760?text=Hello, I want to track my order" target="_blank">Track Order</a></li>
+        <li><a href="https://wa.me/916284348760?text=Hello, I want to return my order" target="_blank">Returns</a></li>
+        <li><a href="#" onclick="showShippingInfo()">Shipping Info</a></li>
+        <li><a href="#" onclick="showSizeGuide()">Size Guide</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-links">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="https://maps.google.com/?q=Urmar+Tanda+Punjab+144204" target="_blank"><i class="fas fa-map-marker-alt"></i> Opp PNB Bank, Thana Chowk</a></li>
+        <li><a href="https://maps.google.com/?q=Urmar+Tanda+Punjab+144204" target="_blank">Urmar Tanda, Punjab 144204</a></li>
+        <li><a href="tel:+916284348760"><i class="fas fa-phone"></i> +91 62843 48760</a></li>
+        <li><a href="https://wa.me/916284348760" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a></li>
+        <li><span style="color: #999; font-size: 14px;"><i class="fas fa-clock"></i> Mon-Sat: 10AM - 9PM</span></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <p>&copy; 2024 Fancy Cloth House. All rights reserved. | Designed with elegance</p>
+  </div>
+</footer>
 
-        // Add to Cart Animation
-        document.querySelector('.btn-primary').addEventListener('click', function() {
-            this.innerHTML = '<i class="fas fa-check"></i> Added!';
-            this.style.background = '#28a745';
-            setTimeout(() => {
-                this.innerHTML = 'Add to Cart';
-                this.style.background = '';
-            }, 2000);
-        });
-    </script>
+<script>
+// ==========================================
+// PRODUCTS DATA - USING YOUR ACTUAL IMAGES
+// ==========================================
+
+const products = [
+  {
+    id: 1,
+    name: "Floral Print Suit Set with Golden Lace Dupatta",
+    brand: "Fancy Cloth House",
+    price: 956,
+    originalPrice: 1299,
+    images: [
+      "images/suit-floral-model.jpg",
+      "images/suit-floral-flatlay.jpg"
+    ],
+    badge: "Bestseller",
+    colors: ["Black", "Red", "Teal", "Mustard"],
+    category: "suit",
+    description: "Beautiful floral print suit set with intricate golden lace work on dupatta. Perfect for festive occasions."
+  },
+  {
+    id: 2,
+    name: "Pure Natural Salwar Suit with Dupatta Work",
+    brand: "Fancy Cloth House",
+    price: 2850,
+    originalPrice: 3500,
+    images: [
+      "images/salwar-suit-purple-model.jpg",
+      "images/salwar-suit-all-colors-model.jpg",
+      "images/salwar-suit-purple-flatlay.jpg",
+      "images/salwar-suit-red-flatlay.jpg",
+      "images/salwar-suit-black-flatlay.jpg",
+      "images/salwar-suit-yellow-flatlay.jpg"
+    ],
+    badge: "New",
+    colors: ["Purple", "Red", "Black", "Yellow"],
+    category: "suit",
+    description: "Premium quality natural fabric with heavy dupatta work. Available in multiple colors."
+  },
+  {
+    id: 3,
+    name: "Embroidered Silk Suit",
+    brand: "Premium Collection",
+    price: 1499,
+    originalPrice: 1999,
+    images: ["images/suit1-2.jpg"],
+    badge: "New",
+    colors: ["Green", "Pink", "Maroon"],
+    category: "suit",
+    description: "Elegant silk suit with detailed embroidery work. Perfect for parties and special occasions."
+  },
+  {
+    id: 4,
+    name: "Party Wear Georgette Set",
+    brand: "Fancy Cloth House",
+    price: 1299,
+    originalPrice: 1699,
+    images: ["images/suit-floral-model.jpg"],
+    badge: "Trending",
+    colors: ["Black", "Navy", "Wine"],
+    category: "dress",
+    description: "Lightweight georgette set ideal for parties. Flowy and comfortable design."
+  },
+  {
+    id: 5,
+    name: "Casual Printed Kurti Set",
+    brand: "Daily Wear",
+    price: 699,
+    originalPrice: 999,
+    images: ["images/suit1-2.jpg"],
+    badge: "Sale",
+    colors: ["White", "Yellow", "Peach"],
+    category: "dress",
+    description: "Comfortable daily wear kurti set with beautiful prints. Great value for money."
+  },
+{
+  id: 6,
+  name: "Wedding Special Lehenga - Pure Fandy Work",
+  brand: "Bridal Collection",
+  price: 2499,
+  originalPrice: 3999,
+  images: [
+    "images/wedding-lehenga-model.png",      
+    "images/wedding-lehenga-flatlay.jpeg"    
+  ],
+  badge: "Premium",
+  colors: ["Teal"],
+  category: "dress",
+  description: "Exquisite bridal lehenga featuring pure fandy fabric with intricate gold salwar work and heavy dupatta. Perfect for wedding celebrations."
+},
+  {
+    id: 7,
+    name: "Chiffon Dupatta Set",
+    brand: "Fancy Cloth House",
+    price: 899,
+    originalPrice: 1199,
+    images: ["images/suit-floral-flatlay.jpg"],
+    badge: null,
+    colors: ["Pink", "Blue", "Green"],
+    category: "suit",
+    description: "Lightweight chiffon dupatta set perfect for summer wear. Soft and breathable fabric."
+  }
+];
+
+let cart = JSON.parse(localStorage.getItem('fch_cart')) || [];
+let wishlist = JSON.parse(localStorage.getItem('fch_wishlist')) || [];
+let currentFilter = 'all';
+let currentShareProduct = null;
+
+// ==========================================
+// PRODUCT RENDERING
+// ==========================================
+
+function renderProducts(productList = products) {
+  const grid = document.getElementById('productsGrid');
+  
+  if (productList.length === 0) {
+    grid.innerHTML = `
+      <div style="grid-column: 1/-1; text-align: center; padding: 60px;">
+        <i class="fas fa-search" style="font-size: 48px; color: #ddd; margin-bottom: 20px;"></i>
+        <p style="color: #666; font-size: 18px;">No products found in this category.</p>
+        <button onclick="filterProducts('all')" class="cta-btn" style="margin-top: 20px;">View All Products</button>
+      </div>
+    `;
+    return;
+  }
+  
+  grid.innerHTML = productList.map(product => {
+    const discount = Math.round((1 - product.price/product.originalPrice) * 100);
+    const hasGallery = product.images && product.images.length > 1;
+    const inWishlist = wishlist.some(w => w.id === product.id);
+    const productUrl = `https://tanyagohlan-creator.github.io/my-website/#product-${product.id}`;
+    
+    return `
+      <div class="product-card" id="product-${product.id}" data-id="${product.id}">
+        <div class="product-image">
+          ${hasGallery ? `
+            <div class="image-gallery">
+              <img 
+                src="${product.images[0]}" 
+                class="gallery-main"
+                alt="${product.name}"
+                onerror="this.src='https://via.placeholder.com/400x600?text=Image+Not+Found'"
+                onclick="openImageModal('${product.images[0]}')"
+              >
+              <div class="gallery-thumbs">
+                ${product.images.map((img, idx) => `
+                  <img 
+                    src="${img}" 
+                    class="gallery-thumb ${idx === 0 ? 'active' : ''}"
+                    onclick="changeGalleryImage(this, '${img}')"
+                    alt="View ${idx + 1}"
+                    onerror="this.style.display='none'"
+                  >
+                `).join('')}
+              </div>
+            </div>
+          ` : `
+            <img 
+              src="${product.images[0]}" 
+              class="single-image"
+              alt="${product.name}"
+              onerror="this.src='https://via.placeholder.com/400x600?text=Image+Not+Found'"
+              onclick="openImageModal('${product.images[0]}')"
+            >
+          `}
+          ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+          <button class="wishlist-btn ${inWishlist ? 'active' : ''}" onclick="toggleWishlist(${product.id})">
+            <i class="${inWishlist ? 'fas' : 'far'} fa-heart"></i>
+          </button>
+          <div class="share-btn">
+            <button onclick="openShareModal(${product.id})" title="Share Product">
+              <i class="fas fa-share-alt"></i>
+            </button>
+          </div>
+          <div class="quick-add">
+            <button class="quick-add-btn" onclick="addToCart(${product.id})" title="Add to Bag">
+              +
+            </button>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">${product.brand}</div>
+          <h3 class="product-title" onclick="showProductDetails(${product.id})">${product.name}</h3>
+          <div class="product-price">
+            <span class="current-price">₹${product.price}</span>
+            <span class="original-price">₹${product.originalPrice}</span>
+            <span class="discount">${discount}% off</span>
+          </div>
+          <div class="color-swatches">
+            ${product.colors.map(color => `
+              <div class="color-swatch" style="background: ${getColorCode(color)}" title="${color}"></div>
+            `).join('')}
+          </div>
+          <a href="${productUrl}" class="product-link" onclick="event.stopPropagation()">
+            <i class="fas fa-link"></i> Copy Product Link
+          </a>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  // Check if URL has a product hash and scroll to it
+  checkUrlHash();
+}
+
+function changeGalleryImage(thumbElement, newSrc) {
+  const gallery = thumbElement.closest('.image-gallery');
+  const mainImg = gallery.querySelector('.gallery-main');
+  
+  mainImg.style.opacity = '0.7';
+  setTimeout(() => {
+    mainImg.src = newSrc;
+    mainImg.style.opacity = '1';
+  }, 150);
+  
+  gallery.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+  thumbElement.classList.add('active');
+}
+
+function getColorCode(colorName) {
+  const colors = {
+    'Black': '#1a1a1a', 'Red': '#c41e3a', 'Teal': '#008080', 'Mustard': '#ffdb58',
+    'Purple': '#800080', 'Yellow': '#ffd700', 'Green': '#228b22', 'Pink': '#ff69b4',
+    'Maroon': '#800000', 'Navy': '#000080', 'Wine': '#722f37', 'White': '#f5f5f5',
+    'Peach': '#ffdab9', 'Gold': '#daa520', 'Blue': '#4169e1'
+  };
+  return colors[colorName] || '#ccc';
+}
+
+// ==========================================
+// SHARE FUNCTIONS
+// ==========================================
+
+function openShareModal(productId) {
+  const product = products.find(p => p.id === productId);
+  currentShareProduct = product;
+  
+  const shareUrl = `https://tanyagohlan-creator.github.io/my-website/#product-${product.id}`;
+  
+  document.getElementById('shareProductName').textContent = product.name;
+  document.getElementById('shareLinkInput').value = shareUrl;
+  document.getElementById('shareModal').classList.add('open');
+}
+
+function closeShareModal(event) {
+  if (!event || event.target.id === 'shareModal' || event.target.classList.contains('close-share')) {
+    document.getElementById('shareModal').classList.remove('open');
+  }
+}
+
+function copyShareLink() {
+  const input = document.getElementById('shareLinkInput');
+  input.select();
+  document.execCommand('copy');
+  showToast('Link copied to clipboard!');
+}
+
+function shareToWhatsApp() {
+  const product = currentShareProduct;
+  const url = `https://tanyagohlan-creator.github.io/my-website/#product-${product.id}`;
+  const text = `Check out this beautiful ${product.name} from Fancy Cloth House! Only ₹${product.price} (was ₹${product.originalPrice}). Shop now: ${url}`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+function shareToFacebook() {
+  const product = currentShareProduct;
+  const url = `https://tanyagohlan-creator.github.io/my-website/#product-${product.id}`;
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+}
+
+function shareToInstagram() {
+  const product = currentShareProduct;
+  const url = `https://tanyagohlan-creator.github.io/my-website/#product-${product.id}`;
+  const text = `Check out this beautiful ${product.name} from Fancy Cloth House! Only ₹${product.price} (was ₹${product.originalPrice}). Shop now: ${url}`;
+  
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('Caption copied! Paste in Instagram');
+  });
+}
+
+function checkUrlHash() {
+  const hash = window.location.hash;
+  if (hash && hash.startsWith('#product-')) {
+    const productId = hash.replace('#product-', '');
+    const element = document.getElementById(`product-${productId}`);
+    if (element) {
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 500);
+    }
+  }
+}
+
+// ==========================================
+// FILTERING
+// ==========================================
+
+function filterProducts(category) {
+  currentFilter = category;
+  
+  document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+  const navLink = document.getElementById(`nav-${category}`);
+  if (navLink) navLink.classList.add('active');
+  
+  const titles = {
+    'all': 'New Arrivals',
+    'suit': 'Suit Sets',
+    'dress': 'Dresses',
+    'sale': 'Sale Items',
+    'premium': 'Premium Collection'
+  };
+  document.getElementById('sectionTitle').textContent = titles[category] || 'Products';
+  
+  let filtered = products;
+  
+  if (category === 'suit') {
+    filtered = products.filter(p => p.category === 'suit');
+  } else if (category === 'dress') {
+    filtered = products.filter(p => p.category === 'dress');
+  } else if (category === 'sale') {
+    filtered = products.filter(p => p.badge === 'Sale' || (p.originalPrice - p.price) > 500);
+  } else if (category === 'premium') {
+    filtered = products.filter(p => ['Premium', 'Bestseller', 'New'].includes(p.badge));
+  }
+  
+  renderProducts(filtered);
+  document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+}
+
+function toggleSearch() {
+  const searchTerm = prompt('Search products (e.g., suit, dress, red, etc.):');
+  if (searchTerm && searchTerm.trim() !== '') {
+    const filtered = products.filter(p => 
+      p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      p.colors.some(c => c.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (p.badge && p.badge.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+    
+    if (filtered.length > 0) {
+      renderProducts(filtered);
+      document.getElementById('sectionTitle').textContent = `Search: "${searchTerm}"`;
+      document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+    } else {
+      showToast('No products found for: ' + searchTerm);
+    }
+  }
+}
+
+// ==========================================
+// CART FUNCTIONS
+// ==========================================
+
+function addToCart(productId) {
+  const product = products.find(p => p.id === productId);
+  const existingItem = cart.find(item => item.id === productId);
+  
+  if (existingItem) {
+    existingItem.qty++;
+  } else {
+    cart.push({ ...product, qty: 1 });
+  }
+  
+  saveCart();
+  updateCart();
+  showToast(`${product.name} added to bag!`);
+}
+
+function saveCart() {
+  localStorage.setItem('fch_cart', JSON.stringify(cart));
+}
+
+function updateCart() {
+  const cartItems = document.getElementById('cartItems');
+  const cartCount = document.getElementById('cartCount');
+  const cartItemCount = document.getElementById('cartItemCount');
+  const cartTotal = document.getElementById('cartTotal');
+  
+  const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+  cartCount.textContent = totalItems;
+  cartItemCount.textContent = totalItems;
+  
+  if (cart.length === 0) {
+    cartItems.innerHTML = `
+      <div class="empty-cart">
+        <i class="fas fa-shopping-bag"></i>
+        <p>Your bag is empty</p>
+        <p style="font-size: 14px; margin-top: 10px;">Add items to get started</p>
+      </div>
+    `;
+    cartTotal.textContent = '0';
+    return;
+  }
+  
+  cartItems.innerHTML = cart.map((item, index) => `
+    <div class="cart-item">
+      <img src="${item.images[0]}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/80x100?text=No+Image'">
+      <div class="cart-item-details">
+        <h4>${item.name}</h4>
+        <p>₹${item.price} ${item.colors[0]}</p>
+        <div class="qty-selector">
+          <button class="qty-btn" onclick="changeQty(${index}, -1)">−</button>
+          <span>${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+        </div>
+      </div>
+      <span class="remove-item" onclick="removeItem(${index})">×</span>
+    </div>
+  `).join('');
+  
+  const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  cartTotal.textContent = total.toLocaleString();
+}
+
+function changeQty(index, delta) {
+  cart[index].qty += delta;
+  if (cart[index].qty <= 0) {
+    cart.splice(index, 1);
+  }
+  saveCart();
+  updateCart();
+}
+
+function removeItem(index) {
+  cart.splice(index, 1);
+  saveCart();
+  updateCart();
+  showToast('Item removed from bag');
+}
+
+function toggleCart() {
+  const sidebar = document.getElementById('cartSidebar');
+  const overlay = document.getElementById('cartOverlay');
+  
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('open');
+  document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+}
+
+function checkout() {
+  if (cart.length === 0) {
+    showToast('Your bag is empty!');
+    return;
+  }
+  
+  let message = "Hello! I want to order:%0A%0A";
+  cart.forEach(item => {
+    message += `• ${item.name}%0A  Qty: ${item.qty} | Price: ₹${item.price * item.qty}%0A%0A`;
+  });
+  message += `*Total: ₹${document.getElementById('cartTotal').textContent}*%0A%0APlease confirm availability.`;
+  
+  window.open(`https://wa.me/916284348760?text=${message}`, '_blank');
+}
+
+// ==========================================
+// WISHLIST FUNCTIONS
+// ==========================================
+
+function toggleWishlist(id) {
+  const product = products.find(p => p.id === id);
+  const index = wishlist.findIndex(w => w.id === id);
+  
+  if (index > -1) {
+    wishlist.splice(index, 1);
+    showToast('Removed from wishlist');
+  } else {
+    wishlist.push(product);
+    showToast('Added to wishlist! ❤️');
+  }
+  
+  localStorage.setItem('fch_wishlist', JSON.stringify(wishlist));
+  renderProducts(currentFilter === 'all' ? products : products.filter(p => {
+    if (currentFilter === 'suit') return p.category === 'suit';
+    if (currentFilter === 'dress') return p.category === 'dress';
+    return true;
+  }));
+}
+
+function showWishlist() {
+  if (wishlist.length === 0) {
+    showToast('Your wishlist is empty!');
+    return;
+  }
+  renderProducts(wishlist);
+  document.getElementById('sectionTitle').textContent = 'My Wishlist';
+  document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ==========================================
+// USER FUNCTIONS
+// ==========================================
+
+function showLogin() {
+  const email = prompt('Enter your email to login:');
+  if (email) {
+    localStorage.setItem('fch_user', email);
+    showToast('Welcome back! 👋');
+  }
+}
+
+function showShippingInfo() {
+  alert('📦 SHIPPING INFORMATION\n\n' +
+        '• Free shipping on orders above ₹999\n' +
+        '• Delivery within 3-5 business days\n' +
+        '• Cash on delivery available\n' +
+        '• Tracking number sent via WhatsApp\n\n' +
+        'Contact: +91 62843 48760');
+}
+
+function showSizeGuide() {
+  alert('📏 SIZE GUIDE\n\n' +
+        'UNSTITCHED SUITS:\n' +
+        '• Top (Kameez): 2.5 meters\n' +
+        '• Bottom (Salwar): 2 meters\n' +
+        '• Dupatta: 2.25 meters\n\n' +
+        'STITCHED SUITS:\n' +
+        '• Small (S): 36" chest\n' +
+        '• Medium (M): 38" chest\n' +
+        '• Large (L): 40" chest\n' +
+        '• XL: 42" chest');
+}
+
+function showProductDetails(id) {
+  const product = products.find(p => p.id === id);
+  const url = `https://tanyagohlan-creator.github.io/my-website/#product-${product.id}`;
+  
+  alert(`📌 ${product.name}\n\n` +
+        `Brand: ${product.brand}\n` +
+        `Price: ₹${product.price} (was ₹${product.originalPrice})\n` +
+        `Colors: ${product.colors.join(', ')}\n\n` +
+        `Description: ${product.description}\n\n` +
+        `Product Link: ${url}\n\n` +
+        `Click "Add to Bag" to purchase via WhatsApp!`);
+}
+
+function openImageModal(src) {
+  window.open(src, '_blank');
+}
+
+function toggleMobileMenu() {
+  const nav = document.getElementById('navLinks');
+  nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+}
+
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+// ==========================================
+// INITIALIZE
+// ==========================================
+
+renderProducts();
+updateCart();
+
+// Listen for hash changes
+window.addEventListener('hashchange', checkUrlHash);
+
+const user = localStorage.getItem('fch_user');
+if (user) console.log('Welcome back:', user);
+</script>
+
 </body>
 </html>
+
+
+
+
+
+
+
