@@ -7,8 +7,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
             --primary: #8B1538;
             --primary-light: #D4A5A5;
@@ -17,15 +21,15 @@
             --light: #F9F7F4;
             --text: #555;
         }
-        
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--light);
             color: var(--dark);
             line-height: 1.6;
         }
-        
-        /* Navigation - Match your existing style */
+
+        /* Navigation */
         .navbar {
             background: white;
             padding: 1rem 5%;
@@ -37,7 +41,7 @@
             top: 0;
             z-index: 1000;
         }
-        
+
         .logo {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
@@ -45,22 +49,24 @@
             color: var(--primary);
             text-decoration: none;
         }
-        
+
         .nav-links {
             display: flex;
             gap: 2rem;
             list-style: none;
         }
-        
+
         .nav-links a {
             text-decoration: none;
             color: var(--dark);
             font-weight: 500;
             transition: color 0.3s;
         }
-        
-        .nav-links a:hover { color: var(--primary); }
-        
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
         .breadcrumb {
             padding: 1rem 5%;
             background: white;
@@ -68,31 +74,39 @@
             color: var(--text);
             border-bottom: 1px solid #eee;
         }
-        
+
         .breadcrumb a {
             color: var(--text);
             text-decoration: none;
         }
-        
-        .breadcrumb a:hover { color: var(--primary); }
-        
-        /* Product Layout */
+
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+
+        .announcement {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 0.8rem;
+            font-weight: 500;
+        }
+
         .product-container {
             max-width: 1400px;
-            margin: 3rem auto;
+            margin: 2rem auto;
             padding: 0 5%;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
         }
-        
-        /* Gallery */
+
         .gallery-section {
             position: sticky;
             top: 100px;
             height: fit-content;
         }
-        
+
         .main-image-container {
             background: white;
             border-radius: 12px;
@@ -100,7 +114,7 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             margin-bottom: 1rem;
         }
-        
+
         .main-image {
             width: 100%;
             height: 600px;
@@ -108,16 +122,18 @@
             cursor: zoom-in;
             transition: transform 0.3s;
         }
-        
-        .main-image:hover { transform: scale(1.02); }
-        
+
+        .main-image:hover {
+            transform: scale(1.02);
+        }
+
         .gallery-thumbnails {
             display: flex;
             gap: 1rem;
             overflow-x: auto;
             padding-bottom: 0.5rem;
         }
-        
+
         .thumb {
             width: 80px;
             height: 80px;
@@ -128,15 +144,16 @@
             transition: all 0.3s;
             opacity: 0.7;
         }
-        
+
         .thumb.active, .thumb:hover {
             border-color: var(--primary);
             opacity: 1;
         }
-        
-        /* Product Info */
-        .product-info { padding-top: 1rem; }
-        
+
+        .product-info {
+            padding-top: 1rem;
+        }
+
         .product-tag {
             display: inline-block;
             background: var(--primary);
@@ -149,163 +166,166 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        
+
         .product-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--dark);
             margin-bottom: 0.5rem;
             line-height: 1.2;
         }
-        
+
         .product-subtitle {
             color: var(--text);
-            font-size: 1.1rem;
+            font-size: 1rem;
             margin-bottom: 1.5rem;
         }
-        
+
         .price-section {
             margin: 1.5rem 0;
             padding-bottom: 1.5rem;
             border-bottom: 1px solid #ddd;
         }
-        
+
+        .sale-badge {
+            background: #ff4444;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
         .price {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 600;
             color: var(--primary);
         }
-        
+
         .original-price {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: #999;
             text-decoration: line-through;
             margin-left: 1rem;
         }
-        
-        .discount-badge {
-            background: var(--gold);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            margin-left: 1rem;
-            font-weight: 600;
-        }
-        
+
         .tax-info {
             font-size: 0.85rem;
             color: var(--text);
             margin-top: 0.5rem;
         }
-        
-        .key-features {
-            display: flex;
-            gap: 2rem;
+
+        .short-description {
+            color: var(--text);
             margin: 1.5rem 0;
-            flex-wrap: wrap;
+            line-height: 1.8;
         }
-        
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
+
+        .features-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
             color: var(--text);
         }
-        
-        .feature i { color: var(--primary); }
-        
-        .details-box {
+
+        .features-list li:before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .dimensions-box {
             background: white;
             padding: 1.5rem;
             border-radius: 12px;
             margin: 2rem 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        
-        .section-title {
+
+        .dimensions-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            color: var(--dark);
         }
-        
-        .details-grid {
+
+        .dimensions-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
-            margin-top: 1rem;
+            text-align: center;
         }
-        
-        .detail-item {
-            display: flex;
-            flex-direction: column;
-            padding: 0.8rem;
+
+        .dimension-item {
+            padding: 1rem;
             background: var(--light);
             border-radius: 8px;
         }
-        
-        .detail-label {
+
+        .dimension-label {
             font-size: 0.8rem;
             color: var(--text);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
-        
-        .detail-value {
+
+        .dimension-value {
             font-weight: 600;
             color: var(--dark);
-            margin-top: 0.2rem;
+            font-size: 1.1rem;
+            margin-top: 0.3rem;
         }
-        
-        .size-table {
-            width: 100%;
+
+        .fabric-details {
             background: white;
+            padding: 1.5rem;
             border-radius: 12px;
-            overflow: hidden;
+            margin: 2rem 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border-collapse: collapse;
-            margin-top: 1rem;
         }
-        
-        .size-table th, .size-table td {
-            padding: 1rem;
-            text-align: left;
+
+        .details-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
             border-bottom: 1px solid #eee;
         }
-        
-        .size-table th {
-            background: var(--light);
+
+        .details-row:last-child {
+            border-bottom: none;
+        }
+
+        .details-label {
             font-weight: 600;
+            color: var(--dark);
         }
-        
-        .size-note {
-            padding: 1rem;
-            background: #FFF8E1;
-            color: #856404;
-            font-size: 0.9rem;
-            border-left: 4px solid var(--gold);
-            margin-top: 1rem;
-            border-radius: 0 8px 8px 0;
+
+        .details-value {
+            color: var(--text);
         }
-        
+
         .purchase-section {
             margin: 2rem 0;
             padding: 2rem 0;
             border-top: 1px solid #ddd;
             border-bottom: 1px solid #ddd;
         }
-        
+
         .quantity-selector {
             display: flex;
             align-items: center;
             gap: 1rem;
             margin-bottom: 1.5rem;
         }
-        
+
         .qty-btn {
             width: 40px;
             height: 40px;
@@ -316,13 +336,13 @@
             font-size: 1.2rem;
             transition: all 0.3s;
         }
-        
+
         .qty-btn:hover {
             background: var(--primary);
             color: white;
             border-color: var(--primary);
         }
-        
+
         .qty-input {
             width: 60px;
             height: 40px;
@@ -332,12 +352,12 @@
             font-size: 1rem;
             font-weight: 600;
         }
-        
+
         .action-buttons {
             display: flex;
             gap: 1rem;
         }
-        
+
         .btn {
             flex: 1;
             padding: 1rem 2rem;
@@ -350,39 +370,36 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        
+
         .btn-primary {
             background: var(--primary);
             color: white;
         }
-        
+
         .btn-primary:hover {
             background: #6B1028;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(139, 21, 56, 0.3);
         }
-        
-        .btn-secondary {
-            background: white;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-        
-        .btn-secondary:hover {
-            background: var(--primary);
+
+        .btn-whatsapp {
+            background: #25D366;
             color: white;
         }
-        
+
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+        }
+
         .trust-badges {
             display: flex;
             justify-content: space-between;
             margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #eee;
             flex-wrap: wrap;
             gap: 1rem;
         }
-        
+
         .badge {
             display: flex;
             align-items: center;
@@ -390,19 +407,18 @@
             font-size: 0.85rem;
             color: var(--text);
         }
-        
+
         .badge i {
             color: var(--gold);
             font-size: 1.2rem;
         }
-        
-        /* Tabs */
+
         .tabs-section {
             max-width: 1400px;
             margin: 4rem auto;
             padding: 0 5%;
         }
-        
+
         .tabs {
             display: flex;
             gap: 2rem;
@@ -410,7 +426,7 @@
             margin-bottom: 2rem;
             flex-wrap: wrap;
         }
-        
+
         .tab {
             padding: 1rem 0;
             cursor: pointer;
@@ -419,56 +435,51 @@
             border-bottom: 3px solid transparent;
             transition: all 0.3s;
         }
-        
+
         .tab.active {
             color: var(--primary);
             border-bottom-color: var(--primary);
         }
-        
+
         .tab-content {
             display: none;
             animation: fadeIn 0.5s;
         }
-        
-        .tab-content.active { display: block; }
-        
+
+        .tab-content.active {
+            display: block;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+
+        .policy-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        
-        .info-block h3 {
+
+        .policy-box h3 {
             font-family: 'Playfair Display', serif;
             margin-bottom: 1rem;
             color: var(--dark);
+            font-size: 1.3rem;
         }
-        
-        .info-block ul {
-            list-style: none;
-        }
-        
-        .info-block li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
+
+        .policy-box ol, .policy-box ul {
+            margin-left: 1.5rem;
             color: var(--text);
         }
-        
-        .info-block li:before {
-            content: "•";
-            color: var(--primary);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
+
+        .policy-box li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
         }
-        
-        /* Reviews */
+
         .reviews-summary {
             background: white;
             padding: 2rem;
@@ -479,21 +490,23 @@
             gap: 3rem;
             flex-wrap: wrap;
         }
-        
-        .rating-big { text-align: center; }
-        
+
+        .rating-big {
+            text-align: center;
+        }
+
         .rating-number {
             font-size: 3rem;
             font-weight: 700;
             color: var(--dark);
         }
-        
+
         .stars {
             color: var(--gold);
             font-size: 1.2rem;
             margin: 0.5rem 0;
         }
-        
+
         .review-item {
             background: white;
             padding: 2rem;
@@ -501,7 +514,7 @@
             margin-bottom: 1.5rem;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        
+
         .review-header {
             display: flex;
             justify-content: space-between;
@@ -509,17 +522,17 @@
             flex-wrap: wrap;
             gap: 0.5rem;
         }
-        
+
         .reviewer-name {
             font-weight: 600;
             color: var(--dark);
         }
-        
+
         .review-date {
             color: #999;
             font-size: 0.9rem;
         }
-        
+
         .verified-badge {
             display: inline-flex;
             align-items: center;
@@ -528,31 +541,30 @@
             font-size: 0.85rem;
             margin-top: 0.5rem;
         }
-        
-        /* Related Products */
+
         .related-section {
             max-width: 1400px;
             margin: 4rem auto;
             padding: 0 5% 4rem;
         }
-        
+
         .section-header {
             text-align: center;
             margin-bottom: 3rem;
         }
-        
+
         .section-header h2 {
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             color: var(--dark);
         }
-        
+
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
-        
+
         .product-card {
             background: white;
             border-radius: 12px;
@@ -563,34 +575,33 @@
             text-decoration: none;
             color: inherit;
         }
-        
+
         .product-card:hover {
             transform: translateY(-5px);
         }
-        
+
         .product-image {
             width: 100%;
             height: 350px;
             object-fit: cover;
         }
-        
+
         .product-card-info {
             padding: 1.5rem;
         }
-        
+
         .product-card-title {
             font-family: 'Playfair Display', serif;
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
         }
-        
+
         .product-card-price {
             font-weight: 600;
             color: var(--primary);
             font-size: 1.1rem;
         }
-        
-        /* Zoom Modal */
+
         .zoom-modal {
             display: none;
             position: fixed;
@@ -603,15 +614,17 @@
             justify-content: center;
             align-items: center;
         }
-        
-        .zoom-modal.active { display: flex; }
-        
+
+        .zoom-modal.active {
+            display: flex;
+        }
+
         .zoom-image {
             max-width: 90%;
             max-height: 90%;
             object-fit: contain;
         }
-        
+
         .close-zoom {
             position: absolute;
             top: 20px;
@@ -620,135 +633,116 @@
             font-size: 2.5rem;
             cursor: pointer;
         }
-        
-        /* Responsive */
+
         @media (max-width: 968px) {
             .product-container {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-            
+
             .gallery-section {
                 position: relative;
                 top: 0;
             }
-            
-            .main-image { height: 400px; }
-            
-            .content-grid { grid-template-columns: 1fr; }
-            
-            .nav-links { display: none; }
-            
-            .product-title { font-size: 1.8rem; }
-            
-            .action-buttons { flex-direction: column; }
+
+            .main-image {
+                height: 400px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .product-title {
+                font-size: 1.6rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .dimensions-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
+    <div class="announcement">
+        🎉 VALENTINE'S DAY SALE - FLAT 37% OFF SITEWIDE + EXTRA 5% OFF on 2 or more products
+    </div>
+
     <nav class="navbar">
         <a href="index.html" class="logo">Fancy Cloth House</a>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#products">Suits</a></li>
+            <li><a href="index.html#shop">Suits</a></li>
             <li><a href="index.html#about">About</a></li>
             <li><a href="index.html#contact">Contact</a></li>
         </ul>
-        <div style="display: flex; gap: 1.5rem; align-items: center;">
-            <i class="fas fa-search" style="cursor: pointer; font-size: 1.2rem;"></i>
-            <i class="fas fa-shopping-bag" style="cursor: pointer; font-size: 1.2rem;"></i>
+        <div class="nav-icons">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-shopping-bag"></i>
         </div>
     </nav>
 
-    <!-- Breadcrumb -->
     <div class="breadcrumb">
-        <a href="index.html">Home</a> / <a href="index.html#products">Unstitched Suits</a> / <span id="breadcrumb-name">Loading...</span>
+        <a href="index.html">Home</a> / <a href="index.html#shop">Unstitched Suits</a> / <span id="breadcrumb-name">Loading...</span>
     </div>
 
-    <!-- Product Container -->
     <div class="product-container">
-        <!-- Image Gallery -->
         <div class="gallery-section">
             <div class="main-image-container">
                 <img src="" alt="Product" class="main-image" id="mainImage" onclick="openZoom()">
             </div>
-            <div class="gallery-thumbnails" id="thumbnails">
-                <!-- Thumbnails inserted via JS -->
-            </div>
+            <div class="gallery-thumbnails" id="thumbnails"></div>
         </div>
 
-        <!-- Product Info -->
         <div class="product-info">
-            <span class="product-tag">Unstitched Suit</span>
+            <span class="product-tag" id="productTag">Unstitched</span>
             <h1 class="product-title" id="productTitle">Loading...</h1>
             <p class="product-subtitle" id="productSubtitle">Loading...</p>
 
             <div class="price-section">
-                <span class="price" id="productPrice">₹0</span>
-                <span class="original-price" id="originalPrice">₹0</span>
-                <span class="discount-badge" id="discountBadge">0% OFF</span>
+                <span class="sale-badge">SALE</span>
+                <div>
+                    <span class="price" id="productPrice">₹0</span>
+                    <span class="original-price" id="originalPrice">₹0</span>
+                </div>
                 <p class="tax-info">MRP Inclusive of all taxes</p>
             </div>
 
-            <div class="key-features">
-                <div class="feature">
-                    <i class="fas fa-truck"></i>
-                    <span>Free Shipping</span>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-undo"></i>
-                    <span>7 Days Return</span>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-cut"></i>
-                    <span>Unstitched Fabric</span>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>Authentic Quality</span>
+            <p class="short-description" id="shortDescription">Loading...</p>
+
+            <ul class="features-list">
+                <li>Cash on delivery available</li>
+                <li>Usually ships in 2-5 working days</li>
+                <li>Hassle-Free Return & Exchange</li>
+                <li>Free shipping on orders above ₹999</li>
+            </ul>
+
+            <div class="dimensions-box">
+                <h3 class="dimensions-title">Unstitched Material Dimensions</h3>
+                <div class="dimensions-grid">
+                    <div class="dimension-item">
+                        <div class="dimension-label">Top (Kameez)</div>
+                        <div class="dimension-value">2.5 meters</div>
+                    </div>
+                    <div class="dimension-item">
+                        <div class="dimension-label">Bottom</div>
+                        <div class="dimension-value">2.5 meters</div>
+                    </div>
+                    <div class="dimension-item">
+                        <div class="dimension-label">Dupatta</div>
+                        <div class="dimension-value">2.25 meters</div>
+                    </div>
                 </div>
             </div>
 
-            <div class="details-box">
-                <h3 class="section-title"><i class="fas fa-info-circle"></i> Fabric Details</h3>
-                <div class="details-grid" id="detailsGrid">
-                    <!-- Details inserted via JS -->
-                </div>
-            </div>
-
-            <div>
-                <h3 class="section-title"><i class="fas fa-ruler"></i> Material Guide (Unstitched)</h3>
-                <table class="size-table">
-                    <thead>
-                        <tr>
-                            <th>Component</th>
-                            <th>Length</th>
-                            <th>Width</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Top (Kameez)</td>
-                            <td>2.5 meters</td>
-                            <td>44 inches</td>
-                        </tr>
-                        <tr>
-                            <td>Bottom (Salwar/Pant)</td>
-                            <td>2.5 meters</td>
-                            <td>44 inches</td>
-                        </tr>
-                        <tr>
-                            <td>Dupatta</td>
-                            <td>2.25 meters</td>
-                            <td>36 inches</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="size-note">
-                    <strong>Important:</strong> This is unstitched fabric. You will receive loose material that needs to be stitched by a tailor according to your measurements.
-                </div>
+            <div class="fabric-details">
+                <h3 class="dimensions-title">Product Details</h3>
+                <div id="productDetails"></div>
             </div>
 
             <div class="purchase-section">
@@ -760,7 +754,9 @@
                 </div>
                 <div class="action-buttons">
                     <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
-                    <button class="btn btn-secondary">Buy Now</button>
+                    <button class="btn btn-whatsapp" onclick="orderOnWhatsApp()">
+                        <i class="fab fa-whatsapp"></i> Order on WhatsApp
+                    </button>
                 </div>
             </div>
 
@@ -771,7 +767,7 @@
                 </div>
                 <div class="badge">
                     <i class="fas fa-undo"></i>
-                    <span>Easy Returns</span>
+                    <span>7 Days Return</span>
                 </div>
                 <div class="badge">
                     <i class="fas fa-lock"></i>
@@ -785,86 +781,45 @@
         </div>
     </div>
 
-    <!-- Tabs Section -->
     <div class="tabs-section">
         <div class="tabs">
             <div class="tab active" onclick="switchTab(this, 'description')">Description</div>
             <div class="tab" onclick="switchTab(this, 'shipping')">Shipping & Returns</div>
             <div class="tab" onclick="switchTab(this, 'care')">Care Instructions</div>
-            <div class="tab" onclick="switchTab(this, 'reviews')">Reviews (128)</div>
+            <div class="tab" onclick="switchTab(this, 'reviews')">Reviews</div>
         </div>
 
         <div id="description" class="tab-content active">
-            <div class="content-grid">
-                <div class="info-block">
-                    <h3>Product Description</h3>
-                    <p id="descriptionText" style="color: var(--text); line-height: 1.8;">
-                        Loading description...
-                    </p>
-                </div>
-                <div class="info-block">
-                    <h3>What's Included</h3>
-                    <ul>
-                        <li>2.5 meters unstitched fabric for Top (Kameez)</li>
-                        <li>2.5 meters unstitched fabric for Bottom (Salwar/Pant)</li>
-                        <li>2.25 meters Dupatta</li>
-                        <li>Matching thread spool</li>
-                        <li>Care instructions card</li>
-                        <li>Stitching guide</li>
-                    </ul>
-                </div>
+            <div class="policy-box">
+                <h3>Product Description</h3>
+                <p id="fullDescription" style="color: var(--text); line-height: 1.8;">Loading...</p>
             </div>
         </div>
 
         <div id="shipping" class="tab-content">
-            <div class="content-grid">
-                <div class="info-block">
-                    <h3>Shipping Information</h3>
-                    <ul>
-                        <li>Free shipping on all orders above ₹999</li>
-                        <li>Orders processed within 24 hours</li>
-                        <li>Delivery time: 3-5 business days (Metro cities)</li>
-                        <li>Delivery time: 5-7 business days (Other cities)</li>
-                        <li>Tracking number provided via SMS/Email</li>
-                        <li>Cash on Delivery available (₹50 extra)</li>
-                    </ul>
-                </div>
-                <div class="info-block">
-                    <h3>Return & Exchange Policy</h3>
-                    <ul>
-                        <li>7-day easy return policy</li>
-                        <li>Product must be unused with original packaging</li>
-                        <li>Exchange available for different designs</li>
-                        <li>Refund processed within 5-7 business days</li>
-                        <li>Defective items eligible for full refund</li>
-                    </ul>
-                </div>
+            <div class="policy-box">
+                <h3>Shipping Information</h3>
+                <ol>
+                    <li>Free shipping on all orders above ₹999 across India</li>
+                    <li>Orders processed within 24 hours of confirmation</li>
+                    <li>Delivery time: 3-5 business days (Metro cities)</li>
+                    <li>Delivery time: 5-7 business days (Other cities)</li>
+                    <li>Tracking number provided via SMS and Email</li>
+                    <li>Cash on Delivery available (₹50 extra charge)</li>
+                </ol>
             </div>
         </div>
 
         <div id="care" class="tab-content">
-            <div class="content-grid">
-                <div class="info-block">
-                    <h3>Fabric Care Instructions</h3>
-                    <ul>
-                        <li>Hand wash separately in cold water</li>
-                        <li>Use mild detergent only</li>
-                        <li>Do not bleach or wring</li>
-                        <li>Dry in shade to prevent color fading</li>
-                        <li>Iron on medium heat</li>
-                        <li>Dry clean recommended for first wash</li>
-                    </ul>
-                </div>
-                <div class="info-block">
-                    <h3>Storage Tips</h3>
-                    <ul>
-                        <li>Store in cool, dry place</li>
-                        <li>Use cotton bags for storage</li>
-                        <li>Keep away from direct sunlight</li>
-                        <li>Avoid plastic covers for long storage</li>
-                        <li>Refold occasionally to prevent permanent creases</li>
-                    </ul>
-                </div>
+            <div class="policy-box">
+                <h3>Fabric Care Instructions</h3>
+                <ul>
+                    <li>Hand wash separately in cold water for first wash</li>
+                    <li>Use mild detergent only - no bleach or harsh chemicals</li>
+                    <li>Do not wring or twist the fabric</li>
+                    <li>Dry in shade to prevent color fading</li>
+                    <li>Iron on medium heat</li>
+                </ul>
             </div>
         </div>
 
@@ -882,242 +837,244 @@
                     <div>Based on 128 reviews</div>
                 </div>
             </div>
-            <div id="reviewsContainer">
-                <!-- Reviews inserted via JS -->
-            </div>
+            <div id="reviewsContainer"></div>
         </div>
     </div>
 
-    <!-- Related Products -->
     <div class="related-section">
         <div class="section-header">
             <h2>You May Also Like</h2>
         </div>
-        <div class="products-grid" id="relatedProducts">
-            <!-- Related products inserted via JS -->
-        </div>
+        <div class="products-grid" id="relatedProducts"></div>
     </div>
 
-    <!-- Zoom Modal -->
     <div class="zoom-modal" id="zoomModal" onclick="closeZoom()">
         <span class="close-zoom">&times;</span>
         <img src="" class="zoom-image" id="zoomImage">
     </div>
 
-   <script>
+    <script>
+        // ==========================================
+        // COMPLETE PRODUCT DATABASE - ALL 7 PRODUCTS
+        // ==========================================
         
         const products = {
-    '1': {
-        name: 'Floral Print Suit Set with Golden Lace Dupatta',
-        subtitle: 'Beautiful floral print suit set with intricate golden lace work on dupatta. Perfect for festive occasions.',
-        price: 956,
-        originalPrice: 1299,
-        tag: 'Bestseller',
-        images: [
-            'images/suit-floral-model.jpg',
-            'images/suit-floral-flatlay.jpg',
-            'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=1000&fit=crop',
-            'https://images.unsplash.com/photo-1583391733950-7c63e5c541b9?w=800&h=1000&fit=crop'
-        ],
-        colors: ['Black', 'Red', 'Teal', 'Mustard'],
-        details: {
-            'Brand': 'Fancy Cloth House',
-            'Top Material': 'Cotton (2.5m)',
-            'Bottom Material': 'Cotton (2.5m)',
-            'Dupatta': 'Chiffon with Golden Lace (2.25m)',
-            'Work/Print': 'Floral Print with Lace',
-            'Width': '44 inches',
-            'Care': 'Hand Wash / Dry Clean',
-            'SKU': 'FC-001',
-            'Country of Origin': 'India'
-        },
-        description: 'Elevate your ethnic wardrobe with this exquisite unstitched cotton suit set. The beautiful floral print combined with golden lace work on the dupatta makes it perfect for festive occasions. Crafted from premium quality pure cotton, this fabric offers breathability and comfort perfect for all-day wear.',
-        reviews: [
-            { name: 'Priya Sharma', date: '2 days ago', rating: 5, text: 'Absolutely love the fabric quality! The cotton is soft and the print is exactly as shown in the pictures.', verified: true },
-            { name: 'Anjali Patel', date: '1 week ago', rating: 5, text: 'Great value for money. The material length is sufficient even for plus sizes.', verified: true }
-        ]
-    },
-    
-    '2': {
-        name: 'Pure Natural Salwar Suit with Dupatta Work',
-        subtitle: 'Premium quality natural fabric with heavy dupatta work. Available in multiple colors.',
-        price: 2850,
-        originalPrice: 3500,
-        tag: 'New',
-        images: [
-            'images/salwar-suit-purple-model.jpg',
-            'images/salwar-suit-all-colors-model.jpg',
-            'images/salwar-suit-purple-flatlay.jpg',
-            'images/salwar-suit-red-flatlay.jpg',
-            'images/salwar-suit-black-flatlay.jpg',
-            'images/salwar-suit-yellow-flatlay.jpg',
-            'https://images.unsplash.com/photo-1610030463067-06bb08b3dd9a?w=800&h=1000&fit=crop'
-        ],
-        colors: ['Purple', 'Red', 'Black', 'Yellow'],
-        details: {
-            'Brand': 'Fancy Cloth House',
-            'Top Material': 'Natural Cotton (2.5m)',
-            'Bottom Material': 'Cotton (2.5m)',
-            'Dupatta': 'Heavy Worked Dupatta (2.25m)',
-            'Work/Print': 'Traditional Heavy Work',
-            'Width': '44 inches',
-            'Care': 'Dry Clean Recommended',
-            'SKU': 'FC-002',
-            'Country of Origin': 'India'
-        },
-        description: 'Premium quality natural fabric suit set with intricate heavy dupatta work. This elegant piece is available in multiple vibrant colors - Purple, Red, Black, and Yellow. Perfect for weddings, festivals, and special occasions.',
-        reviews: [
-            { name: 'Sunita Devi', date: '3 days ago', rating: 5, text: 'Very nice fabric. The work on dupatta is beautiful and traditional.', verified: true },
-            { name: 'Kavita Gupta', date: '1 week ago', rating: 5, text: 'Wore this to my sister\'s wedding. Everyone complimented the heavy dupatta work.', verified: true }
-        ]
-    },
-    
-    '3': {
-        name: 'Embroidered Silk Suit',
-        subtitle: 'Elegant silk suit with detailed embroidery work. Perfect for parties and special occasions.',
-        price: 1499,
-        originalPrice: 1999,
-        tag: 'New',
-        images: [
-            'images/suit1-2.jpg',
-            'https://images.unsplash.com/photo-1583391733950-7c63e5c541b9?w=800&h=1000&fit=crop',
-            'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=1000&fit=crop'
-        ],
-        colors: ['Green', 'Pink', 'Maroon'],
-        details: {
-            'Brand': 'Premium Collection',
-            'Top Material': 'Silk Blend (2.5m)',
-            'Bottom Material': 'Santoon (2.5m)',
-            'Dupatta': 'Silk with Embroidery (2.25m)',
-            'Work/Print': 'Detailed Embroidery',
-            'Width': '44 inches',
-            'Care': 'Dry Clean Only',
-            'SKU': 'FC-003',
-            'Country of Origin': 'India'
-        },
-        description: 'Elegant silk suit with detailed embroidery work that adds sophistication to your look. Perfect for parties, receptions, and special occasions.',
-        reviews: [
-            { name: 'Neha Singh', date: '5 days ago', rating: 5, text: 'The embroidery work is exquisite! Wore it to a party and got so many compliments.', verified: true }
-        ]
-    },
-    
-    '4': {
-        name: 'Party Wear Georgette Set',
-        subtitle: 'Lightweight georgette set ideal for parties. Flowy and comfortable design.',
-        price: 1299,
-        originalPrice: 1699,
-        tag: 'Trending',
-        images: [
-            'images/suit-floral-model.jpg',
-            'https://images.unsplash.com/photo-1610030463067-06bb08b3dd9a?w=800&h=1000&fit=crop',
-            'https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=800&h=1000&fit=crop'
-        ],
-        colors: ['Black', 'Navy', 'Wine'],
-        details: {
-            'Brand': 'Fancy Cloth House',
-            'Top Material': 'Georgette (2.5m)',
-            'Bottom Material': 'Santoon (2.5m)',
-            'Dupatta': 'Georgette (2.25m)',
-            'Work/Print': 'Subtle Print',
-            'Width': '44 inches',
-            'Care': 'Hand Wash / Dry Clean',
-            'SKU': 'FC-004',
-            'Country of Origin': 'India'
-        },
-        description: 'Lightweight and flowy georgette set perfect for parties and evening events. The comfortable design allows easy movement while the elegant drape enhances your silhouette.',
-        reviews: [
-            { name: 'Ananya Roy', date: '2 days ago', rating: 5, text: 'Perfect party wear! The georgette is lightweight and flows beautifully.', verified: true }
-        ]
-    },
-    
-    '5': {
-        name: 'Casual Printed Kurti Set',
-        subtitle: 'Comfortable daily wear kurti set with beautiful prints. Great value for money.',
-        price: 699,
-        originalPrice: 999,
-        tag: 'Sale',
-        images: [
-            'images/suit1-2.jpg',
-            'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=1000&fit=crop',
-            'https://images.unsplash.com/photo-1583391733950-7c63e5c541b9?w=800&h=1000&fit=crop'
-        ],
-        colors: ['White', 'Yellow', 'Peach'],
-        details: {
-            'Brand': 'Daily Wear',
-            'Top Material': 'Cotton (2.5m)',
-            'Bottom Material': 'Cotton (2.5m)',
-            'Dupatta': 'Lightweight Cotton (2.25m)',
-            'Work/Print': 'Beautiful Prints',
-            'Width': '44 inches',
-            'Care': 'Machine Wash',
-            'SKU': 'FC-005',
-            'Country of Origin': 'India'
-        },
-        description: 'Comfortable daily wear kurti set with beautiful prints at an affordable price. Made from soft cotton fabric that is perfect for everyday use.',
-        reviews: [
-            { name: 'Ritu Verma', date: '3 days ago', rating: 5, text: 'Great value for money! Bought 2 sets for daily wear.', verified: true }
-        ]
-    },
-    
-    '6': {
-        name: 'Wedding Special Lehenga - Pure Fandy Work',
-        subtitle: 'Exquisite bridal lehenga featuring pure fandy fabric with intricate gold salwar work and heavy dupatta.',
-        price: 2499,
-        originalPrice: 3999,
-        tag: 'Premium',
-        images: [
-            'images/wedding-lehenga-model.png',
-            'images/wedding-lehenga-flatlay.jpeg',
-            'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=1000&fit=crop',
-            'https://images.unsplash.com/photo-1610030463067-06bb08b3dd9a?w=800&h=1000&fit=crop'
-        ],
-        colors: ['Teal'],
-        details: {
-            'Brand': 'Bridal Collection',
-            'Top Material': 'Pure Fandy (2.5m)',
-            'Bottom Material': 'Fandy with Gold Work (2.5m)',
-            'Dupatta': 'Heavy Embroidered (2.25m)',
-            'Work/Print': 'Gold Salwar Work',
-            'Width': '44 inches',
-            'Care': 'Dry Clean Only',
-            'SKU': 'FC-006',
-            'Country of Origin': 'India'
-        },
-        description: 'Exquisite bridal lehenga featuring pure fandy fabric with intricate gold salwar work and heavy dupatta. This premium piece is perfect for wedding celebrations.',
-        reviews: [
-            { name: 'Komal Sharma', date: '1 week ago', rating: 5, text: 'Wore this for my engagement. It looked absolutely stunning!', verified: true }
-        ]
-    },
-    
-    '7': {
-        name: 'Chiffon Dupatta Set',
-        subtitle: 'Lightweight chiffon dupatta set perfect for summer wear. Soft and breathable fabric.',
-        price: 899,
-        originalPrice: 1199,
-        tag: null,
-        images: [
-            'images/suit-floral-flatlay.jpg',
-            'https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=800&h=1000&fit=crop',
-            'https://images.unsplash.com/photo-1583391733950-7c63e5c541b9?w=800&h=1000&fit=crop'
-        ],
-        colors: ['Pink', 'Blue', 'Green'],
-        details: {
-            'Brand': 'Fancy Cloth House',
-            'Top Material': 'Cotton (2.5m)',
-            'Bottom Material': 'Cotton (2.5m)',
-            'Dupatta': 'Chiffon (2.25m)',
-            'Work/Print': 'Simple Elegant',
-            'Width': '44 inches',
-            'Care': 'Hand Wash',
-            'SKU': 'FC-007',
-            'Country of Origin': 'India'
-        },
-        description: 'Lightweight chiffon dupatta set perfect for summer wear. The soft and breathable fabric keeps you comfortable all day long.',
-        reviews: [
-            { name: 'Sneha Gupta', date: '4 days ago', rating: 5, text: 'Perfect for summer! The chiffon dupatta is so lightweight and pretty.', verified: true }
-        ]
-    }
-};
+            '1': {
+                name: 'Floral Print Suit Set with Golden Lace Dupatta',
+                subtitle: 'Beautiful floral print suit set with intricate golden lace work on dupatta. Perfect for festive occasions.',
+                price: 956,
+                originalPrice: 1299,
+                tag: 'Bestseller',
+                images: [
+                    'images/suit-floral-model.jpg',
+                    'images/suit-floral-flatlay.jpg',
+                    'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=1000&fit=crop',
+                    'https://images.unsplash.com/photo-1583391733950-7c63e5c541b9?w=800&h=1000&fit=crop'
+                ],
+                colors: ['Black', 'Red', 'Teal', 'Mustard'],
+                details: {
+                    'Brand': 'Fancy Cloth House',
+                    'Top Material': 'Cotton (2.5m)',
+                    'Bottom Material': 'Cotton (2.5m)',
+                    'Dupatta': 'Chiffon with Golden Lace (2.25m)',
+                    'Work/Print': 'Floral Print with Lace',
+                    'Width': '44 inches',
+                    'Care': 'Hand Wash / Dry Clean',
+                    'SKU': 'FC-001',
+                    'Country of Origin': 'India'
+                },
+                description: 'Elevate your ethnic wardrobe with this exquisite unstitched cotton suit set. The beautiful floral print combined with golden lace work on the dupatta makes it perfect for festive occasions. Crafted from premium quality pure cotton, this fabric offers breathability and comfort perfect for all-day wear.',
+                reviews: [
+                    { name: 'Priya Sharma', date: '2 days ago', rating: 5, text: 'Absolutely love the fabric quality! The cotton is soft and the print is exactly as shown in the pictures.', verified: true },
+                    { name: 'Anjali Patel', date: '1 week ago', rating: 5, text: 'Great value for money. The material length is sufficient even for plus sizes.', verified: true }
+                ]
+            },
+            
+            '2': {
+                name: 'Pure Natural Salwar Suit with Dupatta Work',
+                subtitle: 'Premium quality natural fabric with heavy dupatta work. Available in multiple colors.',
+                price: 2850,
+                originalPrice: 3500,
+                tag: 'New',
+                images: [
+                    'images/salwar-suit-purple-model.jpg',
+                    'images/salwar-suit-all-colors-model.jpg',
+                    'images/salwar-suit-purple-flatlay.jpg',
+                    'images/salwar-suit-red-flatlay.jpg',
+                    'images/salwar-suit-black-flatlay.jpg',
+                    'images/salwar-suit-yellow-flatlay.jpg',
+                    'https://images.unsplash.com/photo-1610030463067-06bb08b3dd9a?w=800&h=1000&fit=crop'
+                ],
+                colors: ['Purple', 'Red', 'Black', 'Yellow'],
+                details: {
+                    'Brand': 'Fancy Cloth House',
+                    'Top Material': 'Natural Cotton (2.5m)',
+                    'Bottom Material': 'Cotton (2.5m)',
+                    'Dupatta': 'Heavy Worked Dupatta (2.25m)',
+                    'Work/Print': 'Traditional Heavy Work',
+                    'Width': '44 inches',
+                    'Care': 'Dry Clean Recommended',
+                    'SKU': 'FC-002',
+                    'Country of Origin': 'India'
+                },
+                description: 'Premium quality natural fabric suit set with intricate heavy dupatta work. This elegant piece is available in multiple vibrant colors - Purple, Red, Black, and Yellow. Perfect for weddings, festivals, and special occasions.',
+                reviews: [
+                    { name: 'Sunita Devi', date: '3 days ago', rating: 5, text: 'Very nice fabric. The work on dupatta is beautiful and traditional.', verified: true },
+                    { name: 'Kavita Gupta', date: '1 week ago', rating: 5, text: 'Wore this to my sister\'s wedding. Everyone complimented the heavy dupatta work.', verified: true }
+                ]
+            },
+            
+            '3': {
+                name: 'Embroidered Silk Suit',
+                subtitle: 'Elegant silk suit with detailed embroidery work. Perfect for parties and special occasions.',
+                price: 1499,
+                originalPrice: 1999,
+                tag: 'New',
+                images: [
+                    'images/suit1-2.jpg',
+                    'https://images.unsplash.com/photo-1583391733950-7c63e5c541b9?w=800&h=1000&fit=crop',
+                    'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=1000&fit=crop'
+                ],
+                colors: ['Green', 'Pink', 'Maroon'],
+                details: {
+                    'Brand': 'Premium Collection',
+                    'Top Material': 'Silk Blend (2.5m)',
+                    'Bottom Material': 'Santoon (2.5m)',
+                    'Dupatta': 'Silk with Embroidery (2.25m)',
+                    'Work/Print': 'Detailed Embroidery',
+                    'Width': '44 inches',
+                    'Care': 'Dry Clean Only',
+                    'SKU': 'FC-003',
+                    'Country of Origin': 'India'
+                },
+                description: 'Elegant silk suit with detailed embroidery work that adds sophistication to your look. Perfect for parties, receptions, and special occasions.',
+                reviews: [
+                    { name: 'Neha Singh', date: '5 days ago', rating: 5, text: 'The embroidery work is exquisite! Wore it to a party and got so many compliments.', verified: true }
+                ]
+            },
+            
+            '4': {
+                name: 'Party Wear Georgette Set',
+                subtitle: 'Lightweight georgette set ideal for parties. Flowy and comfortable design.',
+                price: 1299,
+                originalPrice: 1699,
+                tag: 'Trending',
+                images: [
+                    'images/suit-floral-model.jpg',
+                    'https://images.unsplash.com/photo-1610030463067-06bb08b3dd9a?w=800&h=1000&fit=crop',
+                    'https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=800&h=1000&fit=crop'
+                ],
+                colors: ['Black', 'Navy', 'Wine'],
+                details: {
+                    'Brand': 'Fancy Cloth House',
+                    'Top Material': 'Georgette (2.5m)',
+                    'Bottom Material': 'Santoon (2.5m)',
+                    'Dupatta': 'Georgette (2.25m)',
+                    'Work/Print': 'Subtle Print',
+                    'Width': '44 inches',
+                    'Care': 'Hand Wash / Dry Clean',
+                    'SKU': 'FC-004',
+                    'Country of Origin': 'India'
+                },
+                description: 'Lightweight and flowy georgette set perfect for parties and evening events. The comfortable design allows easy movement while the elegant drape enhances your silhouette.',
+                reviews: [
+                    { name: 'Ananya Roy', date: '2 days ago', rating: 5, text: 'Perfect party wear! The georgette is lightweight and flows beautifully.', verified: true }
+                ]
+            },
+            
+            '5': {
+                name: 'Casual Printed Kurti Set',
+                subtitle: 'Comfortable daily wear kurti set with beautiful prints. Great value for money.',
+                price: 699,
+                originalPrice: 999,
+                tag: 'Sale',
+                images: [
+                    'images/suit1-2.jpg',
+                    'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=1000&fit=crop',
+                    'https://images.unsplash.com/photo-1583391733950-7c63e5c541b9?w=800&h=1000&fit=crop'
+                ],
+                colors: ['White', 'Yellow', 'Peach'],
+                details: {
+                    'Brand': 'Daily Wear',
+                    'Top Material': 'Cotton (2.5m)',
+                    'Bottom Material': 'Cotton (2.5m)',
+                    'Dupatta': 'Lightweight Cotton (2.25m)',
+                    'Work/Print': 'Beautiful Prints',
+                    'Width': '44 inches',
+                    'Care': 'Machine Wash',
+                    'SKU': 'FC-005',
+                    'Country of Origin': 'India'
+                },
+                description: 'Comfortable daily wear kurti set with beautiful prints at an affordable price. Made from soft cotton fabric that is perfect for everyday use.',
+                reviews: [
+                    { name: 'Ritu Verma', date: '3 days ago', rating: 5, text: 'Great value for money! Bought 2 sets for daily wear.', verified: true }
+                ]
+            },
+            
+            '6': {
+                name: 'Wedding Special Lehenga - Pure Fandy Work',
+                subtitle: 'Exquisite bridal lehenga featuring pure fandy fabric with intricate gold salwar work and heavy dupatta.',
+                price: 2499,
+                originalPrice: 3999,
+                tag: 'Premium',
+                images: [
+                    'images/wedding-lehenga-model.png',
+                    'images/wedding-lehenga-flatlay.jpeg',
+                    'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=1000&fit=crop',
+                    'https://images.unsplash.com/photo-1610030463067-06bb08b3dd9a?w=800&h=1000&fit=crop'
+                ],
+                colors: ['Teal'],
+                details: {
+                    'Brand': 'Bridal Collection',
+                    'Top Material': 'Pure Fandy (2.5m)',
+                    'Bottom Material': 'Fandy with Gold Work (2.5m)',
+                    'Dupatta': 'Heavy Embroidered (2.25m)',
+                    'Work/Print': 'Gold Salwar Work',
+                    'Width': '44 inches',
+                    'Care': 'Dry Clean Only',
+                    'SKU': 'FC-006',
+                    'Country of Origin': 'India'
+                },
+                description: 'Exquisite bridal lehenga featuring pure fandy fabric with intricate gold salwar work and heavy dupatta. This premium piece is perfect for wedding celebrations.',
+                reviews: [
+                    { name: 'Komal Sharma', date: '1 week ago', rating: 5, text: 'Wore this for my engagement. It looked absolutely stunning!', verified: true }
+                ]
+            },
+            
+            '7': {
+                name: 'Chiffon Dupatta Set',
+                subtitle: 'Lightweight chiffon dupatta set perfect for summer wear. Soft and breathable fabric.',
+                price: 899,
+                originalPrice: 1199,
+                tag: null,
+                images: [
+                    'images/suit-floral-flatlay.jpg',
+                    'https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=800&h=1000&fit=crop',
+                    'https://images.unsplash.com/photo-1583391733950-7c63e5c541b9?w=800&h=1000&fit=crop'
+                ],
+                colors: ['Pink', 'Blue', 'Green'],
+                details: {
+                    'Brand': 'Fancy Cloth House',
+                    'Top Material': 'Cotton (2.5m)',
+                    'Bottom Material': 'Cotton (2.5m)',
+                    'Dupatta': 'Chiffon (2.25m)',
+                    'Work/Print': 'Simple Elegant',
+                    'Width': '44 inches',
+                    'Care': 'Hand Wash',
+                    'SKU': 'FC-007',
+                    'Country of Origin': 'India'
+                },
+                description: 'Lightweight chiffon dupatta set perfect for summer wear. The soft and breathable fabric keeps you comfortable all day long.',
+                reviews: [
+                    { name: 'Sneha Gupta', date: '4 days ago', rating: 5, text: 'Perfect for summer! The chiffon dupatta is so lightweight and pretty.', verified: true }
+                ]
+            }
+        };
+
+        // ==========================================
+        // FUNCTIONS
+        // ==========================================
+        
         function getProductId() {
             const params = new URLSearchParams(window.location.search);
             return params.get('id');
@@ -1139,7 +1096,6 @@
             document.getElementById('productSubtitle').textContent = product.subtitle;
             document.getElementById('productPrice').textContent = '₹' + product.price;
             document.getElementById('originalPrice').textContent = '₹' + product.originalPrice;
-            document.getElementById('discountBadge').textContent = Math.round((1 - product.price/product.originalPrice) * 100) + '% OFF';
             document.getElementById('shortDescription').textContent = product.description;
             document.getElementById('fullDescription').textContent = product.description;
             document.getElementById('mainImage').src = product.images[0];
@@ -1251,6 +1207,6 @@
         }
 
         window.onload = loadProduct;
-</script>
+    </script>
 </body>
 </html>
