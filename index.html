@@ -1556,7 +1556,7 @@ function renderProducts(productList = products) {
               <div class="color-swatch" style="background: ${getColorCode(color)}" title="${color}"></div>
             `).join('')}
           </div>
-          <a href="${productUrl}" class="product-link" onclick="event.stopPropagation()">
+          <a href="product.html?id=${product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}" class="product-link" onclick="event.stopPropagation()">
             <i class="fas fa-link"></i> Copy Product Link
           </a>
         </div>
@@ -1886,15 +1886,8 @@ function showSizeGuide() {
 
 function showProductDetails(id) {
   const product = products.find(p => p.id === id);
-  const url = `https://tanyagohlan-creator.github.io/my-website/#product-${product.id}`;
-  
-  alert(`📌 ${product.name}\n\n` +
-        `Brand: ${product.brand}\n` +
-        `Price: ₹${product.price} (was ₹${product.originalPrice})\n` +
-        `Colors: ${product.colors.join(', ')}\n\n` +
-        `Description: ${product.description}\n\n` +
-        `Product Link: ${url}\n\n` +
-        `Click "Add to Bag" to purchase via WhatsApp!`);
+  const urlId = product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  window.location.href = 'product.html?id=' + urlId;
 }
 
 function openImageModal(src) {
@@ -2006,6 +1999,7 @@ document.addEventListener('DOMContentLoaded', initProductLinks);
 </body>
 </script>
 </html>
+
 
 
 
