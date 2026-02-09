@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Fancy Cloth House</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #8B1538;
+            --primary-light: #D4A5A5;
+            --gold: #D4AF37;
+            --dark: #2C2C2C;
+            --light: #F9F7F4;
+            --text: #555;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        /* Navigation - Match your existing style */
+        .navbar {
+            background: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover { color: var(--primary); }
+        
+        .breadcrumb {
+            padding: 1rem 5%;
+            background: white;
+            font-size: 0.9rem;
+            color: var(--text);
+            border-bottom: 1px solid #eee;
+        }
+        
+        .breadcrumb a {
+            color: var(--text);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover { color: var(--primary); }
+        
+        /* Product Layout */
+        .product-container {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        
+        /* Gallery */
+        .gallery-section {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+        
+        .main-image-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 1rem;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            cursor: zoom-in;
+            transition: transform 0.3s;
+        }
+        
+        .main-image:hover { transform: scale(1.02); }
+        
+        .gallery-thumbnails {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+        
+        .thumb {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            opacity: 0.7;
+        }
+        
+        .thumb.active, .thumb:hover {
+            border-color: var(--primary);
+            opacity: 1;
+        }
+        
+        /* Product Info */
+        .product-info { padding-top: 1rem; }
+        
+        .product-tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        
+        .product-subtitle {
+            color: var(--text);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .price-section {
+            margin: 1.5rem 0;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .price {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .original-price {
+            font-size: 1.3rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 1rem;
+        }
+        
+        .discount-badge {
+            background: var(--gold);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-left: 1rem;
+            font-weight: 600;
+        }
+        
+        .tax-info {
+            font-size: 0.85rem;
+            color: var(--text);
+            margin-top: 0.5rem;
+        }
+        
+        .key-features {
+            display: flex;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+        
+        .feature i { color: var(--primary); }
+        
+        .details-box {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            padding: 0.8rem;
+            background: var(--light);
+            border-radius: 8px;
+        }
+        
+        .detail-label {
+            font-size: 0.8rem;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .detail-value {
+            font-weight: 600;
+            color: var(--dark);
+            margin-top: 0.2rem;
+        }
+        
+        .size-table {
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .size-table th, .size-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .size-table th {
+            background: var(--light);
+            font-weight: 600;
+        }
+        
+        .size-note {
+            padding: 1rem;
+            background: #FFF8E1;
+            color: #856404;
+            font-size: 0.9rem;
+            border-left: 4px solid var(--gold);
+            margin-top: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .purchase-section {
+            margin: 2rem 0;
+            padding: 2rem 0;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .qty-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .qty-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .qty-input {
+            width: 60px;
+            height: 40px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #6B1028;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 21, 56, 0.3);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .trust-badges {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+        
+        .badge i {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+        
+        /* Tabs */
+        .tabs-section {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 5%;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 2rem;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 1rem 0;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text);
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .tab-content.active { display: block; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .info-block h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .info-block ul {
+            list-style: none;
+        }
+        
+        .info-block li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text);
+        }
+        
+        .info-block li:before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Reviews */
+        .reviews-summary {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .rating-big { text-align: center; }
+        
+        .rating-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .stars {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+        
+        .review-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .reviewer-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .review-date {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: #28a745;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Related Products */
+        .related-section {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 5% 4rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--dark);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+        
+        .product-card-info {
+            padding: 1.5rem;
+        }
+        
+        .product-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-card-price {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        /* Zoom Modal */
+        .zoom-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .zoom-modal.active { display: flex; }
+        
+        .zoom-image {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+        
+        .close-zoom {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .product-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .gallery-section {
+                position: relative;
+                top: 0;
+            }
+            
+            .main-image { height: 400px; }
+            
+            .content-grid { grid-template-columns: 1fr; }
+            
+            .nav-links { display: none; }
+            
+            .product-title { font-size: 1.8rem; }
+            
+            .action-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">Fancy Cloth House</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#products">Suits</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div style="display: flex; gap: 1.5rem; align-items: center;">
+            <i class="fas fa-search" style="cursor: pointer; font-size: 1.2rem;"></i>
+            <i class="fas fa-shopping-bag" style="cursor: pointer; font-size: 1.2rem;"></i>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a> / <a href="index.html#products">Unstitched Suits</a> / <span id="breadcrumb-name">Loading...</span>
+    </div>
+
+    <!-- Product Container -->
+    <div class="product-container">
+        <!-- Image Gallery -->
+        <div class="gallery-section">
+            <div class="main-image-container">
+                <img src="" alt="Product" class="main-image" id="mainImage" onclick="openZoom()">
+            </div>
+            <div class="gallery-thumbnails" id="thumbnails">
+                <!-- Thumbnails inserted via JS -->
+            </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="product-info">
+            <span class="product-tag">Unstitched Suit</span>
+            <h1 class="product-title" id="productTitle">Loading...</h1>
+            <p class="product-subtitle" id="productSubtitle">Loading...</p>
+
+            <div class="price-section">
+                <span class="price" id="productPrice">₹0</span>
+                <span class="original-price" id="originalPrice">₹0</span>
+                <span class="discount-badge" id="discountBadge">0% OFF</span>
+                <p class="tax-info">MRP Inclusive of all taxes</p>
+            </div>
+
+            <div class="key-features">
+                <div class="feature">
+                    <i class="fas fa-truck"></i>
+                    <span>Free Shipping</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-undo"></i>
+                    <span>7 Days Return</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-cut"></i>
+                    <span>Unstitched Fabric</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Authentic Quality</span>
+                </div>
+            </div>
+
+            <div class="details-box">
+                <h3 class="section-title"><i class="fas fa-info-circle"></i> Fabric Details</h3>
+                <div class="details-grid" id="detailsGrid">
+                    <!-- Details inserted via JS -->
+                </div>
+            </div>
+
+            <div>
+                <h3 class="section-title"><i class="fas fa-ruler"></i> Material Guide (Unstitched)</h3>
+                <table class="size-table">
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Length</th>
+                            <th>Width</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Top (Kameez)</td>
+                            <td>2.5 meters</td>
+                            <td>44 inches</td>
+                        </tr>
+                        <tr>
+                            <td>Bottom (Salwar/Pant)</td>
+                            <td>2.5 meters</td>
+                            <td>44 inches</td>
+                        </tr>
+                        <tr>
+                            <td>Dupatta</td>
+                            <td>2.25 meters</td>
+                            <td>36 inches</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="size-note">
+                    <strong>Important:</strong> This is unstitched fabric. You will receive loose material that needs to be stitched by a tailor according to your measurements.
+                </div>
+            </div>
+
+            <div class="purchase-section">
+                <div class="quantity-selector">
+                    <span>Quantity:</span>
+                    <button class="qty-btn" onclick="updateQty(-1)">-</button>
+                    <input type="number" class="qty-input" value="1" min="1" id="qty">
+                    <button class="qty-btn" onclick="updateQty(1)">+</button>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+                    <button class="btn btn-secondary">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="trust-badges">
+                <div class="badge">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Genuine Product</span>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-undo"></i>
+                    <span>Easy Returns</span>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-lock"></i>
+                    <span>Secure Payment</span>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-headset"></i>
+                    <span>24/7 Support</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabs Section -->
+    <div class="tabs-section">
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab(this, 'description')">Description</div>
+            <div class="tab" onclick="switchTab(this, 'shipping')">Shipping & Returns</div>
+            <div class="tab" onclick="switchTab(this, 'care')">Care Instructions</div>
+            <div class="tab" onclick="switchTab(this, 'reviews')">Reviews (128)</div>
+        </div>
+
+        <div id="description" class="tab-content active">
+            <div class="content-grid">
+                <div class="info-block">
+                    <h3>Product Description</h3>
+                    <p id="descriptionText" style="color: var(--text); line-height: 1.8;">
+                        Loading description...
+                    </p>
+                </div>
+                <div class="info-block">
+                    <h3>What's Included</h3>
+                    <ul>
+                        <li>2.5 meters unstitched fabric for Top (Kameez)</li>
+                        <li>2.5 meters unstitched fabric for Bottom (Salwar/Pant)</li>
+                        <li>2.25 meters Dupatta</li>
+                        <li>Matching thread spool</li>
+                        <li>Care instructions card</li>
+                        <li>Stitching guide</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="shipping" class="tab-content">
+            <div class="content-grid">
+                <div class="info-block">
+                    <h3>Shipping Information</h3>
+                    <ul>
+                        <li>Free shipping on all orders above ₹999</li>
+                        <li>Orders processed within 24 hours</li>
+                        <li>Delivery time: 3-5 business days (Metro cities)</li>
+                        <li>Delivery time: 5-7 business days (Other cities)</li>
+                        <li>Tracking number provided via SMS/Email</li>
+                        <li>Cash on Delivery available (₹50 extra)</li>
+                    </ul>
+                </div>
+                <div class="info-block">
+                    <h3>Return & Exchange Policy</h3>
+                    <ul>
+                        <li>7-day easy return policy</li>
+                        <li>Product must be unused with original packaging</li>
+                        <li>Exchange available for different designs</li>
+                        <li>Refund processed within 5-7 business days</li>
+                        <li>Defective items eligible for full refund</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="care" class="tab-content">
+            <div class="content-grid">
+                <div class="info-block">
+                    <h3>Fabric Care Instructions</h3>
+                    <ul>
+                        <li>Hand wash separately in cold water</li>
+                        <li>Use mild detergent only</li>
+                        <li>Do not bleach or wring</li>
+                        <li>Dry in shade to prevent color fading</li>
+                        <li>Iron on medium heat</li>
+                        <li>Dry clean recommended for first wash</li>
+                    </ul>
+                </div>
+                <div class="info-block">
+                    <h3>Storage Tips</h3>
+                    <ul>
+                        <li>Store in cool, dry place</li>
+                        <li>Use cotton bags for storage</li>
+                        <li>Keep away from direct sunlight</li>
+                        <li>Avoid plastic covers for long storage</li>
+                        <li>Refold occasionally to prevent permanent creases</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="reviews" class="tab-content">
+            <div class="reviews-summary">
+                <div class="rating-big">
+                    <div class="rating-number">4.8</div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div>Based on 128 reviews</div>
+                </div>
+            </div>
+            <div id="reviewsContainer">
+                <!-- Reviews inserted via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    <div class="related-section">
+        <div class="section-header">
+            <h2>You May Also Like</h2>
+        </div>
+        <div class="products-grid" id="relatedProducts">
+            <!-- Related products inserted via JS -->
+        </div>
+    </div>
+
+    <!-- Zoom Modal -->
+    <div class="zoom-modal" id="zoomModal" onclick="closeZoom()">
+        <span class="close-zoom">&times;</span>
+        <img src="" class="zoom-image" id="zoomImage">
+    </div>
+
+    <script>
+        // Complete Product Database - ADD ALL YOUR PRODUCTS HERE
+        const products = {
+            'cotton-floral-red': {
+                name: 'Red Cotton Floral Unstitched Suit',
+                subtitle: 'Beautiful red cotton with digital floral print, perfect for summer wear',
+                price: 1299,
+                originalPrice: 2499,
+                discount: '48%',
+                tag: 'Unstitched',
+                images: [
+                    'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=1000&fit=crop',
+                    'https://images.unsplash.com/photo-1583391733950-7c63e5c541b9?w=800&h=1000&fit=crop',
+                    'https://images.unsplash.com/photo-1610030463067-06bb08b3dd9a?w=800&h=1000&fit=crop',
+                    'https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=800&h=1000&fit=crop'
+                ],
+                details: {
+                    'Top Material': 'Pure Cotton (2.5m)',
+                    'Bottom Material': 'Cotton (2.5m)',
+                    'Dupatta': 'Chiffon (2.25m)',
+                    'Work/Print': 'Digital Floral Print',
+                    'Width': '44 inches',
+                    'Care': 'Hand Wash / Dry Clean'
+                },
+                description: 'Elevate your ethnic wardrobe with this exquisite unstitched cotton suit set. Crafted from premium quality pure cotton, this fabric offers breathability and comfort perfect for all-day wear. The vibrant digital floral print adds a contemporary touch to traditional attire. The set includes matching cotton fabric for the bottom and a lightweight chiffon dupatta with elegant border detailing.',
+                reviews: [
+                    { name: 'Priya Sharma', date: '2 days ago', rating: 5, text: 'Absolutely love the fabric quality! The cotton is soft and the print is exactly as shown in the pictures. Got it stitched into an Anarkali suit and it looks gorgeous. Will definitely order more!', verified: true },
+                    { name: 'Anjali Patel', date: '1 week ago', rating: 5, text: 'Great value for money. The material length is sufficient even for plus sizes. The chiffon dupatta is lightweight and elegant. Delivery was prompt and packaging was secure.', verified: true },
+                    { name: 'Meera Reddy', date: '2 weeks ago', rating: 4, text: 'Fabric is good but color is slightly different from the image. Still a beautiful piece. The unstitched material gives flexibility to customize according to my preference.', verified: true }
+                ]
+            },
+            'cotton-blue-traditional': {
+                name: 'Blue Traditional Cotton Suit',
+                subtitle: 'Elegant blue traditional design with intricate patterns',
+                price: 1199,
+                originalPrice: 2299,
+                discount: '48%',
+                tag: 'Unstitched',
+                images: [
+                    'https://images.unsplash.com/photo-1583391733950-7c63e5c541b9?w=800&h=1000&fit=crop',
+                    'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=1000&fit=crop',
+                    'https://images.unsplash.com/photo-1610030463067-06bb08b3dd9a?w=800&h=1000&fit=crop'
+                ],
+                details: {
+                    'Top Material': 'Pure Cotton (2.5m)',
+                    'Bottom Material': 'Cotton (2.5m)',
+                    'Dupatta': 'Cotton (2.25m)',
+                    'Work/Print': 'Traditional Block Print',
+                    'Width': '44 inches',
+                    'Care': 'Hand Wash'
+                },
+                description: 'Traditional blue cotton suit with beautiful block print design. Perfect for daily wear and small occasions. The fabric is soft, breathable, and comfortable for all-day wear.',
+                reviews: [
+                    { name: 'Sunita Devi', date: '3 days ago', rating: 5, text: 'Very nice fabric. The block print is beautiful and traditional.', verified: true }
+                ]
+            },
+            'silk-green-festive': {
+                name: 'Green Festive Silk Blend Suit',
+                subtitle: 'Luxurious silk blend perfect for festivals and weddings',
+                price: 1599,
+                originalPrice: 2999,
+                discount: '47%',
+                tag: 'Unstitched',
+                images: [
+                    'https://images.unsplash.com/photo-1610030463067-06bb08b3dd9a?w=800&h=1000&fit=crop',
+                    'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=1000&fit=crop',
+                    'https://images.unsplash.com/photo-1583391733950-7c63e5c541b9?w=800&h=1000&fit=crop'
+                ],
+                details: {
+                    'Top Material': 'Silk Blend (2.5m)',
+                    'Bottom Material': 'Santoon (2.5m)',
+                    'Dupatta': 'Chiffon with Border (2.25m)',
+                    'Work/Print': 'Zari Work',
+                    'Width': '44 inches',
+                    'Care': 'Dry Clean Only'
+                },
+                description: 'Experience luxury with this beautiful silk blend unstitched suit. Perfect for weddings and festive occasions, the lightweight silk fabric features elegant zari work that catches the light beautifully.',
+                reviews: [
+                    { name: 'Kavita Gupta', date: '1 week ago', rating: 5, text: 'Perfect for weddings! The zari work is delicate and beautiful.', verified: true }
+                ]
+            },
+            'cotton-pink-daily': {
+                name: 'Pink Daily Wear Cotton Suit',
+                subtitle: 'Comfortable and stylish daily wear cotton suit',
+                price: 999,
+                originalPrice: 1999,
+                discount: '50%',
+                tag: 'Unstitched',
+                images: [
+                    'https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=800&h=1000&fit=crop',
+                    'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=1000&fit=crop',
+                    'https://images.unsplash.com/photo-1583391733950-7c63e5c541b9?w=800&h=1000&fit=crop'
+                ],
+                details: {
+                    'Top Material': 'Soft Cotton (2.5m)',
+                    'Bottom Material': 'Cotton (2.5m)',
+                    'Dupatta': 'Lightweight Cotton (2.25m)',
+                    'Work/Print': 'Printed Design',
+                    'Width': '44 inches',
+                    'Care': 'Machine Wash'
+                },
+                description: 'Comfortable daily wear cotton suit in beautiful pink shade. Soft fabric perfect for everyday use. Easy to maintain and style.',
+                reviews: [
+                    { name: 'Ritu Verma', date: '5 days ago', rating: 5, text: 'Very comfortable fabric. Perfect for daily wear.', verified: true }
+                ]
+            }
+            // ADD MORE PRODUCTS HERE - Copy the format above
+        };
+
+        // Get product ID from URL
+        function getProductId() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('id');
+        }
+
+        // Load Product Data
+        function loadProduct() {
+            const id = getProductId();
+            const product = products[id];
+            
+            if (!product) {
+                document.getElementById('productTitle').textContent = 'Product Not Found';
+                return;
+            }
+
+            // Update page content
+            document.title = product.name + ' - Fancy Cloth House';
+            document.getElementById('breadcrumb-name').textContent = product.name;
+            document.getElementById('productTitle').textContent = product.name;
+            document.getElementById('productSubtitle').textContent = product.subtitle;
+            document.getElementById('productPrice').textContent = '₹' + product.price;
+            document.getElementById('originalPrice').textContent = '₹' + product.originalPrice;
+            document.getElementById('discountBadge').textContent = product.discount + ' OFF';
+            document.getElementById('descriptionText').textContent = product.description;
+            document.getElementById('mainImage').src = product.images[0];
+            document.getElementById('zoomImage').src = product.images[0];
+
+            // Load thumbnails
+            const thumbsContainer = document.getElementById('thumbnails');
+            thumbsContainer.innerHTML = '';
+            product.images.forEach((img, idx) => {
+                const thumb = document.createElement('img');
+                thumb.src = img.replace('w=800&h=1000', 'w=200&h=200');
+                thumb.className = 'thumb' + (idx === 0 ? ' active' : '');
+                thumb.onclick = () => changeImage(thumb, img);
+                thumbsContainer.appendChild(thumb);
+            });
+
+            // Load details
+            const detailsGrid = document.getElementById('detailsGrid');
+            detailsGrid.innerHTML = '';
+            for (const [key, value] of Object.entries(product.details)) {
+                detailsGrid.innerHTML += `
+                    <div class="detail-item">
+                        <span class="detail-label">${key}</span>
+                        <span class="detail-value">${value}</span>
+                    </div>
+                `;
+            }
+
+            // Load reviews
+            const reviewsContainer = document.getElementById('reviewsContainer');
+            reviewsContainer.innerHTML = '';
+            product.reviews.forEach(review => {
+                const stars = '★'.repeat(review.rating) + '☆'.repeat(5-review.rating);
+                reviewsContainer.innerHTML += `
+                    <div class="review-item">
+                        <div class="review-header">
+                            <div>
+                                <div class="reviewer-name">${review.name}</div>
+                                <div class="stars">${stars}</div>
+                            </div>
+                            <div class="review-date">${review.date}</div>
+                        </div>
+                        <div class="review-content">${review.text}</div>
+                        ${review.verified ? '<div class="verified-badge"><i class="fas fa-check-circle"></i> Verified Purchase</div>' : ''}
+                    </div>
+                `;
+            });
+
+            // Load related products (other products)
+            const relatedContainer = document.getElementById('relatedProducts');
+            relatedContainer.innerHTML = '';
+            const allIds = Object.keys(products).filter(pid => pid !== id);
+            
+            allIds.forEach(pid => {
+                const p = products[pid];
+                relatedContainer.innerHTML += `
+                    <a href="product.html?id=${pid}" class="product-card">
+                        <img src="${p.images[0].replace('w=800&h=1000', 'w=400&h=500')}" class="product-image" alt="${p.name}">
+                        <div class="product-card-info">
+                            <h3 class="product-card-title">${p.name}</h3>
+                            <p class="product-card-price">₹${p.price} <span style="text-decoration: line-through; color: #999; font-size: 0.9rem;">₹${p.originalPrice}</span></p>
+                        </div>
+                    </a>
+                `;
+            });
+        }
+
+        // Image Gallery Functions
+        function changeImage(thumb, src) {
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+            document.getElementById('mainImage').src = src;
+            document.getElementById('zoomImage').src = src;
+        }
+
+        function openZoom() {
+            document.getElementById('zoomModal').classList.add('active');
+        }
+
+        function closeZoom() {
+            document.getElementById('zoomModal').classList.remove('active');
+        }
+
+        // Quantity Functions
+        function updateQty(change) {
+            const input = document.getElementById('qty');
+            let val = parseInt(input.value) + change;
+            if (val < 1) val = 1;
+            input.value = val;
+        }
+
+        // Tab Functions
+        function switchTab(tab, contentId) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(contentId).classList.add('active');
+        }
+
+        // Add to Cart
+        function addToCart() {
+            const btn = document.querySelector('.btn-primary');
+            const originalText = btn.textContent;
+            btn.innerHTML = '<i class="fas fa-check"></i> Added to Cart!';
+            btn.style.background = '#28a745';
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+            }, 2000);
+        }
+
+        // Load product on page load
+        window.onload = loadProduct;
+    </script>
+</body>
+</html>
