@@ -1495,72 +1495,77 @@ function renderProducts(productList = products) {
     const inWishlist = wishlist.some(w => w.id === product.id);
     const productUrl = `https://tanyagohlan-creator.github.io/my-website/#product-${product.id}`;
     
-   return `
-  <a href="product.html?id=${product.id}" class="product-card" id="product-${product.id}" data-id="${product.id}" style="text-decoration: none; color: inherit; display: block;">
-    <div class="product-image">
-      ${hasGallery ? `
-        <div class="image-gallery">
-          <img 
-            src="${product.images[0]}" 
-            class="gallery-main"
-            alt="${product.name}"
-            onerror="this.src='https://via.placeholder.com/400x600?text=Image+Not+Found'"
-          >
-          <div class="gallery-thumbs">
-            ${product.images.map((img, idx) => `
+    return `
+      <div class="product-card" id="product-${product.id}" data-id="${product.id}">
+        <div class="product-image">
+          ${hasGallery ? `
+            <div class="image-gallery">
               <img 
-                src="${img}" 
-                class="gallery-thumb ${idx === 0 ? 'active' : ''}"
-                onclick="event.preventDefault(); changeGalleryImage(this, '${img}')"
-                alt="View ${idx + 1}"
-                onerror="this.style.display='none'"
+                src="${product.images[0]}" 
+                class="gallery-main"
+                alt="${product.name}"
+                onerror="this.src='https://via.placeholder.com/400x600?text=Image+Not+Found'"
+                onclick="openImageModal('${product.images[0]}')"
               >
-            `).join('')}
+              <div class="gallery-thumbs">
+                ${product.images.map((img, idx) => `
+                  <img 
+                    src="${img}" 
+                    class="gallery-thumb ${idx === 0 ? 'active' : ''}"
+                    onclick="changeGalleryImage(this, '${img}')"
+                    alt="View ${idx + 1}"
+                    onerror="this.style.display='none'"
+                  >
+                `).join('')}
+              </div>
+            </div>
+          ` : `
+            <img 
+              src="${product.images[0]}" 
+              class="single-image"
+              alt="${product.name}"
+              onerror="this.src='https://via.placeholder.com/400x600?text=Image+Not+Found'"
+              onclick="openImageModal('${product.images[0]}')"
+            >
+          `}
+          ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+          <button class="wishlist-btn ${inWishlist ? 'active' : ''}" onclick="toggleWishlist(${product.id})">
+            <i class="${inWishlist ? 'fas' : 'far'} fa-heart"></i>
+          </button>
+          <div class="share-btn">
+            <button onclick="openShareModal(${product.id})" title="Share Product">
+              <i class="fas fa-share-alt"></i>
+            </button>
+          </div>
+          <div class="quick-add">
+            <button class="quick-add-btn" onclick="addToCart(${product.id})" title="Add to Bag">
+              +
+            </button>
           </div>
         </div>
-      ` : `
-        <img 
-          src="${product.images[0]}" 
-          class="single-image"
-          alt="${product.name}"
-          onerror="this.src='https://via.placeholder.com/400x600?text=Image+Not+Found'"
-        >
-      `}
-      ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
-      <button class="wishlist-btn ${inWishlist ? 'active' : ''}" onclick="event.preventDefault(); toggleWishlist(${product.id})">
-        <i class="${inWishlist ? 'fas' : 'far'} fa-heart"></i>
-      </button>
-      <div class="share-btn">
-        <button onclick="event.preventDefault(); openShareModal(${product.id})" title="Share Product">
-          <i class="fas fa-share-alt"></i>
-        </button>
+        <div class="product-info">
+          <div class="product-brand">${product.brand}</div>
+          <h3 class="product-title" onclick="showProductDetails(${product.id})">${product.name}</h3>
+          <div class="product-price">
+            <span class="current-price">₹${product.price}</span>
+            <span class="original-price">₹${product.originalPrice}</span>
+            <span class="discount">${discount}% off</span>
+          </div>
+          <div class="color-swatches">
+            ${product.colors.map(color => `
+              <div class="color-swatch" style="background: ${getColorCode(color)}" title="${color}"></div>
+            `).join('')}
+          </div>
+          <a href="${productUrl}" class="product-link" onclick="event.stopPropagation()">
+            <i class="fas fa-link"></i> Copy Product Link
+          </a>
+        </div>
       </div>
-      <div class="quick-add">
-        <button class="quick-add-btn" onclick="event.preventDefault(); addToCart(${product.id})" title="Add to Bag">
-          +
-        </button>
-      </div>
-    </div>
-    <div class="product-info">
-      <div class="product-brand">${product.brand}</div>
-      <h3 class="product-title">${product.name}</h3>
-      <div class="product-price">
-        <span class="current-price">₹${product.price}</span>
-        <span class="original-price">₹${product.originalPrice}</span>
-        <span class="discount">${discount}% off</span>
-      </div>
-      <div class="color-swatches">
-        ${product.colors.map(color => `
-          <div class="color-swatch" style="background: ${getColorCode(color)}" title="${color}"></div>
-        `).join('')}
-      </div>
-    </div>
-  </a>
-`;
-      }).join('');
-
-  checkUrlHash();`
-           
+    `;
+  }).join('');
+  
+  // Check if URL has a product hash and scroll to it
+  checkUrlHash();
 }
 
 function changeGalleryImage(thumbElement, newSrc) {
@@ -1880,9 +1885,18 @@ function showSizeGuide() {
 }
 
 function showProductDetails(id) {
-  // Navigate to product page instead of showing alert
-  window.location.href = 'product.html?id=' + id;
+  const product = products.find(p => p.id === id);
+  const url = `https://tanyagohlan-creator.github.io/my-website/#product-${product.id}`;
+  
+  alert(`📌 ${product.name}\n\n` +
+        `Brand: ${product.brand}\n` +
+        `Price: ₹${product.price} (was ₹${product.originalPrice})\n` +
+        `Colors: ${product.colors.join(', ')}\n\n` +
+        `Description: ${product.description}\n\n` +
+        `Product Link: ${url}\n\n` +
+        `Click "Add to Bag" to purchase via WhatsApp!`);
 }
+
 function openImageModal(src) {
   window.open(src, '_blank');
 }
@@ -1988,18 +2002,10 @@ function initProductLinks() {
 
 // Initialize when page loads
 document.addEventListener('DOMContentLoaded', initProductLinks);
-  document.addEventListener("DOMContentLoaded", () => {
-  renderProducts();
-  updateCart();
-});
 </script>
 </body>
 </script>
 </html>
-
-
-
-
 
 
 
