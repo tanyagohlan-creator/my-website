@@ -1926,9 +1926,87 @@ window.addEventListener('hashchange', checkUrlHash);
 const user = localStorage.getItem('fch_user');
 if (user) console.log('Welcome back:', user);
 </script>
+<script>
+// Product data - Add all your products here
+const products = {
+    'cotton-floral-red': {
+        name: 'Red Cotton Floral Unstitched Suit',
+        price: 1299,
+        originalPrice: 2499,
+        image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&h=1000&fit=crop',
+        subtitle: 'Beautiful red cotton with floral print'
+    },
+    'cotton-blue-traditional': {
+        name: 'Blue Traditional Cotton Suit',
+        price: 1199,
+        originalPrice: 2299,
+        image: 'https://images.unsplash.com/photo-1583391733950-7c63e5c541b9?w=800&h=1000&fit=crop',
+        subtitle: 'Elegant blue traditional design'
+    },
+    'silk-green-festive': {
+        name: 'Green Festive Silk Blend Suit',
+        price: 1599,
+        originalPrice: 2999,
+        image: 'https://images.unsplash.com/photo-1610030463067-06bb08b3dd9a?w=800&h=1000&fit=crop',
+        subtitle: 'Perfect for festivals and weddings'
+    },
+    'cotton-pink-daily': {
+        name: 'Pink Daily Wear Cotton Suit',
+        price: 999,
+        originalPrice: 1999,
+        image: 'https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=800&h=1000&fit=crop',
+        subtitle: 'Comfortable daily wear cotton'
+    }
+    // Add more products here following the same format
+};
 
+// Function to make product cards clickable
+function initProductLinks() {
+    // Find all product cards - adjust selector based on your HTML
+    const cards = document.querySelectorAll('.product-card, .item, .product, .suit-card, .grid-item');
+    
+    cards.forEach((card, index) => {
+        // Get product info from the card
+        const img = card.querySelector('img');
+        const title = card.querySelector('h3, h2, .title, .product-name');
+        const price = card.querySelector('.price, .current-price, .new-price');
+        
+        if (title && img) {
+            // Find matching product or create ID from title
+            const productName = title.textContent.trim();
+            const productId = Object.keys(products).find(key => 
+                products[key].name === productName
+            ) || 'product-' + index;
+            
+            // Make card clickable
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', function(e) {
+                // Don't navigate if clicking on a button or link inside the card
+                if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') return;
+                window.location.href = 'product.html?id=' + productId;
+            });
+            
+            // Add hover effect
+            card.style.transition = 'transform 0.3s, box-shadow 0.3s';
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.15)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '';
+            });
+        }
+    });
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', initProductLinks);
+</script>
 </body>
+</script>
 </html>
+
 
 
 
