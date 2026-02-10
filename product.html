@@ -586,6 +586,56 @@
             cursor: pointer;
         }
 
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            z-index: 3000;
+            opacity: 0;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Loading Spinner */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text);
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 4rem;
+            color: var(--text);
+        }
+
         @media (max-width: 968px) {
             .product-container {
                 grid-template-columns: 1fr;
@@ -641,88 +691,99 @@
     <div class="product-container">
         <div class="gallery-section">
             <div class="main-image-container">
-                <img src="" alt="Product" class="main-image" id="mainImage">
+                <div class="loading" id="imageLoading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading product images...</p>
+                </div>
+                <img src="" alt="Product" class="main-image" id="mainImage" style="display: none;">
             </div>
             <div class="gallery-thumbnails" id="thumbnails"></div>
         </div>
 
         <div class="product-info">
-            <span class="product-tag" id="productTag">Unstitched</span>
-            <h1 class="product-title" id="productTitle">Loading...</h1>
-            <p class="product-subtitle" id="productSubtitle">Loading...</p>
-
-            <div class="price-section">
-                <span class="sale-badge">SALE</span>
-                <div>
-                    <span class="price" id="productPrice">₹0</span>
-                    <span class="original-price" id="originalPrice">₹0</span>
-                </div>
-                <p class="tax-info">MRP Inclusive of all taxes</p>
+            <div class="loading" id="infoLoading">
+                <div class="loading-spinner"></div>
+                <p>Loading product details...</p>
             </div>
+            
+            <div id="productContent" style="display: none;">
+                <span class="product-tag" id="productTag">Loading...</span>
+                <h1 class="product-title" id="productTitle">Loading...</h1>
+                <p class="product-subtitle" id="productSubtitle">Loading...</p>
 
-            <p class="short-description" id="shortDescription">Loading...</p>
-
-            <ul class="features-list">
-                <li>Cash on delivery available</li>
-                <li>Usually ships in 2-5 working days</li>
-                <li>Hassle-Free Return & Exchange</li>
-                <li>Free shipping on orders above ₹999</li>
-            </ul>
-
-            <div class="dimensions-box">
-                <h3 class="dimensions-title">Unstitched Material Dimensions</h3>
-                <div class="dimensions-grid">
-                    <div class="dimension-item">
-                        <div class="dimension-label">Top (Kameez)</div>
-                        <div class="dimension-value">2.5 meters</div>
+                <div class="price-section">
+                    <span class="sale-badge">SALE</span>
+                    <div>
+                        <span class="price" id="productPrice">₹0</span>
+                        <span class="original-price" id="originalPrice">₹0</span>
                     </div>
-                    <div class="dimension-item">
-                        <div class="dimension-label">Bottom</div>
-                        <div class="dimension-value">2.5 meters</div>
+                    <p class="tax-info">MRP Inclusive of all taxes</p>
+                </div>
+
+                <p class="short-description" id="shortDescription">Loading...</p>
+
+                <ul class="features-list">
+                    <li>Cash on delivery available</li>
+                    <li>Usually ships in 2-5 working days</li>
+                    <li>Hassle-Free Return & Exchange</li>
+                    <li>Free shipping on orders above ₹999</li>
+                </ul>
+
+                <div class="dimensions-box">
+                    <h3 class="dimensions-title">Unstitched Material Dimensions</h3>
+                    <div class="dimensions-grid">
+                        <div class="dimension-item">
+                            <div class="dimension-label">Top (Kameez)</div>
+                            <div class="dimension-value">2.5 meters</div>
+                        </div>
+                        <div class="dimension-item">
+                            <div class="dimension-label">Bottom</div>
+                            <div class="dimension-value">2.5 meters</div>
+                        </div>
+                        <div class="dimension-item">
+                            <div class="dimension-label">Dupatta</div>
+                            <div class="dimension-value">2.25 meters</div>
+                        </div>
                     </div>
-                    <div class="dimension-item">
-                        <div class="dimension-label">Dupatta</div>
-                        <div class="dimension-value">2.25 meters</div>
+                </div>
+
+                <div class="fabric-details">
+                    <h3 class="dimensions-title">Product Details</h3>
+                    <div id="productDetails"></div>
+                </div>
+
+                <div class="purchase-section">
+                    <div class="quantity-selector">
+                        <span>Quantity:</span>
+                        <button class="qty-btn" onclick="updateQty(-1)">-</button>
+                        <input type="number" class="qty-input" value="1" min="1" id="qty">
+                        <button class="qty-btn" onclick="updateQty(1)">+</button>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+                        <button class="btn btn-whatsapp" onclick="orderOnWhatsApp()">
+                            <i class="fab fa-whatsapp"></i> Order on WhatsApp
+                        </button>
                     </div>
                 </div>
-            </div>
 
-            <div class="fabric-details">
-                <h3 class="dimensions-title">Product Details</h3>
-                <div id="productDetails"></div>
-            </div>
-
-            <div class="purchase-section">
-                <div class="quantity-selector">
-                    <span>Quantity:</span>
-                    <button class="qty-btn" onclick="updateQty(-1)">-</button>
-                    <input type="number" class="qty-input" value="1" min="1" id="qty">
-                    <button class="qty-btn" onclick="updateQty(1)">+</button>
-                </div>
-                <div class="action-buttons">
-                    <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
-                    <button class="btn btn-whatsapp" onclick="orderOnWhatsApp()">
-                        <i class="fab fa-whatsapp"></i> Order on WhatsApp
-                    </button>
-                </div>
-            </div>
-
-            <div class="trust-badges">
-                <div class="badge">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Genuine Product</span>
-                </div>
-                <div class="badge">
-                    <i class="fas fa-undo"></i>
-                    <span>7 Days Return</span>
-                </div>
-                <div class="badge">
-                    <i class="fas fa-lock"></i>
-                    <span>Secure Payment</span>
-                </div>
-                <div class="badge">
-                    <i class="fas fa-headset"></i>
-                    <span>24/7 Support</span>
+                <div class="trust-badges">
+                    <div class="badge">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Genuine Product</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-undo"></i>
+                        <span>7 Days Return</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-lock"></i>
+                        <span>Secure Payment</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-headset"></i>
+                        <span>24/7 Support</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -793,181 +854,93 @@
         <img src="" class="zoom-image" id="zoomImage">
     </div>
 
- <script>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+<script>
     // ==========================================
-    // SIMPLIFIED PRODUCT DATA (ALWAYS WORKS)
+    // CONFIGURATION
     // ==========================================
+    const GOOGLE_SHEET_URL = 'https://api.sheetbest.com/sheets/35f5e273-b28f-4fef-abc8-07ac3dfd1601';
     
-    const PRODUCTS = {
+    // Fallback product data in case Google Sheet fails
+    const FALLBACK_PRODUCTS = {
         '1': {
             name: 'Floral Print Suit Set with Golden Lace Dupatta',
-            subtitle: 'Beautiful floral print suit set with intricate golden lace work on dupatta. Perfect for festive occasions.',
+            description: 'Beautiful floral print suit set with intricate golden lace work on dupatta. Perfect for festive occasions.',
             price: 1250,
             originalPrice: 1600,
-            tag: 'Bestseller',
-            images: [
-                'https://i.ibb.co/svWpcZMp/suit-floral-model.jpg',
-                'https://i.ibb.co/zWM9n328/suit-floral-flatlay.jpg'
-            ],
-            details: {
-                'Brand': 'Fancy Cloth House',
-                'Top Material': 'Cotton (2.5m)',
-                'Bottom Material': 'Cotton (2.5m)',
-                'Dupatta': 'Chiffon with Golden Lace (2.25m)',
-                'Work/Print': 'Floral Print with Lace',
-                'Width': '44 inches',
-                'Care': 'Hand Wash / Dry Clean'
-            },
-            description: 'Elevate your ethnic wardrobe with this exquisite unstitched cotton suit set. The beautiful floral print combined with golden lace work on the dupatta makes it perfect for festive occasions.'
+            badge: 'Bestseller',
+            image: 'https://i.ibb.co/svWpcZMp/suit-floral-model.jpg,https://i.ibb.co/HBs0cfJv/suit-floral-flatlay.jpg',
+            brand: 'Fancy Cloth House'
         },
         '2': {
             name: 'Pure Natural Salwar Suit with Dupatta Work',
-            subtitle: 'Premium quality natural fabric with heavy dupatta work. Available in multiple colors.',
+            description: 'Premium quality natural fabric with heavy dupatta work. Available in multiple colors.',
             price: 2850,
             originalPrice: 3500,
-            tag: 'New',
-            images: [
-                'https://i.ibb.co/W4SkpWWp/salwar-suit-purple-model.jpg',
-                'https://i.ibb.co/HD0QJWG0/salwar-suit-all-colors-model.jpg'
-            ],
-            details: {
-                'Brand': 'Fancy Cloth House',
-                'Top Material': 'Natural Cotton (2.5m)',
-                'Bottom Material': 'Cotton (2.5m)',
-                'Dupatta': 'Heavy Worked Dupatta (2.25m)',
-                'Work/Print': 'Traditional Heavy Work',
-                'Width': '44 inches',
-                'Care': 'Dry Clean Recommended'
-            },
-            description: 'Premium quality natural fabric suit set with intricate heavy dupatta work. Perfect for weddings, festivals, and special occasions.'
+            badge: 'New',
+            image: 'https://i.ibb.co/W4SkpWWp/salwar-suit-purple-model.jpg,https://i.ibb.co/LrLKjTtQ/salwar-suit-purple-model2.jpg',
+            brand: 'Fancy Cloth House'
         },
         '3': {
             name: 'Embroidered Silk Suit',
-            subtitle: 'Elegant silk suit with detailed embroidery work. Perfect for parties and special occasions.',
+            description: 'Elegant silk suit with detailed embroidery work. Perfect for parties and special occasions.',
             price: 2100,
             originalPrice: 2600,
-            tag: 'Trending',
-            images: [
-                'https://i.ibb.co/0yqxXCS7/suit1-2.jpg',
-                'https://i.ibb.co/S76jvh24/suit-floral-model.jpg'
-            ],
-            details: {
-                'Brand': 'Premium Collection',
-                'Top Material': 'Silk Blend (2.5m)',
-                'Bottom Material': 'Santoon (2.5m)',
-                'Dupatta': 'Silk with Embroidery (2.25m)',
-                'Work/Print': 'Detailed Embroidery',
-                'Width': '44 inches',
-                'Care': 'Dry Clean Only'
-            },
-            description: 'Elegant silk suit with detailed embroidery work that adds sophistication to your look.'
+            badge: 'Trending',
+            image: 'https://i.ibb.co/0yqxXCS7/suit1-2.jpg',
+            brand: 'Premium Collection'
         },
         '4': {
             name: 'Party Wear Georgette Set',
-            subtitle: 'Lightweight georgette set ideal for parties. Flowy and comfortable design.',
+            description: 'Lightweight georgette set ideal for parties. Flowy and comfortable design.',
             price: 950,
             originalPrice: 1500,
-            tag: 'Trending',
-            images: [
-                'https://i.ibb.co/Gv55bP1Z/suit-floral-model.jpg',
-                'https://i.ibb.co/6R6jtVWW/suit1-2.jpg'
-            ],
-            details: {
-                'Brand': 'Fancy Cloth House',
-                'Top Material': 'Georgette (2.5m)',
-                'Bottom Material': 'Santoon (2.5m)',
-                'Dupatta': 'Georgette (2.25m)',
-                'Work/Print': 'Subtle Print',
-                'Width': '44 inches',
-                'Care': 'Hand Wash / Dry Clean'
-            },
-            description: 'Lightweight and flowy georgette set perfect for parties and evening events.'
+            badge: 'Trending',
+            image: 'https://i.ibb.co/Gv55bP1Z/suit-floral-model.jpg',
+            brand: 'Fancy Cloth House'
         },
         '5': {
             name: 'Casual Printed Kurti Set',
-            subtitle: 'Comfortable daily wear kurti set with beautiful prints. Great value for money.',
+            description: 'Comfortable daily wear kurti set with beautiful prints. Pure Natural Glass with pure Duppta. Great value for money.',
             price: 999,
             originalPrice: 1200,
-            tag: 'Sale',
-            images: [
-                'https://i.ibb.co/671FLG0y/suit1-2.jpg',
-                'https://i.ibb.co/gZY99Smn/suit-floral-model.jpg'
-            ],
-            details: {
-                'Brand': 'Daily Wear',
-                'Top Material': 'Cotton (2.5m)',
-                'Bottom Material': 'Cotton (2.5m)',
-                'Dupatta': 'Lightweight Cotton (2.25m)',
-                'Work/Print': 'Beautiful Prints',
-                'Width': '44 inches',
-                'Care': 'Machine Wash'
-            },
-            description: 'Comfortable daily wear kurti set with beautiful prints at an affordable price.'
+            badge: 'Sale',
+            image: 'https://i.ibb.co/671FLG0y/suit1-2.jpg',
+            brand: 'Daily Wear'
         },
         '6': {
             name: 'Wedding Special Suit- Pure Fandy Work',
-            subtitle: 'Exquisite natural crape silk all over with handwork.',
+            description: 'Exquisite natural crape silk all over with handwork. Heavy Chinon duppta four side hand work with heavy bottom work.',
             price: 2499,
             originalPrice: 3999,
-            tag: 'Premium',
-            images: [
-                'https://i.ibb.co/xKvnHdm1/wedding-lehenga-model.png',
-                'https://i.ibb.co/d02WG3Sb/wedding-lehenga-flatlay.jpeg'
-            ],
-            details: {
-                'Brand': 'Bridal Collection',
-                'Top Material': 'Pure Fandy (2.5m)',
-                'Bottom Material': 'Fandy with Gold Work (2.5m)',
-                'Dupatta': 'Heavy Embroidered (2.25m)',
-                'Work/Print': 'Gold Salwar Work',
-                'Width': '44 inches',
-                'Care': 'Dry Clean Only'
-            },
-            description: 'Exquisite natural crape silk all over with handwork. Perfect for wedding celebrations.'
+            badge: 'Premium',
+            image: 'https://i.ibb.co/xKvnHdm1/wedding-lehenga-model.png',
+            brand: 'Bridal Collection'
         },
         '7': {
             name: 'Chiffon Dupatta Set',
-            subtitle: 'Heavy Bajju Salwar Work with chiffon dupatta set.',
+            description: 'Heavy Bajju Salwar Work with chiffon dupatta set perfect for party-festive wear. Soft and breathable fabric.',
             price: 3000,
             originalPrice: 3500,
-            tag: 'Trending',
-            images: [
-                'https://i.ibb.co/d422XCPT/suit-floral-flatlay.jpg',
-                'https://i.ibb.co/bMcthq7n/suit-floral-model.jpg'
-            ],
-            details: {
-                'Brand': 'Fancy Cloth House',
-                'Top Material': 'Cotton (2.5m)',
-                'Bottom Material': 'Cotton (2.5m)',
-                'Dupatta': 'Chiffon (2.25m)',
-                'Work/Print': 'Simple Elegant',
-                'Width': '44 inches',
-                'Care': 'Hand Wash'
-            },
-            description: 'Heavy Bajju Salwar Work with chiffon dupatta set perfect for party-festive wear.'
+            badge: 'Trending',
+            image: 'https://i.ibb.co/d422XCPT/suit-floral-flatlay.jpg,https://i.ibb.co/Gv55bP1Z/suit-floral-model.jpg',
+            brand: 'Fancy Cloth House'
         },
         '8': {
             name: 'Party Wear Natural Silk all over',
-            subtitle: 'Elegant mehroon colour silk suit with rich all-over detailing.',
+            description: 'Elegant mehroon colour silk suit with rich all-over detailing. A perfect choice for parties, festive occasions, and evening wear.',
             price: 2800,
             originalPrice: 3500,
-            tag: 'Trending',
-            images: [
-                'https://i.ibb.co/rRfr6Zck/suit1-2.jpg',
-                'https://i.ibb.co/v41Hr1RP/suit-floral-model.jpg'
-            ],
-            details: {
-                'Brand': 'Premium Collection',
-                'Top Material': 'Pure Silk (2.5m)',
-                'Bottom Material': 'Silk (2.5m)',
-                'Dupatta': 'Silk with Detailing (2.25m)',
-                'Work/Print': 'All-over Detailing',
-                'Width': '44 inches',
-                'Care': 'Dry Clean Only'
-            },
-            description: 'Elegant mehroon colour silk suit with rich all-over detailing. A perfect choice for parties.'
+            badge: 'Trending',
+            image: 'https://i.ibb.co/rRfr6Zck/suit1-2.jpg',
+            brand: 'Premium Collection'
         }
     };
+
+    let currentProduct = null;
+    let allProducts = [];
 
     // ==========================================
     // MAIN FUNCTIONS
@@ -978,7 +951,7 @@
         return params.get('id');
     }
 
-    function loadProduct() {
+    async function loadProduct() {
         const id = getProductId();
         
         if (!id) {
@@ -986,68 +959,155 @@
             return;
         }
 
-        const product = PRODUCTS[id];
-        
-        if (!product) {
-            document.getElementById('productTitle').textContent = 'Product Not Found';
-            setTimeout(() => window.location.href = 'index.html', 2000);
-            return;
-        }
+        try {
+            // Show loading
+            document.getElementById('imageLoading').style.display = 'block';
+            document.getElementById('infoLoading').style.display = 'block';
+            document.getElementById('productContent').style.display = 'none';
+            document.getElementById('mainImage').style.display = 'none';
 
-        // Update all product information
+            // Try to load from Google Sheet
+            const response = await fetch(GOOGLE_SHEET_URL);
+            const products = await response.json();
+            allProducts = products;
+            
+            const product = products.find(p => p.id == id);
+            
+            if (product) {
+                displayProduct(product);
+                currentProduct = product;
+            } else {
+                // Use fallback
+                if (FALLBACK_PRODUCTS[id]) {
+                    displayFallbackProduct(id);
+                } else {
+                    showError('Product not found');
+                }
+            }
+        } catch (error) {
+            console.log('Google Sheet failed, using fallback');
+            // Use fallback
+            if (FALLBACK_PRODUCTS[id]) {
+                displayFallbackProduct(id);
+            } else {
+                showError('Error loading product');
+            }
+        }
+    }
+
+    function displayProduct(product) {
+        // Hide loading
+        document.getElementById('imageLoading').style.display = 'none';
+        document.getElementById('infoLoading').style.display = 'none';
+        document.getElementById('productContent').style.display = 'block';
+
+        // Update product information
         document.title = product.name + ' - Fancy Cloth House';
-        document.getElementById('productTag').textContent = product.tag;
+        document.getElementById('productTag').textContent = product.badge || 'Premium';
         document.getElementById('productTitle').textContent = product.name;
-        document.getElementById('productSubtitle').textContent = product.subtitle;
-        document.getElementById('productPrice').textContent = '₹' + product.price;
-        document.getElementById('originalPrice').textContent = '₹' + product.originalPrice;
-        document.getElementById('shortDescription').textContent = product.description;
-        document.getElementById('fullDescription').textContent = product.description;
+        document.getElementById('productSubtitle').textContent = product.brand || 'Fancy Cloth House';
+        document.getElementById('productPrice').textContent = '₹' + (product.price || 0);
+        document.getElementById('originalPrice').textContent = '₹' + (product.originalPrice || 0);
+        document.getElementById('shortDescription').textContent = product.description || '';
+        document.getElementById('fullDescription').textContent = product.description || '';
 
         // Set main image
         const mainImage = document.getElementById('mainImage');
         const zoomImage = document.getElementById('zoomImage');
         
-        if (product.images.length > 0) {
-            mainImage.src = product.images[0];
-            zoomImage.src = product.images[0];
+        if (product.image) {
+            const images = product.image.split(',').map(img => img.trim()).filter(img => img);
             
-            // Create thumbnails
-            const thumbsContainer = document.getElementById('thumbnails');
-            thumbsContainer.innerHTML = '';
-            
-            product.images.forEach((img, idx) => {
-                const thumb = document.createElement('img');
-                thumb.src = img;
-                thumb.className = 'thumb' + (idx === 0 ? ' active' : '');
-                thumb.onerror = function() {
-                    this.src = 'https://via.placeholder.com/100x100/F9F7F4/8B1538?text=Image';
-                };
-                thumb.onclick = () => changeImage(thumb, img);
-                thumbsContainer.appendChild(thumb);
-            });
+            if (images.length > 0) {
+                const mainImg = images[0].includes('?width=') ? images[0] : images[0] + '?width=800';
+                mainImage.src = mainImg;
+                mainImage.style.display = 'block';
+                zoomImage.src = mainImg;
+                
+                // Create thumbnails
+                const thumbsContainer = document.getElementById('thumbnails');
+                thumbsContainer.innerHTML = '';
+                
+                images.forEach((img, idx) => {
+                    const thumbImg = img.includes('?width=') ? img.replace('?width=800', '?width=100') : img + '?width=100';
+                    const thumb = document.createElement('img');
+                    thumb.src = thumbImg;
+                    thumb.className = 'thumb' + (idx === 0 ? ' active' : '');
+                    thumb.onerror = function() {
+                        this.src = 'https://via.placeholder.com/100x100/F9F7F4/8B1538?text=Image';
+                    };
+                    thumb.onclick = () => changeImage(thumb, img.includes('?width=') ? img : img + '?width=800');
+                    thumbsContainer.appendChild(thumb);
+                });
+            }
         }
 
         // Update product details
         const detailsContainer = document.getElementById('productDetails');
-        detailsContainer.innerHTML = '';
-        for (const [key, value] of Object.entries(product.details)) {
-            detailsContainer.innerHTML += `
-                <div class="details-row">
-                    <span class="details-label">${key}</span>
-                    <span class="details-value">${value}</span>
-                </div>
-            `;
-        }
+        detailsContainer.innerHTML = `
+            <div class="details-row">
+                <span class="details-label">Brand</span>
+                <span class="details-value">${product.brand || 'Fancy Cloth House'}</span>
+            </div>
+            <div class="details-row">
+                <span class="details-label">Top Material</span>
+                <span class="details-value">Cotton (2.5m)</span>
+            </div>
+            <div class="details-row">
+                <span class="details-label">Bottom Material</span>
+                <span class="details-value">Cotton (2.5m)</span>
+            </div>
+            <div class="details-row">
+                <span class="details-label">Dupatta</span>
+                <span class="details-value">Premium Fabric (2.25m)</span>
+            </div>
+            <div class="details-row">
+                <span class="details-label">Work/Print</span>
+                <span class="details-value">Premium Work</span>
+            </div>
+            <div class="details-row">
+                <span class="details-label">Width</span>
+                <span class="details-value">44 inches</span>
+            </div>
+            <div class="details-row">
+                <span class="details-label">Care</span>
+                <span class="details-value">Dry Clean Recommended</span>
+            </div>
+        `;
+    }
 
-        // Add reviews section
-        const reviewsContainer = document.getElementById('reviewsContainer');
-        reviewsContainer.innerHTML = `
-            <div class="review-item">
-                <div class="review-content" style="color: var(--text); text-align: center; padding: 40px;">
-                    <i class="fas fa-comment-alt" style="font-size: 48px; color: #ddd; margin-bottom: 20px;"></i>
-                    <p>No reviews yet. Be the first to review this product!</p>
-                </div>
+    function displayFallbackProduct(id) {
+        const product = FALLBACK_PRODUCTS[id];
+        if (product) {
+            // Create a product object in the same format as Google Sheet
+            const formattedProduct = {
+                name: product.name,
+                brand: product.brand,
+                price: product.price,
+                originalPrice: product.originalPrice,
+                image: product.image,
+                badge: product.badge,
+                description: product.description
+            };
+            displayProduct(formattedProduct);
+            currentProduct = formattedProduct;
+        }
+    }
+
+    function showError(message) {
+        document.getElementById('imageLoading').style.display = 'none';
+        document.getElementById('infoLoading').style.display = 'none';
+        
+        const container = document.getElementById('productContent');
+        container.style.display = 'block';
+        container.innerHTML = `
+            <div class="error-message">
+                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #ff4444; margin-bottom: 1rem;"></i>
+                <h2>${message}</h2>
+                <p>Unable to load product details. Please try again later.</p>
+                <a href="index.html" class="btn btn-primary" style="margin-top: 1rem; display: inline-block;">
+                    <i class="fas fa-arrow-left"></i> Back to Shop
+                </a>
             </div>
         `;
     }
@@ -1055,8 +1115,9 @@
     function changeImage(thumb, src) {
         document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
         thumb.classList.add('active');
-        document.getElementById('mainImage').src = src;
-        document.getElementById('zoomImage').src = src;
+        const mainImg = src.includes('?width=') ? src : src + '?width=800';
+        document.getElementById('mainImage').src = mainImg;
+        document.getElementById('zoomImage').src = mainImg;
     }
 
     function openZoom() {
@@ -1082,8 +1143,9 @@
     }
 
     function addToCart() {
+        if (!currentProduct) return;
+        
         const productId = getProductId();
-        const product = PRODUCTS[productId];
         const qty = parseInt(document.getElementById('qty').value);
         
         let cart = JSON.parse(localStorage.getItem('fch_cart')) || [];
@@ -1092,11 +1154,12 @@
         if (existingIndex > -1) {
             cart[existingIndex].quantity += qty;
         } else {
+            const images = currentProduct.image ? currentProduct.image.split(',').map(img => img.trim()) : [];
             cart.push({
                 id: productId,
-                name: product.name,
-                price: product.price,
-                image: product.images[0],
+                name: currentProduct.name,
+                price: currentProduct.price,
+                image: images.length > 0 ? images[0] : '',
                 quantity: qty
             });
         }
@@ -1113,18 +1176,19 @@
             btn.style.background = '';
         }, 2000);
         
-        showToast(`${product.name} added to cart (${qty} ${qty === 1 ? 'item' : 'items'})`);
+        showToast(`${currentProduct.name} added to cart (${qty} ${qty === 1 ? 'item' : 'items'})`);
     }
 
     function orderOnWhatsApp() {
+        if (!currentProduct) return;
+        
         const productId = getProductId();
-        const product = PRODUCTS[productId];
         const qty = document.getElementById('qty').value;
-        const total = product.price * qty;
+        const total = currentProduct.price * qty;
         
         const message = `Hello Fancy Cloth House! I want to order:\n\n` +
-                      `Product: ${product.name}\n` +
-                      `Price: ₹${product.price}\n` +
+                      `Product: ${currentProduct.name}\n` +
+                      `Price: ₹${currentProduct.price}\n` +
                       `Quantity: ${qty}\n` +
                       `Total: ₹${total}\n\n` +
                       `Please confirm availability and send payment details.`;
@@ -1133,14 +1197,7 @@
     }
 
     function showToast(message) {
-        let toast = document.getElementById('toast');
-        if (!toast) {
-            toast = document.createElement('div');
-            toast.id = 'toast';
-            toast.className = 'toast';
-            document.body.appendChild(toast);
-        }
-        
+        const toast = document.getElementById('toast');
         toast.textContent = message;
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 3000);
