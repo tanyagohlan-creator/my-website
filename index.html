@@ -706,9 +706,9 @@
         </ul>
         
         <div class="nav-icons">
-            <i class="fas fa-search" onclick="searchProducts()" title="Search"></i>
-            <i class="fas fa-user" onclick="showAccount()" title="My Account"></i>
-            <div class="cart-icon" onclick="viewCart()" title="Shopping Bag">
+    <i class="fas fa-search" title="Search"></i>
+    <i class="fas fa-user" title="My Account"></i>
+    <div class="cart-icon" title="Shopping Bag">
                 <i class="fas fa-shopping-bag"></i>
                 <span class="cart-count" id="cartCount">0</span>
             </div>
@@ -836,10 +836,23 @@
             <div class="footer-links">
                 <h4>Help</h4>
                 <ul>
-                    <li><a href="#" onclick="showToast('Track your order via WhatsApp: +91 62843 48760')">Track Order</a></li>
-                    <li><a href="#" onclick="showToast('7-day return policy. Contact us on WhatsApp.')">Returns</a></li>
-                    <li><a href="#" onclick="showShippingInfo()">Shipping Info</a></li>
-                    <li><a href="#" onclick="showSizeGuide()">Size Guide</a></li>
+                   function showShippingInfo() {
+    alert('🚚 SHIPPING INFORMATION\n\n' +
+          '• Free shipping on orders above ₹999\n' +
+          '• Delivery time: 3-5 business days\n' +
+          '• Cash on Delivery available (₹50 extra charge)\n' +
+          '• Track via WhatsApp: +91 62843 48760');
+}
+
+function showSizeGuide() {
+    alert('📏 SIZE GUIDE\n\n' +
+          'UNSTITCHED MATERIAL:\n' +
+          '• Top (Kameez): 2.5 meters\n' +
+          '• Bottom (Salwar): 2.5 meters\n' +
+          '• Dupatta: 2.25 meters\n\n' +
+          'Width: 44 inches\n' +
+          'Fabric: Premium quality');
+}
                 </ul>
             </div>
             
@@ -1287,5 +1300,6 @@
 </div>
 </body>
 </html>
+
 
 
