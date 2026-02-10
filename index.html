@@ -601,6 +601,91 @@
                 font-size: 1.8rem;
             }
         }
+        /* ====== ADD THESE STYLES AT THE END OF YOUR EXISTING CSS ====== */
+
+/* Fix mobile hero text */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.2rem !important;
+    }
+}
+
+/* Add Trust Banner Styles */
+.trust-banner {
+    background: #f9f7f4;
+    padding: 15px 0;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.trust-banner-content {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.trust-banner span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Search Modal */
+.search-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-modal.active {
+    display: flex;
+}
+
+.search-modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.search-results {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.search-result-item {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.search-result-item:hover {
+    background: #f5f5f5;
+}
     </style>
 </head>
 <body>
@@ -658,6 +743,17 @@
             <h4>24/7 Support</h4>
         </div>
     </div>
+    <!-- Add this AFTER the Features section -->
+<div class="trust-banner">
+    <div class="trust-banner-content">
+        <span>✅ 10+ Years Trusted Store</span>
+        <span>✅ Free Shipping over ₹999</span>
+        <span>✅ 7-Day Easy Returns</span>
+        <span>✅ <a href="https://wa.me/916284348760" style="color: var(--primary); text-decoration: none;">
+            <i class="fab fa-whatsapp"></i> +91 62843 48760
+        </a></span>
+    </div>
+</div>
 
     <!-- New Arrivals -->
     <section id="shop">
@@ -769,12 +865,12 @@
 
    <script>
     // ==========================================
-    // GOOGLE SHEETS CONFIGURATION
+    // CONFIGURATION
     // ==========================================
     
     const GOOGLE_SHEET_URL = 'https://api.sheetbest.com/sheets/35f5e273-b28f-4fef-abc8-07ac3dfd1601';
     
-    // COMPLETE FALLBACK PRODUCTS (All 8 Products)
+    // FALLBACK PRODUCTS (All 8)
     const FALLBACK_PRODUCTS = [
         {
             id: "1",
@@ -782,7 +878,7 @@
             brand: "Fancy Cloth House",
             price: "1250",
             originalPrice: "1600",
-            image: "https://i.ibb.co/svWpcZMp/suit-floral-model.jpg,https://i.ibb.co/zWM9n328/suit-floral-flatlay.jpg",
+            image: "https://i.ibb.co/svWpcZMp/suit-floral-model.jpg",
             badge: "Bestseller",
             category: "suit",
             description: "Beautiful floral print suit set with intricate golden lace work on dupatta. Perfect for festive occasions."
@@ -793,7 +889,7 @@
             brand: "Fancy Cloth House",
             price: "2850",
             originalPrice: "3500",
-            image: "https://i.ibb.co/W4SkpWWp/salwar-suit-purple-model.jpg,https://i.ibb.co/HD0QJWG0/salwar-suit-all-colors-model.jpg,https://i.ibb.co/rKwrzp1d/salwar-suit-purple-flatlay.jpg,https://i.ibb.co/ZzrhZqtb/salwar-suit-red-flatlay.jpg,https://i.ibb.co/B5hnBr4f/salwar-suit-black-flatlay.jpg,https://i.ibb.co/35Pvbpmv/salwar-suit-yellow-flatlay.jpg,https://i.ibb.co/QF2fQxy9/suit1-2.jpg",
+            image: "https://i.ibb.co/W4SkpWWp/salwar-suit-purple-model.jpg",
             badge: "New",
             category: "suit",
             description: "Premium quality natural fabric with heavy dupatta work. Available in multiple colors."
@@ -804,7 +900,7 @@
             brand: "Premium Collection",
             price: "2100",
             originalPrice: "2600",
-            image: "https://i.ibb.co/0yqxXCS7/suit1-2.jpg,https://i.ibb.co/S76jvh24/suit-floral-model.jpg",
+            image: "https://i.ibb.co/0yqxXCS7/suit1-2.jpg",
             badge: "Trending",
             category: "suit",
             description: "Elegant silk suit with detailed embroidery work. Perfect for parties and special occasions."
@@ -815,7 +911,7 @@
             brand: "Fancy Cloth House",
             price: "950",
             originalPrice: "1500",
-            image: "https://i.ibb.co/Gv55bP1Z/suit-floral-model.jpg,https://i.ibb.co/6R6jtVWW/suit1-2.jpg",
+            image: "https://i.ibb.co/Gv55bP1Z/suit-floral-model.jpg",
             badge: "Trending",
             category: "suit",
             description: "Lightweight georgette set ideal for parties. Flowy and comfortable design."
@@ -826,7 +922,7 @@
             brand: "Daily Wear",
             price: "999",
             originalPrice: "1200",
-            image: "https://i.ibb.co/671FLG0y/suit1-2.jpg,https://i.ibb.co/gZY99Smn/suit-floral-model.jpg,https://i.ibb.co/s9sY9gHy/suit-floral-flatlay.jpg",
+            image: "https://i.ibb.co/671FLG0y/suit1-2.jpg",
             badge: "Sale",
             category: "suit",
             description: "Comfortable daily wear kurti set with beautiful prints. Pure Natural Glass with pure Duppta. Great value for money."
@@ -837,7 +933,7 @@
             brand: "Bridal Collection",
             price: "2499",
             originalPrice: "3999",
-            image: "https://i.ibb.co/xKvnHdm1/wedding-lehenga-model.png,https://i.ibb.co/d02WG3Sb/wedding-lehenga-flatlay.jpeg,https://i.ibb.co/CpgprrSQ/suit1-2.jpg",
+            image: "https://i.ibb.co/xKvnHdm1/wedding-lehenga-model.png",
             badge: "Premium",
             category: "suit",
             description: "Exquisite natural crape silk all over with handwork. Heavy Chinon duppta four side hand work with heavy bottom work."
@@ -848,7 +944,7 @@
             brand: "Fancy Cloth House",
             price: "3000",
             originalPrice: "3500",
-            image: "https://i.ibb.co/d422XCPT/suit-floral-flatlay.jpg,https://i.ibb.co/bMcthq7n/suit-floral-model.jpg,https://i.ibb.co/Qvx1Bj6m/suit1-2.jpg",
+            image: "https://i.ibb.co/d422XCPT/suit-floral-flatlay.jpg",
             badge: "Trending",
             category: "suit",
             description: "Heavy Bajju Salwar Work with chiffon dupatta set perfect for party-festive wear. Soft and breathable fabric."
@@ -859,109 +955,77 @@
             brand: "Premium Collection",
             price: "2800",
             originalPrice: "3500",
-            image: "https://i.ibb.co/rRfr6Zck/suit1-2.jpg,https://i.ibb.co/v41Hr1RP/suit-floral-model.jpg,https://i.ibb.co/ZzZpzktN/suit-floral-flatlay.jpg",
+            image: "https://i.ibb.co/rRfr6Zck/suit1-2.jpg",
             badge: "Trending",
             category: "suit",
-            description: "Elegant mehroon colour silk suit with rich all-over detailing. A perfect choice for parties, festive occasions, and evening wear, offering a graceful look with a luxurious finish."
+            description: "Elegant mehroon colour silk suit with rich all-over detailing. A perfect choice for parties, festive occasions, and evening wear."
         }
     ];
 
     let cart = JSON.parse(localStorage.getItem('fch_cart')) || [];
+    let allProducts = [];
 
     // ==========================================
-    // LOAD PRODUCTS FROM GOOGLE SHEETS
+    // LOAD PRODUCTS
     // ==========================================
     async function loadProducts() {
         const grid = document.getElementById('productsGrid');
         
-        // Show loading
         grid.innerHTML = `
             <div style="grid-column: 1/-1; text-align: center; padding: 60px;">
                 <i class="fas fa-spinner fa-spin" style="font-size: 48px; color: #8B1538;"></i>
-                <p style="color: #555; margin-top: 20px;">Loading your beautiful collection...</p>
+                <p style="color: #555; margin-top: 20px;">Loading products...</p>
             </div>
         `;
 
         try {
             const response = await fetch(GOOGLE_SHEET_URL);
-            
-            if (!response.ok) throw new Error('Failed to load from Google Sheets');
-            
             const products = await response.json();
+            allProducts = products.map(p => ({
+                id: p.id,
+                name: p.name,
+                brand: p.brand || 'Fancy Cloth House',
+                price: p.price,
+                originalPrice: p.originalPrice,
+                image: p.image ? p.image.split(',')[0].trim() : '',
+                badge: p.badge,
+                category: p.category || 'suit',
+                description: p.description
+            }));
             
-            if (products && products.length > 0) {
-                renderProducts(products);
-                showToast(`✨ Loaded ${products.length} stunning outfits`);
-            } else {
-                throw new Error('No products in Google Sheet');
-            }
+            renderProducts(allProducts);
         } catch (error) {
-            console.log('Using fallback products:', error.message);
-            renderProducts(FALLBACK_PRODUCTS);
-            showToast('📱 Showing all 8 products from backup');
+            console.log('Using fallback products');
+            allProducts = FALLBACK_PRODUCTS;
+            renderProducts(allProducts);
         }
     }
 
-    // ==========================================
-    // RENDER PRODUCTS FUNCTION
-    // ==========================================
-    function renderProducts(productList) {
+    function renderProducts(products) {
         const grid = document.getElementById('productsGrid');
         
-        if (!productList || productList.length === 0) {
-            grid.innerHTML = `
-                <div style="grid-column: 1/-1; text-align: center; padding: 60px;">
-                    <i class="fas fa-search" style="font-size: 48px; color: #ddd;"></i>
-                    <p style="color: #666; font-size: 18px; margin-top: 20px;">No products found</p>
-                    <button onclick="loadProducts()" class="view-btn" style="margin-top: 20px;">
-                        <i class="fas fa-sync-alt"></i> Reload Products
-                    </button>
-                </div>
-            `;
-            return;
-        }
-        
-        grid.innerHTML = productList.map(product => {
-            // Get first image (multiple images separated by commas)
-            let firstImage = '';
-            if (product.image && typeof product.image === 'string') {
-                const images = product.image.split(',');
-                firstImage = images[0].trim();
-            } else {
-                firstImage = 'https://via.placeholder.com/400x500/F9F7F4/8B1538?text=Fancy+Cloth+House';
-            }
-            
-            // Calculate discount percentage
-            let discount = 0;
+        grid.innerHTML = products.map(product => {
             const price = parseInt(product.price) || 0;
             const originalPrice = parseInt(product.originalPrice) || 0;
+            const discount = originalPrice > price ? Math.round((1 - price/originalPrice) * 100) : 0;
+            const image = product.image || 'https://via.placeholder.com/400x500/F9F7F4/8B1538?text=Fancy+Cloth+House';
             
-            if (originalPrice > 0 && price > 0 && originalPrice > price) {
-                discount = Math.round((1 - price/originalPrice) * 100);
-            }
-            
-            // Product card HTML
             return `
                 <a href="product.html?id=${product.id}" class="product-card">
                     <div class="product-image">
-                        <img src="${firstImage}" 
-                             alt="${product.name}"
-                             onerror="this.src='https://via.placeholder.com/400x500/F9F7F4/8B1538?text=Fancy+Cloth+House'">
+                        <img src="${image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/400x500/F9F7F4/8B1538?text=Product'">
                         ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
                     </div>
                     <div class="product-info">
-                        <div class="product-brand">${product.brand || 'Fancy Cloth House'}</div>
+                        <div class="product-brand">${product.brand}</div>
                         <h3 class="product-title">${product.name}</h3>
                         <div class="product-price">
                             <span class="current-price">₹${price}</span>
                             ${originalPrice > price ? `<span class="original-price">₹${originalPrice}</span>` : ''}
                             ${discount > 0 ? `<span class="discount">${discount}% OFF</span>` : ''}
                         </div>
-                        <div class="short-desc" style="font-size: 0.9rem; color: #666; margin: 10px 0; line-height: 1.4;">
-                            ${(product.description || '').substring(0, 80)}${product.description && product.description.length > 80 ? '...' : ''}
-                        </div>
                         <a href="product.html?id=${product.id}" class="view-btn">
-                            <i class="fas fa-eye"></i> View Full Details
+                            <i class="fas fa-eye"></i> View Details
                         </a>
                     </div>
                 </a>
@@ -970,232 +1034,115 @@
     }
 
     // ==========================================
-    // FILTER FUNCTIONS
+    // SEARCH FUNCTIONALITY (FIXED)
     // ==========================================
-    async function filterSuits() {
-        try {
-            const response = await fetch(GOOGLE_SHEET_URL);
-            const products = await response.json();
-            const filtered = products.filter(p => 
-                (p.category || '').toLowerCase().includes('suit')
-            );
-            
-            if (filtered.length === 0) {
-                // If Google Sheets fails, filter fallback products
-                filtered = FALLBACK_PRODUCTS.filter(p => p.category === 'suit');
-            }
-            
-            renderProducts(filtered);
-            showToast(`👗 Showing ${filtered.length} suit sets`);
-            updateActiveNav('Suits');
-        } catch (error) {
-            // Use fallback products if Google Sheets fails
-            const filtered = FALLBACK_PRODUCTS.filter(p => p.category === 'suit');
-            renderProducts(filtered);
-            showToast(`👗 Showing ${filtered.length} suit sets (from backup)`);
+    function openSearch() {
+        document.getElementById('searchModal').classList.add('active');
+        document.getElementById('searchInput').focus();
+        performSearch('');
+    }
+
+    function closeSearch() {
+        document.getElementById('searchModal').classList.remove('active');
+    }
+
+    function performSearch(query) {
+        const resultsDiv = document.getElementById('searchResults');
+        const searchTerm = query.toLowerCase().trim();
+        
+        if (!searchTerm) {
+            resultsDiv.innerHTML = '<div class="search-result-item" style="text-align: center; color: #666; padding: 2rem;">Type to search products...</div>';
+            return;
+        }
+        
+        const filtered = allProducts.filter(product => 
+            product.name.toLowerCase().includes(searchTerm) ||
+            product.description.toLowerCase().includes(searchTerm) ||
+            product.brand.toLowerCase().includes(searchTerm) ||
+            (product.badge && product.badge.toLowerCase().includes(searchTerm))
+        );
+        
+        if (filtered.length === 0) {
+            resultsDiv.innerHTML = `
+                <div class="search-result-item" style="text-align: center; padding: 2rem;">
+                    <i class="fas fa-search" style="font-size: 2rem; color: #ddd; margin-bottom: 1rem;"></i>
+                    <p>No products found for "${searchTerm}"</p>
+                </div>
+            `;
+        } else {
+            resultsDiv.innerHTML = filtered.map(product => `
+                <div class="search-result-item" onclick="goToProduct('${product.id}')">
+                    <div style="display: flex; gap: 15px; align-items: center;">
+                        <img src="${product.image || 'https://via.placeholder.com/60x60'}" 
+                             style="width: 60px; height: 60px; object-fit: cover; border-radius: 6px;"
+                             onerror="this.src='https://via.placeholder.com/60x60'">
+                        <div>
+                            <div style="font-weight: 600; color: var(--dark);">${product.name}</div>
+                            <div style="color: var(--primary); font-size: 0.9rem;">₹${product.price}</div>
+                            <div style="color: #666; font-size: 0.8rem; margin-top: 4px;">${product.brand}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
         }
     }
 
-    async function filterSale() {
-        try {
-            const response = await fetch(GOOGLE_SHEET_URL);
-            const products = await response.json();
-            let filtered = products.filter(p => 
-                (p.badge || '').toLowerCase().includes('sale') ||
+    function goToProduct(productId) {
+        window.location.href = `product.html?id=${productId}`;
+        closeSearch();
+    }
+
+    // ==========================================
+    // FILTER FUNCTIONALITY (FIXED)
+    // ==========================================
+    function filterProducts(category) {
+        let filtered = [];
+        
+        if (category === 'suit') {
+            filtered = allProducts.filter(p => p.category === 'suit');
+            showToast(`Showing ${filtered.length} suit sets`);
+        } else if (category === 'sale') {
+            filtered = allProducts.filter(p => 
+                p.badge === 'Sale' || 
                 (parseInt(p.originalPrice) - parseInt(p.price)) > 500
             );
-            
-            if (filtered.length === 0) {
-                // If Google Sheets fails or no sale items, filter fallback
-                filtered = FALLBACK_PRODUCTS.filter(p => 
-                    p.badge === 'Sale' || (parseInt(p.originalPrice) - parseInt(p.price)) > 500
-                );
-            }
-            
-            renderProducts(filtered);
-            showToast(`💰 Showing ${filtered.length} sale items`);
-            updateActiveNav('Sale');
-        } catch (error) {
-            // Use fallback products
-            const filtered = FALLBACK_PRODUCTS.filter(p => 
-                p.badge === 'Sale' || (parseInt(p.originalPrice) - parseInt(p.price)) > 500
+            showToast(`Showing ${filtered.length} sale items`);
+        } else if (category === 'premium') {
+            filtered = allProducts.filter(p => 
+                p.badge === 'Premium' || 
+                p.badge === 'Bestseller' ||
+                parseInt(p.price) > 2000
             );
-            renderProducts(filtered);
-            showToast(`💰 Showing ${filtered.length} sale items (from backup)`);
+            showToast(`Showing ${filtered.length} premium items`);
+        } else {
+            filtered = allProducts;
+            showToast('Showing all products');
         }
-    }
-
-    async function filterNewArrivals() {
-        try {
-            const response = await fetch(GOOGLE_SHEET_URL);
-            const products = await response.json();
-            
-            // Show products with "New" badge or recently added
-            let filtered = products.filter(p => 
-                (p.badge || '').toLowerCase().includes('new') ||
-                (p.badge || '').toLowerCase().includes('trending')
-            );
-            
-            if (filtered.length === 0) {
-                filtered = FALLBACK_PRODUCTS.filter(p => 
-                    p.badge === 'New' || p.badge === 'Trending' || p.badge === 'Bestseller'
-                );
-            }
-            
-            renderProducts(filtered);
-            showToast(`🆕 Showing ${filtered.length} new arrivals`);
-            updateActiveNav('New Arrivals');
-        } catch (error) {
-            const filtered = FALLBACK_PRODUCTS.filter(p => 
-                p.badge === 'New' || p.badge === 'Trending' || p.badge === 'Bestseller'
-            );
-            renderProducts(filtered);
-            showToast(`🆕 Showing ${filtered.length} new arrivals (from backup)`);
-        }
-    }
-
-    function filterPremium() {
-        // For premium/expensive items
-        const filtered = FALLBACK_PRODUCTS.filter(p => 
-            p.badge === 'Premium' || parseInt(p.price) > 2500
-        );
+        
         renderProducts(filtered);
-        showToast(`💎 Showing ${filtered.length} premium items`);
-        updateActiveNav('Premium');
+        updateActiveNav(category);
     }
 
-    function updateActiveNav(activeText) {
+    function updateActiveNav(category) {
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.classList.remove('active');
-            if (link.textContent.includes(activeText) || 
-                (activeText === 'New Arrivals' && link.textContent.includes('New'))) {
+            if (link.textContent.includes(category) || 
+                (category === 'all' && link.textContent.includes('New'))) {
                 link.classList.add('active');
             }
         });
     }
 
     // ==========================================
-    // SEARCH FUNCTION
+    // CART FUNCTIONALITY (FIXED)
     // ==========================================
-    function searchProducts() {
-        const searchTerm = prompt('🔍 Search products (name, fabric, occasion):');
-        if (searchTerm && searchTerm.trim() !== '') {
-            // First try Google Sheets
-            fetch(GOOGLE_SHEET_URL)
-                .then(response => response.json())
-                .then(products => {
-                    const filtered = products.filter(p => 
-                        p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        (p.description || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        (p.brand || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        (p.badge || '').toLowerCase().includes(searchTerm.toLowerCase())
-                    );
-                    
-                    if (filtered.length > 0) {
-                        renderProducts(filtered);
-                        showToast(`Found ${filtered.length} items matching "${searchTerm}"`);
-                    } else {
-                        // If nothing in Google Sheets, search fallback
-                        const filteredFallback = FALLBACK_PRODUCTS.filter(p => 
-                            p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                            p.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                            p.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                            p.badge.toLowerCase().includes(searchTerm.toLowerCase())
-                        );
-                        
-                        if (filteredFallback.length > 0) {
-                            renderProducts(filteredFallback);
-                            showToast(`Found ${filteredFallback.length} items matching "${searchTerm}" (from backup)`);
-                        } else {
-                            showToast(`No products found for "${searchTerm}"`);
-                            loadProducts(); // Show all products
-                        }
-                    }
-                })
-                .catch(() => {
-                    // If Google Sheets fails, use fallback
-                    const filteredFallback = FALLBACK_PRODUCTS.filter(p => 
-                        p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        p.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        p.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        p.badge.toLowerCase().includes(searchTerm.toLowerCase())
-                    );
-                    
-                    if (filteredFallback.length > 0) {
-                        renderProducts(filteredFallback);
-                        showToast(`Found ${filteredFallback.length} items matching "${searchTerm}" (from backup)`);
-                    } else {
-                        showToast(`No products found for "${searchTerm}"`);
-                        renderProducts(FALLBACK_PRODUCTS);
-                    }
-                });
-        }
-    }
-
-    // ==========================================
-    // CART FUNCTIONS
-    // ==========================================
-    function addToCart(productId) {
-        // Find product from fallback or Google Sheets
-        let product = FALLBACK_PRODUCTS.find(p => p.id == productId);
-        
-        // If not in fallback, try to fetch from Google Sheets
-        if (!product) {
-            fetch(GOOGLE_SHEET_URL)
-                .then(response => response.json())
-                .then(products => {
-                    product = products.find(p => p.id == productId);
-                    if (product) {
-                        addToCartLocal(product);
-                    }
-                })
-                .catch(() => {
-                    showToast('Cannot add to cart right now');
-                });
-        } else {
-            addToCartLocal(product);
-        }
-    }
-
-    function addToCartLocal(product) {
-        let cart = JSON.parse(localStorage.getItem('fch_cart')) || [];
-        
-        // Check if product already in cart
-        const existing = cart.find(item => item.id == product.id);
-        if (existing) {
-            existing.quantity = (existing.quantity || 1) + 1;
-        } else {
-            const firstImage = product.image ? product.image.split(',')[0].trim() : '';
-            cart.push({
-                id: product.id,
-                name: product.name,
-                price: product.price,
-                image: firstImage,
-                quantity: 1
-            });
-        }
-        
-        localStorage.setItem('fch_cart', JSON.stringify(cart));
-        updateCart();
-        showToast(`✅ ${product.name} added to cart!`);
-    }
-
-    function updateCart() {
-        const cartCount = document.getElementById('cartCount');
-        const cart = JSON.parse(localStorage.getItem('fch_cart')) || [];
-        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-        cartCount.textContent = totalItems;
-    }
-
-    function viewCart() {
-        const cart = JSON.parse(localStorage.getItem('fch_cart')) || [];
-        
+    function openCart() {
         if (cart.length === 0) {
-            showToast('🛒 Your cart is empty. Add some beautiful outfits!');
+            showToast('🛒 Your cart is empty');
             return;
         }
         
-        // Create cart summary message for WhatsApp
+        // Create cart summary
         let message = "🛍️ *MY CART ORDER - Fancy Cloth House*\n\n";
         let total = 0;
         
@@ -1203,8 +1150,7 @@
             const itemTotal = parseInt(item.price) * (item.quantity || 1);
             total += itemTotal;
             message += `${index + 1}. *${item.name}*\n`;
-            message += `   Price: ₹${item.price} x ${item.quantity || 1} = ₹${itemTotal}\n`;
-            message += `   (Order ID: FC-${item.id})\n\n`;
+            message += `   Price: ₹${item.price} x ${item.quantity || 1} = ₹${itemTotal}\n\n`;
         });
         
         message += `*Subtotal: ₹${total}*\n`;
@@ -1212,8 +1158,30 @@
         message += `*Total: ₹${total}*\n\n`;
         message += `Please confirm availability and send payment details.`;
         
-        // Open WhatsApp with cart details
         window.open(`https://wa.me/916284348760?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    function updateCart() {
+        const cartCount = document.getElementById('cartCount');
+        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        cartCount.textContent = totalItems;
+    }
+
+    // ==========================================
+    // USER ACCOUNT (FIXED)
+    // ==========================================
+    function openUserAccount() {
+        const email = localStorage.getItem('fch_user');
+        
+        if (email) {
+            showToast(`Welcome back, ${email}!`);
+        } else {
+            const userEmail = prompt('Enter your email for order updates:');
+            if (userEmail) {
+                localStorage.setItem('fch_user', userEmail);
+                showToast(`Welcome! You'll get updates at ${userEmail}`);
+            }
+        }
     }
 
     // ==========================================
@@ -1227,90 +1195,97 @@
     }
 
     // ==========================================
-    // SETUP EVENT LISTENERS
+    // EVENT LISTENERS
     // ==========================================
     function setupEventListeners() {
-        // Navigation clicks
+        // Search input
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                performSearch(e.target.value);
+            });
+        }
+        
+        // Search icon
+        const searchIcon = document.querySelector('.fa-search');
+        if (searchIcon) {
+            searchIcon.addEventListener('click', openSearch);
+        }
+        
+        // User icon
+        const userIcon = document.querySelector('.fa-user');
+        if (userIcon) {
+            userIcon.addEventListener('click', openUserAccount);
+        }
+        
+        // Cart icon
+        const cartIcon = document.querySelector('.cart-icon');
+        if (cartIcon) {
+            cartIcon.addEventListener('click', openCart);
+        }
+        
+        // Navigation links
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 const text = this.textContent;
                 
-                if (text.includes('Suits') || text.includes('Suit')) filterSuits();
-                else if (text.includes('New')) filterNewArrivals();
-                else if (text.includes('Sale')) filterSale();
-                else if (text.includes('Premium')) filterPremium();
-                else loadProducts();
+                if (text.includes('Suit')) filterProducts('suit');
+                else if (text.includes('Sale')) filterProducts('sale');
+                else if (text.includes('Premium')) filterProducts('premium');
+                else {
+                    filterProducts('all');
+                    showToast('Showing all products');
+                }
                 
-                // Scroll to products
                 document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth' });
             });
         });
-
-        // Footer shop links
+        
+        // Footer links
         document.querySelectorAll('.footer-links a').forEach(link => {
             if (link.textContent.includes('Suit')) {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    filterSuits();
+                    filterProducts('suit');
                 });
             } else if (link.textContent.includes('Sale')) {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    filterSale();
-                });
-            } else if (link.textContent.includes('New')) {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    filterNewArrivals();
+                    filterProducts('sale');
                 });
             }
         });
-
-        // Collection banner clicks
-        document.querySelectorAll('.banner-item').forEach(banner => {
-            banner.addEventListener('click', function() {
-                filterSale();
-            });
+        
+        // Close search on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeSearch();
         });
     }
 
     // ==========================================
-    // INITIALIZE WEBSITE
+    // INITIALIZE
     // ==========================================
     document.addEventListener('DOMContentLoaded', function() {
-        if (document.getElementById('productsGrid')) {
-            // Load products and setup
-            loadProducts();
-            updateCart();
-            setupEventListeners();
-            
-            // Make search icon work
-            const searchIcon = document.querySelector('.fa-search');
-            if (searchIcon) {
-                searchIcon.addEventListener('click', searchProducts);
-            }
-            
-            // Make cart icon work
-            const cartIcon = document.querySelector('.cart-icon');
-            if (cartIcon) {
-                cartIcon.addEventListener('click', viewCart);
-            }
-            
-            // Make user icon work
-            const userIcon = document.querySelector('.fa-user');
-            if (userIcon) {
-                userIcon.addEventListener('click', function() {
-                    const email = prompt('Enter your email for notifications:');
-                    if (email) {
-                        localStorage.setItem('fch_user', email);
-                        showToast(`Welcome! You'll get updates at ${email}`);
-                    }
-                });
-            }
-        }
+        loadProducts();
+        updateCart();
+        setupEventListeners();
     });
 </script>
+    <!-- Add this RIGHT BEFORE the closing </body> tag -->
+<div class="search-modal" id="searchModal">
+    <div class="search-modal-content">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem;">
+            <i class="fas fa-search" style="color: var(--primary); font-size: 1.5rem;"></i>
+            <input type="text" class="search-input" id="searchInput" placeholder="Search for suits, dresses, fabrics, occasions..." autofocus>
+        </div>
+        <button onclick="closeSearch()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">×</button>
+        <div class="search-results" id="searchResults">
+            <!-- Search results will appear here -->
+        </div>
+    </div>
+</div>
 </body>
 </html>
+
 
