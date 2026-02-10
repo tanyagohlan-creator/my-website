@@ -793,15 +793,12 @@
         <img src="" class="zoom-image" id="zoomImage">
     </div>
 
-  <script>
+ <script>
     // ==========================================
-    // PRODUCT DATABASE FROM GOOGLE SHEETS
+    // SIMPLIFIED PRODUCT DATA (ALWAYS WORKS)
     // ==========================================
     
-    const GOOGLE_SHEET_URL = 'https://api.sheetbest.com/sheets/35f5e273-b28f-4fef-abc8-07ac3dfd1601';
-    
-    // COMPLETE FALLBACK PRODUCTS (Same as index.html)
-    const FALLBACK_PRODUCTS = {
+    const PRODUCTS = {
         '1': {
             name: 'Floral Print Suit Set with Golden Lace Dupatta',
             subtitle: 'Beautiful floral print suit set with intricate golden lace work on dupatta. Perfect for festive occasions.',
@@ -812,7 +809,6 @@
                 'https://i.ibb.co/svWpcZMp/suit-floral-model.jpg',
                 'https://i.ibb.co/zWM9n328/suit-floral-flatlay.jpg'
             ],
-            colors: ['Black', 'Red', 'Teal', 'Mustard'],
             details: {
                 'Brand': 'Fancy Cloth House',
                 'Top Material': 'Cotton (2.5m)',
@@ -820,17 +816,10 @@
                 'Dupatta': 'Chiffon with Golden Lace (2.25m)',
                 'Work/Print': 'Floral Print with Lace',
                 'Width': '44 inches',
-                'Care': 'Hand Wash / Dry Clean',
-                'SKU': 'FC-001',
-                'Country of Origin': 'India'
+                'Care': 'Hand Wash / Dry Clean'
             },
-            description: 'Elevate your ethnic wardrobe with this exquisite unstitched cotton suit set. The beautiful floral print combined with golden lace work on the dupatta makes it perfect for festive occasions. Crafted from premium quality pure cotton, this fabric offers breathability and comfort perfect for all-day wear.',
-            reviews: [
-                { name: 'Priya Sharma', date: '2 days ago', rating: 5, text: 'Absolutely love the fabric quality! The cotton is soft and the print is exactly as shown in the pictures.', verified: true },
-                { name: 'Anjali Patel', date: '1 week ago', rating: 5, text: 'Great value for money. The material length is sufficient even for plus sizes.', verified: true }
-            ]
+            description: 'Elevate your ethnic wardrobe with this exquisite unstitched cotton suit set. The beautiful floral print combined with golden lace work on the dupatta makes it perfect for festive occasions.'
         },
-        
         '2': {
             name: 'Pure Natural Salwar Suit with Dupatta Work',
             subtitle: 'Premium quality natural fabric with heavy dupatta work. Available in multiple colors.',
@@ -839,14 +828,8 @@
             tag: 'New',
             images: [
                 'https://i.ibb.co/W4SkpWWp/salwar-suit-purple-model.jpg',
-                'https://i.ibb.co/HD0QJWG0/salwar-suit-all-colors-model.jpg',
-                'https://i.ibb.co/rKwrzp1d/salwar-suit-purple-flatlay.jpg',
-                'https://i.ibb.co/ZzrhZqtb/salwar-suit-red-flatlay.jpg',
-                'https://i.ibb.co/B5hnBr4f/salwar-suit-black-flatlay.jpg',
-                'https://i.ibb.co/35Pvbpmv/salwar-suit-yellow-flatlay.jpg',
-                'https://i.ibb.co/QF2fQxy9/suit1-2.jpg'
+                'https://i.ibb.co/HD0QJWG0/salwar-suit-all-colors-model.jpg'
             ],
-            colors: ['Purple', 'Red', 'Black', 'Yellow'],
             details: {
                 'Brand': 'Fancy Cloth House',
                 'Top Material': 'Natural Cotton (2.5m)',
@@ -854,17 +837,10 @@
                 'Dupatta': 'Heavy Worked Dupatta (2.25m)',
                 'Work/Print': 'Traditional Heavy Work',
                 'Width': '44 inches',
-                'Care': 'Dry Clean Recommended',
-                'SKU': 'FC-002',
-                'Country of Origin': 'India'
+                'Care': 'Dry Clean Recommended'
             },
-            description: 'Premium quality natural fabric suit set with intricate heavy dupatta work. This elegant piece is available in multiple vibrant colors - Purple, Red, Black, and Yellow. Perfect for weddings, festivals, and special occasions.',
-            reviews: [
-                { name: 'Sunita Devi', date: '3 days ago', rating: 5, text: 'Very nice fabric. The work on dupatta is beautiful and traditional.', verified: true },
-                { name: 'Kavita Gupta', date: '1 week ago', rating: 5, text: 'Wore this to my sister\'s wedding. Everyone complimented the heavy dupatta work.', verified: true }
-            ]
+            description: 'Premium quality natural fabric suit set with intricate heavy dupatta work. Perfect for weddings, festivals, and special occasions.'
         },
-        
         '3': {
             name: 'Embroidered Silk Suit',
             subtitle: 'Elegant silk suit with detailed embroidery work. Perfect for parties and special occasions.',
@@ -875,7 +851,6 @@
                 'https://i.ibb.co/0yqxXCS7/suit1-2.jpg',
                 'https://i.ibb.co/S76jvh24/suit-floral-model.jpg'
             ],
-            colors: ['Green', 'Pink', 'Maroon'],
             details: {
                 'Brand': 'Premium Collection',
                 'Top Material': 'Silk Blend (2.5m)',
@@ -883,16 +858,10 @@
                 'Dupatta': 'Silk with Embroidery (2.25m)',
                 'Work/Print': 'Detailed Embroidery',
                 'Width': '44 inches',
-                'Care': 'Dry Clean Only',
-                'SKU': 'FC-003',
-                'Country of Origin': 'India'
+                'Care': 'Dry Clean Only'
             },
-            description: 'Elegant silk suit with detailed embroidery work that adds sophistication to your look. Perfect for parties, receptions, and special occasions.',
-            reviews: [
-                { name: 'Neha Singh', date: '5 days ago', rating: 5, text: 'The embroidery work is exquisite! Wore it to a party and got so many compliments.', verified: true }
-            ]
+            description: 'Elegant silk suit with detailed embroidery work that adds sophistication to your look.'
         },
-        
         '4': {
             name: 'Party Wear Georgette Set',
             subtitle: 'Lightweight georgette set ideal for parties. Flowy and comfortable design.',
@@ -903,7 +872,6 @@
                 'https://i.ibb.co/Gv55bP1Z/suit-floral-model.jpg',
                 'https://i.ibb.co/6R6jtVWW/suit1-2.jpg'
             ],
-            colors: ['Black', 'Navy', 'Wine'],
             details: {
                 'Brand': 'Fancy Cloth House',
                 'Top Material': 'Georgette (2.5m)',
@@ -911,16 +879,10 @@
                 'Dupatta': 'Georgette (2.25m)',
                 'Work/Print': 'Subtle Print',
                 'Width': '44 inches',
-                'Care': 'Hand Wash / Dry Clean',
-                'SKU': 'FC-004',
-                'Country of Origin': 'India'
+                'Care': 'Hand Wash / Dry Clean'
             },
-            description: 'Lightweight and flowy georgette set perfect for parties and evening events. The comfortable design allows easy movement while the elegant drape enhances your silhouette.',
-            reviews: [
-                { name: 'Ananya Roy', date: '2 days ago', rating: 5, text: 'Perfect party wear! The georgette is lightweight and flows beautifully.', verified: true }
-            ]
+            description: 'Lightweight and flowy georgette set perfect for parties and evening events.'
         },
-        
         '5': {
             name: 'Casual Printed Kurti Set',
             subtitle: 'Comfortable daily wear kurti set with beautiful prints. Great value for money.',
@@ -929,10 +891,8 @@
             tag: 'Sale',
             images: [
                 'https://i.ibb.co/671FLG0y/suit1-2.jpg',
-                'https://i.ibb.co/gZY99Smn/suit-floral-model.jpg',
-                'https://i.ibb.co/s9sY9gHy/suit-floral-flatlay.jpg'
+                'https://i.ibb.co/gZY99Smn/suit-floral-model.jpg'
             ],
-            colors: ['White', 'Yellow', 'Peach'],
             details: {
                 'Brand': 'Daily Wear',
                 'Top Material': 'Cotton (2.5m)',
@@ -940,28 +900,20 @@
                 'Dupatta': 'Lightweight Cotton (2.25m)',
                 'Work/Print': 'Beautiful Prints',
                 'Width': '44 inches',
-                'Care': 'Machine Wash',
-                'SKU': 'FC-005',
-                'Country of Origin': 'India'
+                'Care': 'Machine Wash'
             },
-            description: 'Comfortable daily wear kurti set with beautiful prints at an affordable price. Made from soft cotton fabric that is perfect for everyday use.',
-            reviews: [
-                { name: 'Ritu Verma', date: '3 days ago', rating: 5, text: 'Great value for money! Bought 2 sets for daily wear.', verified: true }
-            ]
+            description: 'Comfortable daily wear kurti set with beautiful prints at an affordable price.'
         },
-        
         '6': {
             name: 'Wedding Special Suit- Pure Fandy Work',
-            subtitle: 'Exquisite natural crape silk all over with handwork. Heavy Chinon duppta four side hand work with heavy bottom work.',
+            subtitle: 'Exquisite natural crape silk all over with handwork.',
             price: 2499,
             originalPrice: 3999,
             tag: 'Premium',
             images: [
                 'https://i.ibb.co/xKvnHdm1/wedding-lehenga-model.png',
-                'https://i.ibb.co/d02WG3Sb/wedding-lehenga-flatlay.jpeg',
-                'https://i.ibb.co/CpgprrSQ/suit1-2.jpg'
+                'https://i.ibb.co/d02WG3Sb/wedding-lehenga-flatlay.jpeg'
             ],
-            colors: ['Teal'],
             details: {
                 'Brand': 'Bridal Collection',
                 'Top Material': 'Pure Fandy (2.5m)',
@@ -969,28 +921,20 @@
                 'Dupatta': 'Heavy Embroidered (2.25m)',
                 'Work/Print': 'Gold Salwar Work',
                 'Width': '44 inches',
-                'Care': 'Dry Clean Only',
-                'SKU': 'FC-006',
-                'Country of Origin': 'India'
+                'Care': 'Dry Clean Only'
             },
-            description: 'Exquisite natural crape silk all over with handwork. Heavy Chinon duppta four side hand work with heavy bottom work. This premium piece is perfect for wedding celebrations.',
-            reviews: [
-                { name: 'Komal Sharma', date: '1 week ago', rating: 5, text: 'Wore this for my engagement. It looked absolutely stunning!', verified: true }
-            ]
+            description: 'Exquisite natural crape silk all over with handwork. Perfect for wedding celebrations.'
         },
-        
         '7': {
             name: 'Chiffon Dupatta Set',
-            subtitle: 'Heavy Bajju Salwar Work with chiffon dupatta set perfect for party-festive wear. Soft and breathable fabric.',
+            subtitle: 'Heavy Bajju Salwar Work with chiffon dupatta set.',
             price: 3000,
             originalPrice: 3500,
             tag: 'Trending',
             images: [
                 'https://i.ibb.co/d422XCPT/suit-floral-flatlay.jpg',
-                'https://i.ibb.co/bMcthq7n/suit-floral-model.jpg',
-                'https://i.ibb.co/Qvx1Bj6m/suit1-2.jpg'
+                'https://i.ibb.co/bMcthq7n/suit-floral-model.jpg'
             ],
-            colors: ['Pink', 'Blue', 'Green'],
             details: {
                 'Brand': 'Fancy Cloth House',
                 'Top Material': 'Cotton (2.5m)',
@@ -998,28 +942,20 @@
                 'Dupatta': 'Chiffon (2.25m)',
                 'Work/Print': 'Simple Elegant',
                 'Width': '44 inches',
-                'Care': 'Hand Wash',
-                'SKU': 'FC-007',
-                'Country of Origin': 'India'
+                'Care': 'Hand Wash'
             },
-            description: 'Heavy Bajju Salwar Work with chiffon dupatta set perfect for party-festive wear. The soft and breathable fabric keeps you comfortable all day long.',
-            reviews: [
-                { name: 'Sneha Gupta', date: '4 days ago', rating: 5, text: 'Perfect for parties! The chiffon dupatta is so lightweight and pretty.', verified: true }
-            ]
+            description: 'Heavy Bajju Salwar Work with chiffon dupatta set perfect for party-festive wear.'
         },
-        
         '8': {
             name: 'Party Wear Natural Silk all over',
-            subtitle: 'Elegant mehroon colour silk suit with rich all-over detailing. A perfect choice for parties, festive occasions, and evening wear.',
+            subtitle: 'Elegant mehroon colour silk suit with rich all-over detailing.',
             price: 2800,
             originalPrice: 3500,
             tag: 'Trending',
             images: [
                 'https://i.ibb.co/rRfr6Zck/suit1-2.jpg',
-                'https://i.ibb.co/v41Hr1RP/suit-floral-model.jpg',
-                'https://i.ibb.co/ZzZpzktN/suit-floral-flatlay.jpg'
+                'https://i.ibb.co/v41Hr1RP/suit-floral-model.jpg'
             ],
-            colors: ['Maroon', 'Red'],
             details: {
                 'Brand': 'Premium Collection',
                 'Top Material': 'Pure Silk (2.5m)',
@@ -1027,14 +963,9 @@
                 'Dupatta': 'Silk with Detailing (2.25m)',
                 'Work/Print': 'All-over Detailing',
                 'Width': '44 inches',
-                'Care': 'Dry Clean Only',
-                'SKU': 'FC-008',
-                'Country of Origin': 'India'
+                'Care': 'Dry Clean Only'
             },
-            description: 'Elegant mehroon colour silk suit with rich all-over detailing. A perfect choice for parties, festive occasions, and evening wear, offering a graceful look with a luxurious finish.',
-            reviews: [
-                { name: 'Meera Kapoor', date: '1 week ago', rating: 5, text: 'The silk quality is exceptional! Perfect for wedding functions.', verified: true }
-            ]
+            description: 'Elegant mehroon colour silk suit with rich all-over detailing. A perfect choice for parties.'
         }
     };
 
@@ -1047,7 +978,7 @@
         return params.get('id');
     }
 
-    async function loadProduct() {
+    function loadProduct() {
         const id = getProductId();
         
         if (!id) {
@@ -1055,71 +986,37 @@
             return;
         }
 
-        // First try to load from Google Sheets
-        try {
-            console.log('Loading product from Google Sheets...');
-            const response = await fetch(GOOGLE_SHEET_URL);
-            const products = await response.json();
-            const product = products.find(p => p.id === id);
-            
-            if (product) {
-                displayProduct(product, true); // true = from Google Sheets
-                return;
-            }
-        } catch (error) {
-            console.log('Google Sheets failed, using fallback:', error);
-        }
-
-        // If Google Sheets fails, use fallback
-        const fallbackProduct = FALLBACK_PRODUCTS[id];
-        if (fallbackProduct) {
-            displayProduct(fallbackProduct, false); // false = from fallback
-        } else {
+        const product = PRODUCTS[id];
+        
+        if (!product) {
             document.getElementById('productTitle').textContent = 'Product Not Found';
-            showToast('Product not found. Redirecting to home page...');
             setTimeout(() => window.location.href = 'index.html', 2000);
+            return;
         }
-    }
 
-    function displayProduct(product, fromGoogleSheets) {
-        // Update page title
+        // Update all product information
         document.title = product.name + ' - Fancy Cloth House';
-        
-        // Update breadcrumb
-        document.getElementById('breadcrumb-name')?.textContent = product.name;
-        
-        // Update main product info
-        document.getElementById('productTag').textContent = product.tag || 'Premium';
+        document.getElementById('productTag').textContent = product.tag;
         document.getElementById('productTitle').textContent = product.name;
-        document.getElementById('productSubtitle').textContent = product.subtitle || product.description;
+        document.getElementById('productSubtitle').textContent = product.subtitle;
         document.getElementById('productPrice').textContent = '₹' + product.price;
         document.getElementById('originalPrice').textContent = '₹' + product.originalPrice;
         document.getElementById('shortDescription').textContent = product.description;
         document.getElementById('fullDescription').textContent = product.description;
 
-        // Handle images (different format for Google Sheets vs fallback)
-        let images = [];
-        if (fromGoogleSheets) {
-            // Google Sheets: images are comma-separated string
-            images = product.image ? product.image.split(',').map(img => img.trim()) : [];
-        } else {
-            // Fallback: images are already an array
-            images = product.images || [];
-        }
-
         // Set main image
         const mainImage = document.getElementById('mainImage');
         const zoomImage = document.getElementById('zoomImage');
         
-        if (images.length > 0) {
-            mainImage.src = images[0];
-            zoomImage.src = images[0];
+        if (product.images.length > 0) {
+            mainImage.src = product.images[0];
+            zoomImage.src = product.images[0];
             
             // Create thumbnails
             const thumbsContainer = document.getElementById('thumbnails');
             thumbsContainer.innerHTML = '';
             
-            images.forEach((img, idx) => {
+            product.images.forEach((img, idx) => {
                 const thumb = document.createElement('img');
                 thumb.src = img;
                 thumb.className = 'thumb' + (idx === 0 ? ' active' : '');
@@ -1129,84 +1026,30 @@
                 thumb.onclick = () => changeImage(thumb, img);
                 thumbsContainer.appendChild(thumb);
             });
-        } else {
-            // No images available
-            mainImage.src = 'https://via.placeholder.com/800x1000/F9F7F4/8B1538?text=Fancy+Cloth+House';
-            zoomImage.src = 'https://via.placeholder.com/800x1000/F9F7F4/8B1538?text=Fancy+Cloth+House';
         }
 
         // Update product details
         const detailsContainer = document.getElementById('productDetails');
-        if (fromGoogleSheets) {
-            // For Google Sheets, create basic details
-            detailsContainer.innerHTML = `
+        detailsContainer.innerHTML = '';
+        for (const [key, value] of Object.entries(product.details)) {
+            detailsContainer.innerHTML += `
                 <div class="details-row">
-                    <span class="details-label">Brand</span>
-                    <span class="details-value">${product.brand || 'Fancy Cloth House'}</span>
-                </div>
-                <div class="details-row">
-                    <span class="details-label">Category</span>
-                    <span class="details-value">${product.category || 'Suit Set'}</span>
-                </div>
-                <div class="details-row">
-                    <span class="details-label">Material</span>
-                    <span class="details-value">Premium ${product.name.toLowerCase().includes('silk') ? 'Silk' : 'Cotton'}</span>
-                </div>
-                <div class="details-row">
-                    <span class="details-label">Care Instructions</span>
-                    <span class="details-value">Dry Clean Recommended</span>
-                </div>
-                <div class="details-row">
-                    <span class="details-label">Delivery</span>
-                    <span class="details-value">3-5 Business Days</span>
+                    <span class="details-label">${key}</span>
+                    <span class="details-value">${value}</span>
                 </div>
             `;
-        } else {
-            // For fallback, use detailed information
-            detailsContainer.innerHTML = '';
-            for (const [key, value] of Object.entries(product.details || {})) {
-                detailsContainer.innerHTML += `
-                    <div class="details-row">
-                        <span class="details-label">${key}</span>
-                        <span class="details-value">${value}</span>
-                    </div>
-                `;
-            }
         }
 
-        // Update reviews
+        // Add reviews section
         const reviewsContainer = document.getElementById('reviewsContainer');
-        if (product.reviews && product.reviews.length > 0) {
-            reviewsContainer.innerHTML = '';
-            product.reviews.forEach(review => {
-                const stars = '★'.repeat(review.rating) + '☆'.repeat(5-review.rating);
-                reviewsContainer.innerHTML += `
-                    <div class="review-item">
-                        <div class="review-header">
-                            <div>
-                                <div class="reviewer-name">${review.name}</div>
-                                <div class="stars" style="color: var(--gold);">${stars}</div>
-                            </div>
-                            <div class="review-date">${review.date}</div>
-                        </div>
-                        <div class="review-content" style="color: var(--text);">${review.text}</div>
-                        ${review.verified ? '<div class="verified-badge"><i class="fas fa-check-circle"></i> Verified Purchase</div>' : ''}
-                    </div>
-                `;
-            });
-        } else {
-            reviewsContainer.innerHTML = `
-                <div class="review-item">
-                    <div class="review-content" style="color: var(--text); text-align: center; padding: 40px;">
-                        <i class="fas fa-comment-alt" style="font-size: 48px; color: #ddd; margin-bottom: 20px;"></i>
-                        <p>No reviews yet. Be the first to review this product!</p>
-                    </div>
+        reviewsContainer.innerHTML = `
+            <div class="review-item">
+                <div class="review-content" style="color: var(--text); text-align: center; padding: 40px;">
+                    <i class="fas fa-comment-alt" style="font-size: 48px; color: #ddd; margin-bottom: 20px;"></i>
+                    <p>No reviews yet. Be the first to review this product!</p>
                 </div>
-            `;
-        }
-
-        // Show success message
-        showToast('✅ Product loaded successfully');
+            </div>
+        `;
     }
 
     function changeImage(thumb, src) {
@@ -1240,40 +1083,26 @@
 
     function addToCart() {
         const productId = getProductId();
+        const product = PRODUCTS[productId];
         const qty = parseInt(document.getElementById('qty').value);
         
-        // Get cart from localStorage
         let cart = JSON.parse(localStorage.getItem('fch_cart')) || [];
-        
-        // Check if product already in cart
         const existingIndex = cart.findIndex(item => item.id === productId);
         
         if (existingIndex > -1) {
-            // Update quantity
             cart[existingIndex].quantity += qty;
         } else {
-            // Get product info (simplified version)
-            const product = FALLBACK_PRODUCTS[productId] || {
-                id: productId,
-                name: document.getElementById('productTitle').textContent,
-                price: parseInt(document.getElementById('productPrice').textContent.replace('₹', '')),
-                image: document.getElementById('mainImage').src
-            };
-            
-            // Add new item
             cart.push({
-                id: product.id,
+                id: productId,
                 name: product.name,
                 price: product.price,
-                image: product.images ? product.images[0] : product.image,
+                image: product.images[0],
                 quantity: qty
             });
         }
         
-        // Save to localStorage
         localStorage.setItem('fch_cart', JSON.stringify(cart));
         
-        // Show success message
         const btn = document.querySelector('.btn-primary');
         const originalText = btn.innerHTML;
         btn.innerHTML = '<i class="fas fa-check"></i> Added to Cart!';
@@ -1284,80 +1113,32 @@
             btn.style.background = '';
         }, 2000);
         
-        // Show toast notification
-        showToast(`${document.getElementById('productTitle').textContent} added to cart (${qty} ${qty === 1 ? 'item' : 'items'})`);
-        
-        // Update cart count on all pages
-        updateCartCount();
+        showToast(`${product.name} added to cart (${qty} ${qty === 1 ? 'item' : 'items'})`);
     }
 
     function orderOnWhatsApp() {
         const productId = getProductId();
+        const product = PRODUCTS[productId];
         const qty = document.getElementById('qty').value;
+        const total = product.price * qty;
         
-        // Get product details
-        const product = FALLBACK_PRODUCTS[productId] || {
-            name: document.getElementById('productTitle').textContent,
-            price: document.getElementById('productPrice').textContent.replace('₹', '')
-        };
-        
-        const total = parseInt(product.price) * parseInt(qty);
-        
-        const message = `Hello Fancy Cloth House! 👗\n\nI want to order:\n\n` +
-                      `*Product:* ${product.name}\n` +
-                      `*Price:* ₹${product.price}\n` +
-                      `*Quantity:* ${qty}\n` +
-                      `*Total:* ₹${total}\n` +
-                      `*Product ID:* FC-${productId}\n\n` +
+        const message = `Hello Fancy Cloth House! I want to order:\n\n` +
+                      `Product: ${product.name}\n` +
+                      `Price: ₹${product.price}\n` +
+                      `Quantity: ${qty}\n` +
+                      `Total: ₹${total}\n\n` +
                       `Please confirm availability and send payment details.`;
         
         window.open(`https://wa.me/916284348760?text=${encodeURIComponent(message)}`, '_blank');
     }
 
-    function updateCartCount() {
-        const cart = JSON.parse(localStorage.getItem('fch_cart')) || [];
-        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-        
-        // Update cart count on this page if element exists
-        const cartCount = document.getElementById('cartCount');
-        if (cartCount) {
-            cartCount.textContent = totalItems;
-        }
-    }
-
     function showToast(message) {
-        // Create toast element if it doesn't exist
         let toast = document.getElementById('toast');
         if (!toast) {
             toast = document.createElement('div');
             toast.id = 'toast';
             toast.className = 'toast';
             document.body.appendChild(toast);
-            
-            // Add styles for toast
-            const style = document.createElement('style');
-            style.textContent = `
-                .toast {
-                    position: fixed;
-                    bottom: 30px;
-                    left: 50%;
-                    transform: translateX(-50%) translateY(100px);
-                    background: var(--primary);
-                    color: white;
-                    padding: 1rem 2rem;
-                    border-radius: 50px;
-                    font-size: 0.9rem;
-                    z-index: 3000;
-                    opacity: 0;
-                    transition: all 0.3s;
-                    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-                }
-                .toast.show {
-                    opacity: 1;
-                    transform: translateX(-50%) translateY(0);
-                }
-            `;
-            document.head.appendChild(style);
         }
         
         toast.textContent = message;
@@ -1369,31 +1150,20 @@
     // SETUP EVENT LISTENERS
     // ==========================================
     function setupEventListeners() {
-        // Add click to main image for zoom
         const mainImage = document.getElementById('mainImage');
         if (mainImage) {
             mainImage.addEventListener('click', openZoom);
         }
         
-        // Close zoom modal when clicking outside
         const zoomModal = document.getElementById('zoomModal');
         if (zoomModal) {
             zoomModal.addEventListener('click', closeZoom);
         }
         
-        // Close zoom modal with X button
         const closeZoomBtn = document.querySelector('.close-zoom');
         if (closeZoomBtn) {
             closeZoomBtn.addEventListener('click', closeZoom);
         }
-        
-        // Tab switching
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                const contentId = this.getAttribute('onclick').match(/'([^']+)'/)[1];
-                switchTab(this, contentId);
-            });
-        });
     }
 
     // ==========================================
@@ -1401,7 +1171,6 @@
     // ==========================================
     document.addEventListener('DOMContentLoaded', function() {
         loadProduct();
-        updateCartCount();
         setupEventListeners();
     });
 </script>
