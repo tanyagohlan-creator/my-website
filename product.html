@@ -689,19 +689,34 @@
     width: 70px !important;
     height: 70px !important;
 }
-        /* Fancy Cloth House Logo */
+ /* Logo + Text styling */
+.logo {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    text-decoration: none !important;
+}
+
 .logo img {
-    height: 60px;
+    height: 50px;
     width: auto;
-    max-width: 300px;
     display: block;
-    transition: all 0.3s ease;
+}
+
+.logo span {
+    color: #8B1538;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 @media (max-width: 768px) {
     .logo img {
-        height: 45px !important;
-        max-width: 200px !important;
+        height: 40px !important;
+    }
+    .logo span {
+        font-size: 1.4rem !important;
     }
 }
     </style>
@@ -713,10 +728,11 @@
     </div>
 
     <nav class="navbar">
-     <a href="index.html" class="logo" style="display: flex; align-items: center;">
+    <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
     <img src="https://i.ibb.co/wNWc5qbL/Gemini-Generated-Image-6jc98x6jc98x6jc9-1.png" 
          alt="Fancy Cloth House" 
-         style="height: 60px; width: auto; max-width: 300px; display: block;">
+         style="height: 50px; width: auto; display: block;">
+    <span style="color: #8B1538; font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; letter-spacing: 1px;">Fancy Cloth House</span>
 </a>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
