@@ -833,26 +833,30 @@
     </section>
 
     
-<!-- Collection Banner -->
-<div class="collection-banner">
-    <div class="banner-item" onclick="filterSale()">
+<!-- Collection Banner - Modern Split Layout -->
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 1400px; margin: 40px auto; padding: 0 20px;">
+    
+    <!-- Festive Collection Card -->
+    <div onclick="filterSale()" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); cursor: pointer;">
         <img src="https://i.ibb.co/ccsTm5BC/Gemini-Generated-Image-lhefjflhefjflhef.png" 
              alt="Festive Collection" 
-             style="width: 100%; height: 500px; object-fit: cover; object-position: center 30%; display: block;">
-        <div class="banner-overlay" style="background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);">
-            <h3 style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Festive Collection</h3>
-            <p style="color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Up to 40% Off</p>
-            <span class="cta-btn" style="background: white; color: #8B1538; border: 2px solid white; display: inline-block;">Shop Now</span>
+             style="width: 100%; height: 400px; object-fit: cover; object-position: center 20%; display: block;">
+        <div style="padding: 25px; text-align: center;">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--dark); margin-bottom: 10px;">Festive Collection</h3>
+            <p style="color: var(--text); font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px;">Up to 40% Off</p>
+            <span style="display: inline-block; padding: 12px 30px; background: var(--primary); color: white; text-decoration: none; border-radius: 4px; font-weight: 600;">Shop Now</span>
         </div>
     </div>
-    <div class="banner-item" onclick="filterPremium()">
+    
+    <!-- Wedding Season Card -->
+    <div onclick="filterPremium()" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); cursor: pointer;">
         <img src="https://i.ibb.co/CcCDNvL/Gemini-Generated-Image-fnwpp1fnwpp1fnwp.png" 
              alt="Wedding Season" 
-             style="width: 100%; height: 500px; object-fit: cover; object-position: center 30%; display: block;">
-        <div class="banner-overlay" style="background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);">
-            <h3 style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Wedding Season</h3>
-            <p style="color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Exclusive Designs</p>
-            <span class="cta-btn" style="background: white; color: #8B1538; border: 2px solid white; display: inline-block;">Explore</span>
+             style="width: 100%; height: 400px; object-fit: cover; object-position: center 30%; display: block;">
+        <div style="padding: 25px; text-align: center;">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--dark); margin-bottom: 10px;">Wedding Season</h3>
+            <p style="color: var(--text); font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px;">Exclusive Designs</p>
+            <span style="display: inline-block; padding: 12px 30px; background: var(--primary); color: white; text-decoration: none; border-radius: 4px; font-weight: 600;">Explore</span>
         </div>
     </div>
 </div>
@@ -1410,6 +1414,7 @@
     </script>
 </body>
 </html>
+
 
 
 
