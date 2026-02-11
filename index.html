@@ -708,6 +708,46 @@
         height: 350px !important;
     }
 }
+        /* Fix banner overlays */
+.collection-banner .banner-item {
+    position: relative;
+}
+
+.collection-banner .banner-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3rem;
+    color: white;
+    pointer-events: none;
+}
+
+.collection-banner .banner-overlay .cta-btn {
+    pointer-events: auto;
+}
+
+.collection-banner .banner-overlay h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.collection-banner .banner-overlay p {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .collection-banner .banner-overlay {
+        padding: 2rem;
+    }
+    .collection-banner .banner-overlay h3 {
+        font-size: 1.8rem;
+    }
+}
     </style>
 </head>
 <body>
@@ -794,24 +834,25 @@
 
     
 <!-- Collection Banner -->
-<!-- Collection Banner -->
 <div class="collection-banner">
     <div class="banner-item" onclick="filterSale()">
-        <div style="width: 100%; height: 100%; position: relative; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://i.ibb.co/ccsTm5BC/Gemini-Generated-Image-lhefjflhefjflhef.png'); background-size: cover; background-position: center;">
-            <div class="banner-overlay">
-                <h3>Festive Collection</h3>
-                <p>Up to 40% Off</p>
-                <span class="cta-btn" style="background: transparent; color: white; border-color: white; display: inline-block;">Shop Now</span>
-            </div>
+        <img src="https://i.ibb.co/ccsTm5BC/Gemini-Generated-Image-lhefjflhefjflhef.png" 
+             alt="Festive Collection" 
+             style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <div class="banner-overlay" style="background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);">
+            <h3 style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Festive Collection</h3>
+            <p style="color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Up to 40% Off</p>
+            <span class="cta-btn" style="background: white; color: #8B1538; border: 2px solid white; display: inline-block;">Shop Now</span>
         </div>
     </div>
     <div class="banner-item" onclick="filterPremium()">
-        <div style="width: 100%; height: 100%; position: relative; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://i.ibb.co/CcCDNvL/Gemini-Generated-Image-fnwpp1fnwpp1fnwp.png'); background-size: cover; background-position: center;">
-            <div class="banner-overlay">
-                <h3>Wedding Season</h3>
-                <p>Exclusive Designs</p>
-                <span class="cta-btn" style="background: transparent; color: white; border-color: white; display: inline-block;">Explore</span>
-            </div>
+        <img src="https://i.ibb.co/CcCDNvL/Gemini-Generated-Image-fnwpp1fnwpp1fnwp.png" 
+             alt="Wedding Season" 
+             style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <div class="banner-overlay" style="background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);">
+            <h3 style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Wedding Season</h3>
+            <p style="color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Exclusive Designs</p>
+            <span class="cta-btn" style="background: white; color: #8B1538; border: 2px solid white; display: inline-block;">Explore</span>
         </div>
     </div>
 </div>
@@ -1369,6 +1410,7 @@
     </script>
 </body>
 </html>
+
 
 
 
